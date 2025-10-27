@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BikeRental.Views.Rezerwacje"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
         <Label>Tu bedzie wyswietlanie rezerwacji</Label>
     </Grid>
 </UserControl>

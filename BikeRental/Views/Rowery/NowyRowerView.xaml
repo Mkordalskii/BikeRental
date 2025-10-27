@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BikeRental.Views.Rowery"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
         <Label>Tu bedzie dodawanie roweru</Label>
     </Grid>
 </UserControl>

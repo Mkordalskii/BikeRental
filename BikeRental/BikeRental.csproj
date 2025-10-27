@@ -75,10 +75,19 @@
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
+    <Compile Include="ViewModels\Klenci\KlienciViewModel.cs" />
+    <Compile Include="ViewModels\Klenci\NowyKlientViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
+    <Compile Include="ViewModels\Rowery\NowyRowerViewModel.cs" />
+    <Compile Include="ViewModels\Rowery\RoweryViewModel.cs" />
+    <Compile Include="ViewModels\Stacje\NowaStacjaViewModel.cs" />
+    <Compile Include="ViewModels\Stacje\StacjeViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
+    <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
       <DependentUpon>KlienciView.xaml</DependentUpon>
     </Compile>

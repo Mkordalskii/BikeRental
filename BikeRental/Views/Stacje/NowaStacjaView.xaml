@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BikeRental.Views.Stacje"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
         <Label>Tu bedzie dodawanie nowej stacji</Label>
     </Grid>
 </UserControl>
