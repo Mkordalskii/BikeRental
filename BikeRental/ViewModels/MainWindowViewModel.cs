@@ -34,13 +34,6 @@ namespace BikeRental.ViewModels
         {
             return new List<CommandViewModel>
             {
-                new CommandViewModel(
-                    "Towary",
-                    new BaseCommand(() => this.ShowAll<WszystkieTowaryViewModel>())),
-
-                new CommandViewModel(
-                    "Towar",
-                    new BaseCommand(() => this.CreateView(new NowyTowarViewModel()))),
 
                 new CommandViewModel(
                     "Dodaj lub edytuj Klienta",
