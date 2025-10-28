@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Wypozyczenia
+﻿namespace BikeRental.ViewModels
 {
-    internal class AktywneWypozyczeniaViewModel
+    public class AktywneWypozyczeniaViewModel : WorkspaceViewModel
     {
+        public AktywneWypozyczeniaViewModel()
+        {
+            base.DisplayName = "Aktywne wypozyczenia";
+        }
     }
 }

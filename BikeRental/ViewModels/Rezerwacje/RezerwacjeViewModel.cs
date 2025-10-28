@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Rezerwacje
+﻿namespace BikeRental.ViewModels
 {
-    internal class RezerwacjeViewModel
+    public class RezerwacjeViewModel : WorkspaceViewModel
     {
+        public RezerwacjeViewModel()
+        {
+            base.DisplayName = "Wszystkie rezerwacje";
+        }
     }
 }

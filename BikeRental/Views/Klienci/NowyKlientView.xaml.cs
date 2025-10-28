@@ -3,11 +3,11 @@
 namespace BikeRental.Views
 {
     /// <summary>
-    /// Interaction logic for AktywneWypozyczeniaView.xaml
+    /// Interaction logic for Klient.xaml
     /// </summary>
-    public partial class AktywneWypozyczeniaView : UserControl
+    public partial class NowyKlientView : UserControl
     {
-        public AktywneWypozyczeniaView()
+        public NowyKlientView()
         {
             InitializeComponent();
         }

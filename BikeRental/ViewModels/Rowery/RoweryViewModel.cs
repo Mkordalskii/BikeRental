@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Rowery
+﻿namespace BikeRental.ViewModels
 {
-    internal class RoweryViewModel
+    public class RoweryViewModel : WorkspaceViewModel
     {
+        public RoweryViewModel()
+        {
+            base.DisplayName = "Wszystkie rowery";
+        }
     }
 }

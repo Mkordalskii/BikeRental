@@ -4,10 +4,10 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using MVVMFirma.Views;
-using MVVMFirma.ViewModels;
+using BikeRental.Views;
+using BikeRental.ViewModels;
 
-namespace MVVMFirma
+namespace BikeRental
 {
     public partial class App : Application
     {

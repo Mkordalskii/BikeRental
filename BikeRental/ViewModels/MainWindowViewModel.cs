@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-using MVVMFirma.Helper;
+using BikeRental.Helper;
 using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
 
-namespace MVVMFirma.ViewModels
+namespace BikeRental.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {

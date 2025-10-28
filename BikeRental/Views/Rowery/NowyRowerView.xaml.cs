@@ -1,26 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace BikeRental.Views.Rowery
+namespace BikeRental.Views
 {
     /// <summary>
-    /// Interaction logic for RowerView.xaml
+    /// Interaction logic for NowyRowerView.xaml
     /// </summary>
-    public partial class RowerView : UserControl
+    public partial class NowyRowerView : UserControl
     {
-        public RowerView()
+        public NowyRowerView()
         {
             InitializeComponent();
         }

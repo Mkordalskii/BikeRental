@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MVVMFirma.Properties {
+namespace BikeRental.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

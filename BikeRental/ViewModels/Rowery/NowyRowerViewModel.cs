@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Rowery
+﻿namespace BikeRental.ViewModels
 {
-    internal class NowyRowerViewModel
+    public class NowyRowerViewModel : WorkspaceViewModel
     {
+        public NowyRowerViewModel()
+        {
+            base.DisplayName = "Dodaj/Edytuj Rower";
+        }
     }
 }

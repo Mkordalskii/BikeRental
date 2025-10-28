@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Stacje
+﻿namespace BikeRental.ViewModels
 {
-    internal class NowaStacjaViewModel
+    public class NowaStacjaViewModel : WorkspaceViewModel
     {
+        public NowaStacjaViewModel()
+        {
+            base.DisplayName = "Dodaj/Edytuj stacje";
+        }
     }
 }

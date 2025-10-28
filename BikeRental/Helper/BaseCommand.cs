@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace MVVMFirma.Helper
+namespace BikeRental.Helper
 {
     internal class BaseCommand : ICommand
     {

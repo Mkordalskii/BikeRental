@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Input;
-using MVVMFirma.Helper;
+using BikeRental.Helper;
 
-namespace MVVMFirma.ViewModels
+namespace BikeRental.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

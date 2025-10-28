@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MVVMFirma.ViewModels
+namespace BikeRental.ViewModels
 {
     public class NowyTowarViewModel : WorkspaceViewModel
     {

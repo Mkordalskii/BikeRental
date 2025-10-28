@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BikeRental.ViewModels.Platnosci
+﻿namespace BikeRental.ViewModels
 {
-    internal class PlatnosciViewModel
+    public class PlatnosciViewModel : WorkspaceViewModel
     {
+        public PlatnosciViewModel()
+        {
+            base.DisplayName = "Wszystkie platnosci";
+        }
     }
 }

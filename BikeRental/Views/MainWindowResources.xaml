@@ -1,13 +1,40 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:MVVMFirma.ViewModels"
-                    xmlns:vw="clr-namespace:MVVMFirma.Views"
+                    xmlns:vm="clr-namespace:BikeRental.ViewModels"
+                    xmlns:vw="clr-namespace:BikeRental.Views"
                     >
     <DataTemplate DataType="{x:Type vm:WszystkieTowaryViewModel}">
         <vw:WszystkieTowaryView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
         <vw:NowyTowarView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:KlienciViewModel}">
+        <vw:KlienciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyKlientViewModel}">
+        <vw:NowyKlientView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PlatnosciViewModel}">
+        <vw:PlatnosciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RezerwacjeViewModel}">
+        <vw:RezerwacjeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyRowerViewModel}">
+        <vw:NowyRowerView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RoweryViewModel}">
+        <vw:RoweryView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaStacjaViewModel}">
+        <vw:NowaStacjaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StacjeViewModel}">
+        <vw:StacjeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AktywneWypozyczeniaViewModel}">
+        <vw:AktywneWypozyczeniaView/>
     </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">

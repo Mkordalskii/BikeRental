@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MVVMFirma.Helper;
+﻿using BikeRental.Helper;
+using System;
 using System.Windows.Input;
 
-namespace MVVMFirma.ViewModels
+namespace BikeRental.ViewModels
 {
     public abstract class WorkspaceViewModel : BaseViewModel
     {

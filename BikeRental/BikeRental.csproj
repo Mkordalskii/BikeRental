@@ -75,8 +75,8 @@
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
-    <Compile Include="ViewModels\Klenci\KlienciViewModel.cs" />
-    <Compile Include="ViewModels\Klenci\NowyKlientViewModel.cs" />
+    <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />
+    <Compile Include="ViewModels\Klienci\NowyKlientViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
@@ -91,8 +91,8 @@
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
       <DependentUpon>KlienciView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Klienci\NowyKlient.xaml.cs">
-      <DependentUpon>NowyKlient.xaml</DependentUpon>
+    <Compile Include="Views\Klienci\NowyKlientView.xaml.cs">
+      <DependentUpon>NowyKlientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -156,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Klienci\NowyKlient.xaml">
+    <Page Include="Views\Klienci\NowyKlientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
