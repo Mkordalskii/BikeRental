@@ -1,12 +1,11 @@
-﻿using System;
+﻿using BikeRental.Helper;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
-using BikeRental.Helper;
-using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Data;
 
 namespace BikeRental.ViewModels
@@ -37,11 +36,47 @@ namespace BikeRental.ViewModels
             {
                 new CommandViewModel(
                     "Towary",
-                    new BaseCommand(() => this.ShowAllTowar())),
+                    new BaseCommand(() => this.ShowAll<WszystkieTowaryViewModel>())),
 
                 new CommandViewModel(
                     "Towar",
-                    new BaseCommand(() => this.CreateTowar()))
+                    new BaseCommand(() => this.CreateView(new NowyTowarViewModel()))),
+
+                new CommandViewModel(
+                    "Dodaj lub edytuj Klienta",
+                    new BaseCommand(() => this.CreateView(new NowyKlientViewModel()))),
+
+                new CommandViewModel(
+                    "Klienci",
+                    new BaseCommand(() => this.ShowAll<KlienciViewModel>())),
+
+                new CommandViewModel(
+                    "Platnosci",
+                    new BaseCommand(() => this.ShowAll<PlatnosciViewModel>())),
+
+                new CommandViewModel(
+                    "Rezerwacje",
+                    new BaseCommand(() => this.ShowAll<RezerwacjeViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj lub edytuj rower",
+                    new BaseCommand(() => this.CreateView(new NowyRowerViewModel()))),
+
+                new CommandViewModel(
+                    "Rowery",
+                    new BaseCommand(() => this.ShowAll<RoweryViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj lub edytuj stacje",
+                    new BaseCommand(() => this.CreateView(new NowaStacjaViewModel()))),
+
+                new CommandViewModel(
+                    "Stacje",
+                    new BaseCommand(() => this.ShowAll<StacjeViewModel>())),
+
+                new CommandViewModel(
+                    "Aktywne wypozyczenia",
+                    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>()))
             };
         }
         #endregion
@@ -79,20 +114,19 @@ namespace BikeRental.ViewModels
         #endregion // Workspaces
 
         #region Private Helpers
-        private void CreateTowar()
+        private void CreateView(WorkspaceViewModel workspace)
         {
-            NowyTowarViewModel workspace = new NowyTowarViewModel();
-            this.Workspaces.Add(workspace);
-            this.SetActiveWorkspace(workspace);
+            this.Workspaces.Add(workspace); //dodajemy zakladkie do kolekcji zakladek
+            this.SetActiveWorkspace(workspace); //aktywowanie zakladki (zeby byla wlaczona)
         }
-        private void ShowAllTowar()
+        private void ShowAll<T>() where T : WorkspaceViewModel, new() // T musi dziedziczyc po WorkspaceViewModel i ma pusty konstruktor
         {
-            WszystkieTowaryViewModel workspace =
-                this.Workspaces.FirstOrDefault(vm => vm is WszystkieTowaryViewModel)
-                as WszystkieTowaryViewModel;
+            T workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is T)
+                as T;
             if (workspace == null)
             {
-                workspace = new WszystkieTowaryViewModel();
+                workspace = new T();
                 this.Workspaces.Add(workspace);
             }
 
