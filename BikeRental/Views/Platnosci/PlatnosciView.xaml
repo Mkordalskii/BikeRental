@@ -7,6 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tu bedzie wyswietlanie platnosci</Label>
+        <DataGrid AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" />
+                <DataGridTextColumn Header="Id klienta" />
+                <DataGridTextColumn Header="Id wypozyczenia" />
+                <DataGridTextColumn Header="Data platnosci" />
+                <DataGridTextColumn Header="Kwota" />
+                <DataGridTextColumn Header="Waluta" />
+                <DataGridTextColumn Header="Metoda platnosci" />
+                <DataGridTextColumn Header="Referencja" />
+                <DataGridTextColumn Header="Status" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

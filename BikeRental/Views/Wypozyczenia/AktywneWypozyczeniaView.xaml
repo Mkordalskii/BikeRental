@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tu bedzie wyswietlanie aktywnych wypozyczen</Label>
+        <DataGrid AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" />
+                <DataGridTextColumn Header="Id klienta" />
+                <DataGridTextColumn Header="Id roweru" />
+                <DataGridTextColumn Header="Start" />
+                <DataGridTextColumn Header="Koniec" />
+                <DataGridTextColumn Header="Id stacji poczatkowej" />
+                <DataGridTextColumn Header="Id stacji koncowej" />
+                <DataGridTextColumn Header="Szerokosc geo. start" />
+                <DataGridTextColumn Header="Dlugosc geo. start" />
+                <DataGridTextColumn Header="Szerokosc geo. koniec" />
+                <DataGridTextColumn Header="Dlugosc geo. koniec" />
+                <DataGridTextColumn Header="Odleglosc[KM]" />
+                <DataGridTextColumn Header="Plan cenowy Id" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

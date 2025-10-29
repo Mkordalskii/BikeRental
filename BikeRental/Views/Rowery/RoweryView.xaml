@@ -7,6 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tu bedzie wyswietlanie wszystkich rowerow</Label>
+        <DataGrid AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" />
+                <DataGridTextColumn Header="Id modelu" />
+                <DataGridTextColumn Header="Numer seryjny" />
+                <DataGridTextColumn Header="Kod floty" />
+                <DataGridTextColumn Header="Stan" />
+                <DataGridTextColumn Header="Id stacji" />
+                <DataGridTextColumn Header="Id stojaka" />
+                <DataGridTextColumn Header="Szerokosc geo." />
+                <DataGridTextColumn Header="Dlugosc geo." />
+                <DataGridTextColumn Header="Przebieg[KM]" />
+                <DataGridTextColumn Header="Poziom baterii[%]" />
+                <DataGridTextColumn Header="Data przegladu" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
