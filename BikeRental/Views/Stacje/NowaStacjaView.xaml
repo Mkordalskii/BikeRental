@@ -27,7 +27,10 @@
         <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8"/>
 
         <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Godziny otwarcia" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8"
+                 Style="{StaticResource PlaceholderTextBox}"
+                 Tag="GG:MM-GG:MM"
+                 Text="{Binding GodzinyOtwarcia, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Szerokosc geograficzna" Margin="0,8,0,8"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8"/>

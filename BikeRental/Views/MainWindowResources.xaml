@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:BikeRental.ViewModels"
                     xmlns:vw="clr-namespace:BikeRental.Views"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     >
     
     <DataTemplate DataType="{x:Type vm:KlienciViewModel}">
@@ -153,4 +154,60 @@
       Margin="4"
       />
     </DataTemplate>
+
+    <!-- TextBox z placeholderem: tekst placeholdera podawaj w Tag -->
+    <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
+        <!-- zachowaj standardowe marginesy itp. w razie potrzeby -->
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <!-- Właściwa treść TextBoxa -->
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+
+                            <!-- Placeholder – bierze tekst z Tag -->
+                            <TextBlock x:Name="Watermark"
+                                       Text="{TemplateBinding Tag}"
+                                       Foreground="Gray"
+                                       Margin="5,0,0,0"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"
+                                       Opacity="0.6"
+                                       Visibility="Collapsed"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Stany/focus/disabled (proste) -->
+                    <ControlTemplate.Triggers>
+                        <!-- POKAŻ placeholder, gdy Text pusty lub null -->
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <!-- Efekt focus: przyciemnij obramowanie jak chcesz -->
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="#FF3399FF"/>
+                        </Trigger>
+
+                        <!-- Disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
