@@ -36,7 +36,7 @@ namespace BikeRental.ViewModels
             {
 
                 new CommandViewModel(
-                    "Dodaj lub edytuj Klienta",
+                    "Dodaj/edytuj Klienta",
                     new BaseCommand(() => this.CreateView(new NowyKlientViewModel()))),
 
                 new CommandViewModel(
@@ -52,7 +52,7 @@ namespace BikeRental.ViewModels
                     new BaseCommand(() => this.ShowAll<RezerwacjeViewModel>())),
 
                 new CommandViewModel(
-                    "Dodaj lub edytuj rower",
+                    "Dodaj/edytuj rower",
                     new BaseCommand(() => this.CreateView(new NowyRowerViewModel()))),
 
                 new CommandViewModel(
@@ -60,7 +60,7 @@ namespace BikeRental.ViewModels
                     new BaseCommand(() => this.ShowAll<RoweryViewModel>())),
 
                 new CommandViewModel(
-                    "Dodaj lub edytuj stacje",
+                    "Dodaj/edytuj stacje",
                     new BaseCommand(() => this.CreateView(new NowaStacjaViewModel()))),
 
                 new CommandViewModel(

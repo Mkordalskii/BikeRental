@@ -99,11 +99,17 @@
         <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="2,6">
+                    <!--<TextBlock Margin="2,6">
             <Hyperlink Command="{Binding Path=Command}">
               <TextBlock Text="{Binding Path=DisplayName}" />
             </Hyperlink>
-          </TextBlock>
+          </TextBlock>-->
+                    <Button
+                    Command="{Binding Command}"
+                    Content="{Binding DisplayName}"
+                    Margin="0,4,0,0"
+                    Padding="10,6"
+                    HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
