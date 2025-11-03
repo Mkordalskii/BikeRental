@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace BikeRental.Views
+﻿namespace BikeRental.Views
 {
     /// <summary>
     /// Interaction logic for AktywneWypozyczeniaView.xaml
     /// </summary>
-    public partial class AktywneWypozyczeniaView : UserControl
+    public partial class AktywneWypozyczeniaView : WszystkieViewBase
     {
         public AktywneWypozyczeniaView()
         {

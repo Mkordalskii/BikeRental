@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace BikeRental.Views
+﻿namespace BikeRental.Views
 {
     /// <summary>
     /// Interaction logic for RoweryView.xaml
     /// </summary>
-    public partial class RoweryView : UserControl
+    public partial class RoweryView : WszystkieViewBase
     {
         public RoweryView()
         {
