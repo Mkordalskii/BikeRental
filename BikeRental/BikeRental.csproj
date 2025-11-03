@@ -54,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -76,6 +78,69 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Models\Abonament.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Klient.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBikeRental.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBikeRental.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBikeRental.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBikeRental.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBikeRental.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanCenowy.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanCenowyStawka.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Platnosc.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rezerwacja.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rower.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RowerModel.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stacja.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stojak.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransferRoweru.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Uzytkownik.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wypozyczenie.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WypozyczenieOplata.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZgloszenieSerwisowe.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />
@@ -139,6 +204,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <EntityDeploy Include="Models\ModelBikeRental.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBikeRental.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ModelBikeRental.edmx.diagram">
+      <DependentUpon>ModelBikeRental.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -214,8 +286,21 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="Models\ModelBikeRental.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBikeRental.edmx</DependentUpon>
+      <LastGenOutput>ModelBikeRental.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelBikeRental.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBikeRental.edmx</DependentUpon>
+      <LastGenOutput>ModelBikeRental.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
