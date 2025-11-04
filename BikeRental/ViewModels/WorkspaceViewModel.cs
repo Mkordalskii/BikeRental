@@ -30,7 +30,7 @@ namespace BikeRental.ViewModels
 
         #region RequestClose [event]
         public event EventHandler RequestClose;
-        private void OnRequestClose()
+        protected void OnRequestClose()
         {
             EventHandler handler = this.RequestClose;
             if (handler != null)
