@@ -155,6 +155,7 @@
     <Compile Include="ViewModels\Stacje\StacjeViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
+    <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
       <DependentUpon>KlienciView.xaml</DependentUpon>
     </Compile>

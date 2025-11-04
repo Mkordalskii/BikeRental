@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace BikeRental.Views
+﻿namespace BikeRental.Views
 {
     /// <summary>
     /// Interaction logic for NowyRowerView.xaml
     /// </summary>
-    public partial class NowyRowerView : UserControl
+    public partial class NowyRowerView : JedenViewBase
     {
         public NowyRowerView()
         {
