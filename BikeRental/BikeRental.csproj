@@ -141,6 +141,7 @@
     <Compile Include="Models\ZgloszenieSerwisowe.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abstract\WszystkieViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />

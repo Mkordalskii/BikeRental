@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" />
-                <DataGridTextColumn Header="Kod" />
-                <DataGridTextColumn Header="Nazwa" />
-                <DataGridTextColumn Header="SzerGeo" />
-                <DataGridTextColumn Header="DlugGeo" />
-                <DataGridTextColumn Header="Godziny otwarcia" />
+                <DataGridTextColumn Header="Id" Binding="{Binding StacjaId}"/>
+                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+                <DataGridTextColumn Header="SzerGeo" Binding="{Binding SzerGeo}"/>
+                <DataGridTextColumn Header="DlugGeo" Binding="{Binding DlugGeo}"/>
+                <DataGridTextColumn Header="Godziny otwarcia" Binding="{Binding GodzinyOtwarcia}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

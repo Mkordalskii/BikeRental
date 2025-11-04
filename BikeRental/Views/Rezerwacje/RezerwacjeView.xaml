@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" />
-                <DataGridTextColumn Header="Id klienta" />
-                <DataGridTextColumn Header="Id roweru" />
-                <DataGridTextColumn Header="Data od" />
-                <DataGridTextColumn Header="Data do" />
-                <DataGridTextColumn Header="Status" />
+                <DataGridTextColumn Header="Id" Binding="{Binding RezerwacjaId}" />
+                <DataGridTextColumn Header="Id klienta" Binding="{Binding KlientId}"/>
+                <DataGridTextColumn Header="Id roweru" Binding="{Binding RowerId}"/>
+                <DataGridTextColumn Header="Data od" Binding="{Binding DataOdUtc}"/>
+                <DataGridTextColumn Header="Data do" Binding="{Binding DataDoUtc}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
