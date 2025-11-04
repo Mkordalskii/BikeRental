@@ -18,7 +18,7 @@
                             <ToggleButton Content="Dodaj" Height="30" Width="70"/>
                             <ToggleButton Content="Edytuj" Height="30" Width="70"/>
                             <ToggleButton Content="Usun" Height="30" Width="70"/>
-                            <ToggleButton Content="Odswiez" Height="30" Width="70"/>
+                            <ToggleButton Content="Odswiez" Height="30" Width="70" Command="{Binding LoadCommand}"/>
                         </ToolBar>
                         <Expander Grid.Row="1" Background="Azure" Header="Sortowanie i filtrowanie">
                             <Label>Tu bedzie filtrowanie i sortowanie</Label>
