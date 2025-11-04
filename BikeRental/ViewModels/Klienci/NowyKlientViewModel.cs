@@ -1,22 +1,16 @@
-﻿using BikeRental.Helper;
-using BikeRental.Models;
+﻿using BikeRental.Models;
+using BikeRental.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
-    public class NowyKlientViewModel : WorkspaceViewModel
+    public class NowyKlientViewModel : JedenViewModel<Klient>
     {
-        #region Database
-        protected BikeRentalDbEntities db;
-        private Klient item;
-        #endregion
         #region Constructor 
-        public NowyKlientViewModel()
+        public NowyKlientViewModel() : base()
         {
             base.DisplayName = "Dodaj/Edytuj klienta";
-            db = new BikeRentalDbEntities();
             item = new Klient();
             DostepneTypy = new List<string> { "Osoba prywatna", "Firma" };
             WybranyTyp = DostepneTypy[0];
@@ -132,29 +126,13 @@ namespace BikeRental.ViewModels
         }
         #endregion
         #region Commands
-        //to jest komenda ktora zostanie podpieta pod przycisk zapisz i zamknij
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose); //ta komenda wywola metode saveAndClose ktora jest zdefiniowana nizej
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
+        public override void Save()
         {
             item.CzyAktywny = true;
             item.KtoDodal = /* np. zalogowany użytkownik */ 5;
             item.KiedyDodal = DateTime.Now;
             db.Klient.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
-        }
-        private void saveAndClose()
-        {
-            Save();
-            //zamykamy zakladke przez metode z WorkSpaceViewModel
-            OnRequestClose();//najpierw zmien w WorkspaceViewModel z private na protected
         }
         #endregion
         #region ComboBoxList
