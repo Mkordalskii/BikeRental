@@ -1,6 +1,9 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Helper;
+using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BikeRental.ViewModels
 {
@@ -11,6 +14,10 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj Rower";
             item = new Rower();
+            DostepneModele = new ObservableCollection<ForeignKeyIdAndNameRecord>();
+            DostepneStacje = new ObservableCollection<ForeignKeyIdAndNameRecord>();
+            DostepneStojaki = new ObservableCollection<ForeignKeyIdAndNameRecord>();
+            loadForeignKeyIdAndName();
         }
         #endregion
         #region Properties
@@ -29,6 +36,156 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+        public int RowerModelId
+        {
+            get
+            {
+                return item.RowerModelId;
+            }
+            set
+            {
+                if (item.RowerModelId != value)
+                {
+                    item.RowerModelId = value;
+                    OnPropertyChanged(() => RowerModelId);
+                }
+            }
+        }
+        public string KodFloty
+        {
+            get
+            {
+                return item.KodFloty;
+            }
+            set
+            {
+                if (item.KodFloty != value)
+                {
+                    item.KodFloty = value;
+                    OnPropertyChanged(() => KodFloty);
+                }
+            }
+        }
+        public byte Stan // 0 dostepny, 1 wypozyczony, 2 serwis, 3 zgubiony/ukradziony
+        {
+            get
+            {
+                return item.Stan;
+            }
+            set
+            {
+                if (item.Stan != value)
+                {
+                    item.Stan = value;
+                    OnPropertyChanged(() => Stan);
+                }
+            }
+        }
+        public int? OstatniaStacjaId
+        {
+            get
+            {
+                return item.OstatniaStacjaId;
+            }
+            set
+            {
+                if (item.OstatniaStacjaId != value)
+                {
+                    item.OstatniaStacjaId = value;
+                    OnPropertyChanged(() => OstatniaStacjaId);
+                }
+            }
+        }
+        public int? OstatniStojakId
+        {
+            get
+            {
+                return item.OstatniStojakId;
+            }
+            set
+            {
+                if (item.OstatniStojakId != value)
+                {
+                    item.OstatniStojakId = value;
+                    OnPropertyChanged(() => OstatniStojakId);
+                }
+            }
+        }
+        public decimal? OstatniaSzerGeo
+        {
+            get
+            {
+                return item.OstatniaSzerGeo;
+            }
+            set
+            {
+                if (item.OstatniaSzerGeo != value)
+                {
+                    item.OstatniaSzerGeo = value;
+                    OnPropertyChanged(() => OstatniaSzerGeo);
+                }
+            }
+        }
+        public decimal? OstatniaDlugGeo
+        {
+            get
+            {
+                return item.OstatniaDlugGeo;
+            }
+            set
+            {
+                if (item.OstatniaDlugGeo != value)
+                {
+                    item.OstatniaDlugGeo = value;
+                    OnPropertyChanged(() => OstatniaDlugGeo);
+                }
+            }
+        }
+        public decimal? PrzebiegKm
+        {
+            get
+            {
+                return item.PrzebiegKm;
+            }
+            set
+            {
+                if (item.PrzebiegKm != value)
+                {
+                    item.PrzebiegKm = value;
+                    OnPropertyChanged(() => PrzebiegKm);
+                }
+            }
+        }
+        public byte? PoziomBateriiProc
+        {
+            get
+            {
+                return item.PoziomBateriiProc;
+            }
+            set
+            {
+                if (item.PoziomBateriiProc != value)
+                {
+                    item.PoziomBateriiProc = value;
+                    OnPropertyChanged(() => PoziomBateriiProc);
+                }
+            }
+        }
+        public DateTime? DataPrzegladu
+        {
+            get
+            {
+                return item.DataPrzegladu;
+            }
+            set
+            {
+                if (item.DataPrzegladu != value)
+                {
+                    item.DataPrzegladu = value;
+                    OnPropertyChanged(() => DataPrzegladu);
+                }
+            }
+        }
         #endregion
         #region Commands
         public override void Save()
@@ -36,8 +193,33 @@ namespace BikeRental.ViewModels
             item.CzyAktywny = true;
             item.KtoDodal = /* np. zalogowany użytkownik */ 5;
             item.KiedyDodal = DateTime.Now;
-            db.Rower.Add(item);//to jest dodanie towaru do kolekcji towarow
+            db.Rower.Add(item);//to jest dodanie roweru do kolekcji rowerow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
+        }
+        #endregion
+        #region ComboBoxList
+        public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneModele { get; }
+        public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneStacje { get; }
+        public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneStojaki { get; }
+        private void loadForeignKeyIdAndName()
+        {
+            Fill(DostepneModele, db.RowerModel
+                .AsNoTracking()
+                .OrderBy(x => x.Nazwa)
+                .Select(x => new ForeignKeyIdAndNameRecord { Id = x.RowerModelId, Name = x.Nazwa })
+                .ToList());
+
+            Fill(DostepneStacje, db.Stacja
+                .AsNoTracking()
+                .OrderBy(x => x.Nazwa)
+                .Select(x => new ForeignKeyIdAndNameRecord { Id = x.StacjaId, Name = x.Nazwa })
+                .ToList());
+
+            Fill(DostepneStojaki, db.Stojak
+                .AsNoTracking()
+                .OrderBy(x => x.StojakId)
+                .Select(x => new ForeignKeyIdAndNameRecord { Id = x.StojakId, Name = x.NumerMiejsca.ToString() })
+                .ToList());
         }
         #endregion
     }

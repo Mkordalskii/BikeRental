@@ -1,5 +1,7 @@
 ﻿using BikeRental.Helper;
 using BikeRental.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace BikeRental.ViewModels.Abstract
@@ -34,6 +36,11 @@ namespace BikeRental.ViewModels.Abstract
             Save();
             //zamykamy zakladke przez metode z WorkSpaceViewModel
             OnRequestClose();//najpierw zmien w WorkspaceViewModel z private na protected
+        }
+        protected static void Fill(ObservableCollection<ForeignKeyIdAndNameRecord> target, IEnumerable<ForeignKeyIdAndNameRecord> items)
+        {
+            target.Clear();
+            foreach (var x in items) target.Add(x);
         }
         #endregion
     }

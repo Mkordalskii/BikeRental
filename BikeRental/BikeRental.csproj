@@ -78,6 +78,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Helper\ForeignKeyIdAndNameRecord.cs" />
     <Compile Include="Models\Abonament.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
