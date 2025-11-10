@@ -69,7 +69,23 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Aktywne wypozyczenia",
-                    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>()))
+                    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj modele",
+                    new BaseCommand(() => this.CreateView(new NowyModelRoweruViewModel()))),
+
+                new CommandViewModel(
+                    "Modele rowerow",
+                    new BaseCommand(() => this.ShowAll<ModeleRowerowViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj stojak",
+                    new BaseCommand(() => this.CreateView(new NowyStojakViewModel()))),
+
+                new CommandViewModel(
+                    "Stojaki",
+                    new BaseCommand(() => this.ShowAll<StojakiViewModel>()))
             };
         }
         #endregion

@@ -32,6 +32,18 @@
     <DataTemplate DataType="{x:Type vm:AktywneWypozyczeniaViewModel}">
         <vw:AktywneWypozyczeniaView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ModeleRowerowViewModel}">
+        <vw:ModeleRowerowView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyModelRoweruViewModel}">
+        <vw:NowyModelRoweruView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StojakiViewModel}">
+        <vw:StojakiView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyStojakViewModel}">
+        <vw:NowyStojakView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

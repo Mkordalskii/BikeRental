@@ -151,10 +151,14 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
+    <Compile Include="ViewModels\Rowery\ModeleRowerowViewModel.cs" />
+    <Compile Include="ViewModels\Rowery\NowyModelRoweruViewModel.cs" />
     <Compile Include="ViewModels\Rowery\NowyRowerViewModel.cs" />
     <Compile Include="ViewModels\Rowery\RoweryViewModel.cs" />
     <Compile Include="ViewModels\Stacje\NowaStacjaViewModel.cs" />
     <Compile Include="ViewModels\Stacje\StacjeViewModel.cs" />
+    <Compile Include="ViewModels\Stojaki\NowyStojakViewModel.cs" />
+    <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
     <Compile Include="Views\JedenViewBase.cs" />
@@ -173,6 +177,12 @@
     <Compile Include="Views\Rezerwacje\RezerwacjeView.xaml.cs">
       <DependentUpon>RezerwacjeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Rowery\ModeleRowerowView.xaml.cs">
+      <DependentUpon>ModeleRowerowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rowery\NowyModelRoweruView.xaml.cs">
+      <DependentUpon>NowyModelRoweruView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Rowery\NowyRowerView.xaml.cs">
       <DependentUpon>NowyRowerView.xaml</DependentUpon>
     </Compile>
@@ -184,6 +194,12 @@
     </Compile>
     <Compile Include="Views\Stacje\StacjeView.xaml.cs">
       <DependentUpon>StacjeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stojaki\NowyStojakView.xaml.cs">
+      <DependentUpon>NowyStojakView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stojaki\StojakiView.xaml.cs">
+      <DependentUpon>StojakiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieViewBase.cs" />
     <Compile Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml.cs">
@@ -274,6 +290,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Rowery\ModeleRowerowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Rowery\NowyModelRoweruView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Rowery\NowyRowerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,6 +311,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Stacje\StacjeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stojaki\NowyStojakView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stojaki\StojakiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

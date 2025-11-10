@@ -10,6 +10,7 @@ namespace BikeRental.ViewModels
     public class NowyRowerViewModel : JedenViewModel<Rower>
     {
         #region Constructor
+
         public NowyRowerViewModel() : base()
         {
             base.DisplayName = "Dodaj/Edytuj Rower";
@@ -19,8 +20,11 @@ namespace BikeRental.ViewModels
             DostepneStojaki = new ObservableCollection<ForeignKeyIdAndNameRecord>();
             loadForeignKeyIdAndName();
         }
-        #endregion
+
+        #endregion Constructor
+
         #region Properties
+
         public string NumerSeryjny
         {
             get
@@ -36,6 +40,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public int RowerModelId
         {
             get
@@ -51,6 +56,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public string KodFloty
         {
             get
@@ -66,6 +72,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public byte Stan // 0 dostepny, 1 wypozyczony, 2 serwis, 3 zgubiony/ukradziony
         {
             get
@@ -81,6 +88,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public int? OstatniaStacjaId
         {
             get
@@ -96,6 +104,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public int? OstatniStojakId
         {
             get
@@ -111,6 +120,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public decimal? OstatniaSzerGeo
         {
             get
@@ -126,6 +136,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public decimal? OstatniaDlugGeo
         {
             get
@@ -141,6 +152,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public decimal? PrzebiegKm
         {
             get
@@ -156,6 +168,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public byte? PoziomBateriiProc
         {
             get
@@ -171,6 +184,7 @@ namespace BikeRental.ViewModels
                 }
             }
         }
+
         public DateTime? DataPrzegladu
         {
             get
@@ -186,8 +200,11 @@ namespace BikeRental.ViewModels
                 }
             }
         }
-        #endregion
+
+        #endregion Properties
+
         #region Commands
+
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -196,11 +213,15 @@ namespace BikeRental.ViewModels
             db.Rower.Add(item);//to jest dodanie roweru do kolekcji rowerow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
         }
-        #endregion
+
+        #endregion Commands
+
         #region ComboBoxList
+
         public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneModele { get; }
         public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneStacje { get; }
         public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneStojaki { get; }
+
         private void loadForeignKeyIdAndName()
         {
             Fill(DostepneModele, db.RowerModel
@@ -221,6 +242,7 @@ namespace BikeRental.ViewModels
                 .Select(x => new ForeignKeyIdAndNameRecord { Id = x.StojakId, Name = x.NumerMiejsca.ToString() })
                 .ToList());
         }
-        #endregion
+
+        #endregion ComboBoxList
     }
 }

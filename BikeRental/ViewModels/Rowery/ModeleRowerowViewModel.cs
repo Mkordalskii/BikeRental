@@ -5,28 +5,25 @@ using System.Linq;
 
 namespace BikeRental.ViewModels
 {
-    public class RoweryViewModel : WszystkieViewModel<Rower>
+    public class ModeleRowerowViewModel : WszystkieViewModel<RowerModel>
     {
+
         #region Lista
 
         public override void Load()
         {
-            List = new ObservableCollection<Rower>
+            List = new ObservableCollection<RowerModel>
                 (
-                db.Rower.ToList()
+                db.RowerModel.ToList()
                 );
         }
 
         #endregion Lista
-
         #region Constructor
-
-        public RoweryViewModel()
-            : base()
+        public ModeleRowerowViewModel() : base()
         {
-            base.DisplayName = "Wszystkie rowery";
+            DisplayName = "Modele rowerow";
         }
-
-        #endregion Constructor
+        #endregion
     }
 }
