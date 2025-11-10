@@ -16,6 +16,7 @@ namespace BikeRental.ViewModels
                   where platnosc.CzyAktywny == true
                   select new PlatnosciForAllView
                   {
+                      PlatnoscId = platnosc.PlatnoscId,
                       KlientImie = platnosc.Klient.Imie,
                       KlientNazwisko = platnosc.Klient.Nazwisko,
                       WypozyczenieId = platnosc.WypozyczenieId,

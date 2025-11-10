@@ -4,6 +4,7 @@ namespace BikeRental.Models.EntitiesForView
 {
     public class PlatnosciForAllView
     {
+        public int PlatnoscId { get; set; }
         public string KlientImie { get; set; }
         public string KlientNazwisko { get; set; }
         public int? WypozyczenieId { get; set; }
