@@ -327,7 +327,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\EntitiesForView\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Models\ModelBikeRental.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

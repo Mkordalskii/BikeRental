@@ -9,18 +9,12 @@
     <Grid Background="White">
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding RowerId}"/>
-                <DataGridTextColumn Header="Id modelu" Binding="{Binding RowerModelId}"/>
-                <DataGridTextColumn Header="Numer seryjny" Binding="{Binding NumerSeryjny}"/>
-                <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}"/>
-                <DataGridTextColumn Header="Stan" Binding="{Binding Stan}"/>
-                <DataGridTextColumn Header="Id stacji" Binding="{Binding OstatniaStacjaId}"/>
-                <DataGridTextColumn Header="Id stojaka" Binding="{Binding OstatniStojakId}"/>
-                <DataGridTextColumn Header="Szerokosc geo." Binding="{Binding OstatniaSzerGeo}"/>
-                <DataGridTextColumn Header="Dlugosc geo." Binding="{Binding OstatniaDlugGeo}"/>
-                <DataGridTextColumn Header="Przebieg[KM]" Binding="{Binding PrzebiegKm}"/>
-                <DataGridTextColumn Header="Poziom baterii[%]" Binding="{Binding PoziomBateriiProc}"/>
-                <DataGridTextColumn Header="Data przegladu" Binding="{Binding DataPrzegladu}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding RowerModelId}"/>
+                <DataGridTextColumn Header="Producent" Binding="{Binding Producent}"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+                <DataGridTextColumn Header="Typ" Binding="{Binding Typ}"/>
+                <DataGridTextColumn Header="E-bike" Binding="{Binding E_Bike}"/>
+                <DataGridTextColumn Header="Masa KG" Binding="{Binding MasaKg}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

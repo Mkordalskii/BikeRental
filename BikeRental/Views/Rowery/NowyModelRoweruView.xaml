@@ -17,50 +17,28 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Wybierz model" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8"
-      ItemsSource="{Binding DostepneModele}"
-      SelectedValue="{Binding RowerModelId, Mode=TwoWay}"
-      SelectedValuePath="Id"
-      DisplayMemberPath="Name"/>
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Producent" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Producent, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Numer seryjny" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=NumerSeryjny, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nazwa" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Kod floty" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=KodFloty, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Typ, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Stacja" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8"
-        ItemsSource="{Binding DostepneStacje}"
-        SelectedValue="{Binding OstatniaStacjaId, Mode=TwoWay}"
-        SelectedValuePath="Id"
-        DisplayMemberPath="Name"/>
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="E-bike" Margin="0,8,0,8"/>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Margin="0,8,0,8">
+            <RadioButton Content="Tak"
+         GroupName="Aktywnosc"
+         IsChecked="{Binding E_Bike, Mode=TwoWay}" />
+            <RadioButton Content="Nie"
+         GroupName="Aktywnosc"
+         IsChecked="{Binding NotE_Bike, Mode=TwoWay}"
+         Margin="3,0,0,0"/>
+        </StackPanel>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Stojak" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8"
-        ItemsSource="{Binding DostepneStojaki}"
-        SelectedValue="{Binding OstatniStojakId, Mode=TwoWay}"
-        SelectedValuePath="Id"
-        DisplayMemberPath="Name"/>
-
-        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Przebieg" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=PrzebiegKm, UpdateSourceTrigger=PropertyChanged}" />
-
-        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Data przegladu" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" 
-        x:Name="dpDataPrzegladu" 
-        SelectedDateFormat="Short"
-        Language="pl-PL"
-        Width="200"
-        Margin="0,8,0,8"
-        SelectedDate="{Binding DataPrzegladu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Poziom baterii [%]" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="7" Margin="0,8,0,8" Text="{Binding Path=PoziomBateriiProc, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="MasaKg" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Language="pl-PL" Text="{Binding Path=MasaKg, UpdateSourceTrigger=LostFocus, StringFormat={}{0:F4}}"/>
     </Grid>
 </local:WszystkieViewBase>

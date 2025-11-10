@@ -16,26 +16,24 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+
 
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Kod stacji" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Stacja" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Stacja, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nazwa" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Numer miejsca" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=NumerMiejsca, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Godziny otwarcia" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8"
-             Style="{StaticResource PlaceholderTextBox}"
-             Tag="GG:MM-GG:MM"
-             Text="{Binding Path=GodzinyOtwarcia, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Szerokosc geograficzna" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Language="pl-PL" Text="{Binding Path=SzerGeo, UpdateSourceTrigger=LostFocus, StringFormat={}{0:F4}}"/>
-
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Dlugosc geograficzna" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Language="pl-PL" Text="{Binding Path=DlugGeo, UpdateSourceTrigger=LostFocus, StringFormat={}{0:F4}}"/>
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Sprawny" Margin="0,8,0,8"/>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,8">
+            <RadioButton Content="Tak"
+                 GroupName="Aktywnosc"
+                 IsChecked="{Binding Sprawny, Mode=TwoWay}" />
+            <RadioButton Content="Nie"
+                 GroupName="Aktywnosc"
+                 IsChecked="{Binding Niesprawny, Mode=TwoWay}"
+                 Margin="3,0,0,0"/>
+        </StackPanel>
     </Grid>
 </local:WszystkieViewBase>
