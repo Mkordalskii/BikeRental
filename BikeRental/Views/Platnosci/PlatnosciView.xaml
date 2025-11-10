@@ -10,12 +10,13 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PlatnoscId}"/>
-                <DataGridTextColumn Header="Id klienta" Binding="{Binding KlientId}"/>
+                <DataGridTextColumn Header="Imie klienta" Binding="{Binding KlientImie}"/>
+                <DataGridTextColumn Header="Nazwisko klienta" Binding="{Binding KlientNazwisko}"/>
                 <DataGridTextColumn Header="Id wypozyczenia" Binding="{Binding WypozyczenieId}"/>
                 <DataGridTextColumn Header="Data platnosci" Binding="{Binding DataPlatnosci}"/>
                 <DataGridTextColumn Header="Kwota" Binding="{Binding Kwota}"/>
                 <DataGridTextColumn Header="Waluta" Binding="{Binding Waluta}"/>
-                <DataGridTextColumn Header="Metoda platnosci" Binding="{Binding Metoda}"/>
+                <DataGridTextColumn Header="Metoda platnosci" Binding="{Binding MetodaPlatnosci}"/>
                 <DataGridTextColumn Header="Referencja" Binding="{Binding Referencja}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
             </DataGrid.Columns>
