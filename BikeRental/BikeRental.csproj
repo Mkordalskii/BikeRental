@@ -82,7 +82,11 @@
     <Compile Include="Models\Abonament.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RoweryForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\StojakiForAllView.cs" />
     <Compile Include="Models\Klient.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>

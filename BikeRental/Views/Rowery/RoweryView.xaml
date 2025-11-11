@@ -10,11 +10,12 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding RowerId}"/>
-                <DataGridTextColumn Header="Id modelu" Binding="{Binding RowerModelId}"/>
+                <DataGridTextColumn Header="Producent" Binding="{Binding RowerProducent}"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding RowerNazwaModelu}"/>
                 <DataGridTextColumn Header="Numer seryjny" Binding="{Binding NumerSeryjny}"/>
                 <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}"/>
                 <DataGridTextColumn Header="Stan" Binding="{Binding Stan}"/>
-                <DataGridTextColumn Header="Id stacji" Binding="{Binding OstatniaStacjaId}"/>
+                <DataGridTextColumn Header="Stacja" Binding="{Binding OstatniaStacjaNazwa}"/>
                 <DataGridTextColumn Header="Id stojaka" Binding="{Binding OstatniStojakId}"/>
                 <DataGridTextColumn Header="Szerokosc geo." Binding="{Binding OstatniaSzerGeo}"/>
                 <DataGridTextColumn Header="Dlugosc geo." Binding="{Binding OstatniaDlugGeo}"/>

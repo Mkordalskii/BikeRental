@@ -1,18 +1,28 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BikeRental.ViewModels
 {
-    internal class StojakiViewModel : WszystkieViewModel<Stojak>
+    internal class StojakiViewModel : WszystkieViewModel<StojakiForAllView>
     {
         #region Lista
         public override void Load()
         {
-            List = new ObservableCollection<Stojak>
+            List = new ObservableCollection<StojakiForAllView>
                 (
-                db.Stojak.ToList()
+                from stojak in db.Stojak
+                where stojak.CzyAktywny == true
+                select new StojakiForAllView
+                {
+                    StojakId = stojak.StojakId,
+                    NazwaStacji = stojak.Stacja.Nazwa,
+                    NumerMiejsca = stojak.NumerMiejsca,
+                    CzySprawny =
+                        stojak.Sprawny == true ? "Tak" :
+                        stojak.Sprawny == false ? "Nie" : "Nieznany"
+                }
                 );
         }
         #endregion Lista

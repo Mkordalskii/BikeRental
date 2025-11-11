@@ -10,11 +10,11 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding RezerwacjaId}" />
-                <DataGridTextColumn Header="Id klienta" Binding="{Binding KlientId}"/>
-                <DataGridTextColumn Header="Id roweru" Binding="{Binding RowerId}"/>
-                <DataGridTextColumn Header="Data od" Binding="{Binding DataOdUtc}"/>
-                <DataGridTextColumn Header="Data do" Binding="{Binding DataDoUtc}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Imie" Binding="{Binding KlientImie}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding KlientNazwisko}"/>
+                <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}"/>
+                <DataGridTextColumn Header="Data od" Binding="{Binding DataOd}"/>
+                <DataGridTextColumn Header="Data do" Binding="{Binding DataDo}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

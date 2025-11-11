@@ -10,18 +10,19 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding WypozyczenieId}"/>
-                <DataGridTextColumn Header="Id klienta" Binding="{Binding KlientId}"/>
-                <DataGridTextColumn Header="Id roweru" Binding="{Binding RowerId}"/>
+                <DataGridTextColumn Header="Imie" Binding="{Binding KlientImie}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding KlientNazwisko}"/>
+                <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}"/>
                 <DataGridTextColumn Header="Start" Binding="{Binding StartUtc}"/>
                 <DataGridTextColumn Header="Koniec" Binding="{Binding KoniecUtc}"/>
-                <DataGridTextColumn Header="Id stacji poczatkowej" Binding="{Binding StartStacjaId}"/>
-                <DataGridTextColumn Header="Id stacji koncowej" Binding="{Binding KoniecStacjaId}"/>
+                <DataGridTextColumn Header="Stacja poczatkowa" Binding="{Binding NazwaStacjiPoczatkowej}"/>
+                <DataGridTextColumn Header="Stacja koncowa" Binding="{Binding NazwaStacjiKoncowej}"/>
                 <DataGridTextColumn Header="Szerokosc geo. start" Binding="{Binding StartSzerGeo}"/>
                 <DataGridTextColumn Header="Dlugosc geo. start" Binding="{Binding StartDlugGeo}"/>
                 <DataGridTextColumn Header="Szerokosc geo. koniec" Binding="{Binding KoniecSzerGeo}"/>
                 <DataGridTextColumn Header="Dlugosc geo. koniec" Binding="{Binding KoniecDlugGeo}"/>
                 <DataGridTextColumn Header="Odleglosc[KM]" Binding="{Binding OdlegloscKm}"/>
-                <DataGridTextColumn Header="Plan cenowy Id" Binding="{Binding PlanCenowyIdSnapshot}"/>
+                <DataGridTextColumn Header="Plan cenowy" Binding="{Binding PlanCenowy}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
