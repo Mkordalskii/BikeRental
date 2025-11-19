@@ -44,6 +44,9 @@
     <DataTemplate DataType="{x:Type vm:NowyStojakViewModel}">
         <vw:NowyStojakView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PlanCenowyViewModel}">
+        <vw:PlanCenowyView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

@@ -85,7 +85,11 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Stojaki",
-                    new BaseCommand(() => this.ShowAll<StojakiViewModel>()))
+                    new BaseCommand(() => this.ShowAll<StojakiViewModel>())),
+
+                new CommandViewModel(
+                    "Plany cenowe",
+                    new BaseCommand(() => this.ShowAll<PlanCenowyViewModel>()))
             };
         }
         #endregion
