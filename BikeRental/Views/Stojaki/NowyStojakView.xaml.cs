@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for NowyStojakView.xaml
     /// </summary>
-    public partial class NowyStojakView : WszystkieViewBase
+    public partial class NowyStojakView : JedenViewBase
     {
         public NowyStojakView()
         {

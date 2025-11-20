@@ -154,6 +154,7 @@
     <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />
     <Compile Include="ViewModels\Klienci\NowyKlientViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PlanCenowy\NowyPlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\PlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
@@ -176,6 +177,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanCenowy\NowyPlanCenowyView.xaml.cs">
+      <DependentUpon>NowyPlanCenowyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlanCenowy\PlanCenowyView.xaml.cs">
       <DependentUpon>PlanCenowyView.xaml</DependentUpon>
@@ -288,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanCenowy\NowyPlanCenowyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

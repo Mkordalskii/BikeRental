@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for NowyModelRoweruView.xaml
     /// </summary>
-    public partial class NowyModelRoweruView : WszystkieViewBase
+    public partial class NowyModelRoweruView : JedenViewBase
     {
         public NowyModelRoweruView()
         {
