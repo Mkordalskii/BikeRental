@@ -48,6 +48,10 @@ namespace BikeRental.ViewModels
                     new BaseCommand(() => this.ShowAll<PlatnosciViewModel>())),
 
                 new CommandViewModel(
+                    "Dodaj/edytuj platnosc",
+                    new BaseCommand(() => this.CreateView(new NowaPlatnoscViewModel()))),
+
+                new CommandViewModel(
                     "Rezerwacje",
                     new BaseCommand(() => this.ShowAll<RezerwacjeViewModel>())),
 
@@ -70,6 +74,10 @@ namespace BikeRental.ViewModels
                 new CommandViewModel(
                     "Aktywne wypozyczenia",
                     new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj wypozyczenie",
+                    new BaseCommand(() => this.CreateView(new NoweWypozyczenieViewModel()))),
 
                 new CommandViewModel(
                     "Dodaj/edytuj modele",

@@ -32,7 +32,7 @@ namespace BikeRental.ViewModels
         public WypozyczenieOplataViewModel()
             : base()
         {
-            base.DisplayName = "Wszyscy oplaty za wypozyczenie";
+            base.DisplayName = "Wszystkie oplaty za wypozyczenie";
         }
         #endregion
     }

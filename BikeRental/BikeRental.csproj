@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\NowyPlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\PlanCenowyViewModel.cs" />
+    <Compile Include="ViewModels\Platnosci\NowaPlatnoscViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
     <Compile Include="ViewModels\Rowery\ModeleRowerowViewModel.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
+    <Compile Include="ViewModels\Wypozyczenia\NoweWypozyczenieViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\WypozyczenieOplataViewModel.cs" />
     <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
@@ -185,6 +187,9 @@
     </Compile>
     <Compile Include="Views\PlanCenowy\PlanCenowyView.xaml.cs">
       <DependentUpon>PlanCenowyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Platnosci\NowaPlatnoscView.xaml.cs">
+      <DependentUpon>NowaPlatnoscView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Platnosci\PlatnosciView.xaml.cs">
       <DependentUpon>PlatnosciView.xaml</DependentUpon>
@@ -219,6 +224,9 @@
     <Compile Include="Views\WszystkieViewBase.cs" />
     <Compile Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml.cs">
       <DependentUpon>AktywneWypozyczeniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wypozyczenia\NoweWypozyczenieView.xaml.cs">
+      <DependentUpon>NoweWypozyczenieView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Wypozyczenia\WypozyczenieOplataView.xaml.cs">
       <DependentUpon>WypozyczenieOplataView.xaml</DependentUpon>
@@ -308,6 +316,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Platnosci\NowaPlatnoscView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Platnosci\PlatnosciView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -349,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wypozyczenia\NoweWypozyczenieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
