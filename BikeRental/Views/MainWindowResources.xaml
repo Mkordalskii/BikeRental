@@ -50,6 +50,9 @@
     <DataTemplate DataType="{x:Type vm:NowyPlanCenowyViewModel}">
         <vw:NowyPlanCenowyView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WypozyczenieOplataViewModel}">
+        <vw:WypozyczenieOplataView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

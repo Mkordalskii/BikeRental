@@ -87,6 +87,7 @@
     <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RoweryForAllView.cs" />
     <Compile Include="Models\EntitiesForView\StojakiForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\WypozyczenieOplataForAllView.cs" />
     <Compile Include="Models\Klient.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
@@ -168,6 +169,7 @@
     <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
+    <Compile Include="ViewModels\Wypozyczenia\WypozyczenieOplataViewModel.cs" />
     <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
       <DependentUpon>KlienciView.xaml</DependentUpon>
@@ -217,6 +219,9 @@
     <Compile Include="Views\WszystkieViewBase.cs" />
     <Compile Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml.cs">
       <DependentUpon>AktywneWypozyczeniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wypozyczenia\WypozyczenieOplataView.xaml.cs">
+      <DependentUpon>WypozyczenieOplataView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wypozyczenia\WypozyczenieOplataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -93,7 +93,11 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Dodaj/edytuj plan cenowy",
-                    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyViewModel())))
+                    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyViewModel()))),
+
+                new CommandViewModel(
+                    "Oplata wypozyczenia",
+                    new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>()))
             };
         }
         #endregion
