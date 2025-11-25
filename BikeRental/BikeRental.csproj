@@ -159,6 +159,7 @@
     <Compile Include="ViewModels\PlanCenowy\PlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\NowaPlatnoscViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\Rezerwacje\NowaRezerwacjaViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
     <Compile Include="ViewModels\Rowery\ModeleRowerowViewModel.cs" />
     <Compile Include="ViewModels\Rowery\NowyModelRoweruViewModel.cs" />
@@ -193,6 +194,9 @@
     </Compile>
     <Compile Include="Views\Platnosci\PlatnosciView.xaml.cs">
       <DependentUpon>PlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rezerwacje\NowaRezerwacjaView.xaml.cs">
+      <DependentUpon>NowaRezerwacjaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Rezerwacje\RezerwacjeView.xaml.cs">
       <DependentUpon>RezerwacjeView.xaml</DependentUpon>
@@ -321,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Platnosci\PlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Rezerwacje\NowaRezerwacjaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

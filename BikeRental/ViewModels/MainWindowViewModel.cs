@@ -55,6 +55,10 @@ namespace BikeRental.ViewModels
                     "Rezerwacje",
                     new BaseCommand(() => this.ShowAll<RezerwacjeViewModel>())),
 
+                   new CommandViewModel(
+                    "Dodaj/edytuj rezerwacje",
+                    new BaseCommand(() => this.CreateView(new NowaRezerwacjaViewModel()))),
+
                 new CommandViewModel(
                     "Dodaj/edytuj rower",
                     new BaseCommand(() => this.CreateView(new NowyRowerViewModel()))),
