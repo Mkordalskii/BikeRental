@@ -171,6 +171,7 @@
     <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
+    <Compile Include="ViewModels\Wypozyczenia\NoweWypozyczenieOplataViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\NoweWypozyczenieViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\WypozyczenieOplataViewModel.cs" />
     <Compile Include="Views\JedenViewBase.cs" />
@@ -228,6 +229,9 @@
     <Compile Include="Views\WszystkieViewBase.cs" />
     <Compile Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml.cs">
       <DependentUpon>AktywneWypozyczeniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wypozyczenia\NoweWypozyczenieOplataView.xaml.cs">
+      <DependentUpon>NoweWypozyczenieOplataView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Wypozyczenia\NoweWypozyczenieView.xaml.cs">
       <DependentUpon>NoweWypozyczenieView.xaml</DependentUpon>
@@ -369,6 +373,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wypozyczenia\NoweWypozyczenieOplataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -109,7 +109,11 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Oplata wypozyczenia",
-                    new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>()))
+                    new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj oplate",
+                    new BaseCommand(() =>  this.CreateView(new NoweWypozyczenieViewModel()))),
             };
         }
         #endregion

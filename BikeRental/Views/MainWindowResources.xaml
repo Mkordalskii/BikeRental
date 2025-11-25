@@ -62,6 +62,9 @@
     <DataTemplate DataType="{x:Type vm:WypozyczenieOplataViewModel}">
         <vw:WypozyczenieOplataView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweWypozyczenieOplataViewModel}">
+        <vw:NoweWypozyczenieOplataView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
@@ -127,23 +130,25 @@
   side in the main window (the 'Control Panel' area).
   -->
     <DataTemplate x:Key="CommandsTemplate">
-        <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!--<TextBlock Margin="2,6">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"> <!--dodaje scrollbar do panelu z zakladkami-->
+            <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--<TextBlock Margin="2,6">
             <Hyperlink Command="{Binding Path=Command}">
               <TextBlock Text="{Binding Path=DisplayName}" />
             </Hyperlink>
           </TextBlock>-->
-                    <Button
+                        <Button
                     Command="{Binding Command}"
                     Content="{Binding DisplayName}"
                     Margin="0,4,0,0"
                     Padding="10,6"
                     HorizontalAlignment="Stretch"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </DataTemplate>
 
     <!-- 
