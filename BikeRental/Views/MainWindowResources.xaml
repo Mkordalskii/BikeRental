@@ -59,6 +59,9 @@
     <DataTemplate DataType="{x:Type vm:NowyPlanCenowyViewModel}">
         <vw:NowyPlanCenowyView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PlanCenowyStawkaViewModel}">
+        <vw:PlanCenowyStawkaView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:WypozyczenieOplataViewModel}">
         <vw:WypozyczenieOplataView/>
     </DataTemplate>
@@ -144,6 +147,7 @@
                     Content="{Binding DisplayName}"
                     Margin="0,4,0,0"
                     Padding="10,6"
+                    Background="Khaki"
                     HorizontalAlignment="Stretch"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

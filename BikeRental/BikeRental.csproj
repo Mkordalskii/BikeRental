@@ -83,6 +83,7 @@
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PlanCenowyStawkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RoweryForAllView.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="ViewModels\Klienci\NowyKlientViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\NowyPlanCenowyViewModel.cs" />
+    <Compile Include="ViewModels\PlanCenowy\PlanCenowyStawkaViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\PlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\NowaPlatnoscViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
@@ -186,6 +188,9 @@
     </Compile>
     <Compile Include="Views\PlanCenowy\NowyPlanCenowyView.xaml.cs">
       <DependentUpon>NowyPlanCenowyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanCenowy\PlanCenowyStawkaView.xaml.cs">
+      <DependentUpon>PlanCenowyStawkaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlanCenowy\PlanCenowyView.xaml.cs">
       <DependentUpon>PlanCenowyView.xaml</DependentUpon>
@@ -317,6 +322,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlanCenowy\NowyPlanCenowyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanCenowy\PlanCenowyStawkaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
