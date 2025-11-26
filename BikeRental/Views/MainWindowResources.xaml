@@ -62,6 +62,9 @@
     <DataTemplate DataType="{x:Type vm:PlanCenowyStawkaViewModel}">
         <vw:PlanCenowyStawkaView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyPlanCenowyStawkaViewModel}">
+        <vw:NowyPlanCenowyStawkaView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:WypozyczenieOplataViewModel}">
         <vw:WypozyczenieOplataView/>
     </DataTemplate>

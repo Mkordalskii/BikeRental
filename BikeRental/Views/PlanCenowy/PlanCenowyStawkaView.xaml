@@ -16,7 +16,7 @@
                 <DataGridTextColumn Header="Cena za min" Binding="{Binding CenaZaMin}"/>
                 <DataGridTextColumn Header="Oplata startowa" Binding="{Binding OplataStartowa}"/>
                 <DataGridTextColumn Header="Darmowe minuty" Binding="{Binding LimitDarmowychMin}"/>
-                <DataGridTextColumn Header="Doplata" Binding="{Binding DoplataPoLimicie}"/>
+                <DataGridTextColumn Header="Doplata" Binding="{Binding DoplataPoLimicie, StringFormat={}{0:F2}}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -112,6 +112,10 @@ namespace BikeRental.ViewModels
                     new BaseCommand(() => this.ShowAll<PlanCenowyStawkaViewModel>())),
 
                 new CommandViewModel(
+                    "Dodaj/edytuj stawke",
+                    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyStawkaViewModel()))),
+
+                new CommandViewModel(
                     "Oplata wypozyczenia",
                     new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>())),
 
