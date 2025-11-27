@@ -116,12 +116,36 @@ namespace BikeRental.ViewModels
                     new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyStawkaViewModel()))),
 
                 new CommandViewModel(
-                    "Oplata wypozyczenia",
+                    "Oplaty wypozyczenia",
                     new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>())),
 
                 new CommandViewModel(
                     "Dodaj/edytuj oplate",
                     new BaseCommand(() =>  this.CreateView(new NoweWypozyczenieViewModel()))),
+
+                new CommandViewModel(
+                    "Abonamenty",
+                    new BaseCommand(() => this.ShowAll<AbonamentyViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj abonament",
+                    new BaseCommand(() =>  this.CreateView(new NowyAbonamentViewModel()))),
+
+                new CommandViewModel(
+                    "Zgloszenia serwisowe",
+                    new BaseCommand(() => this.ShowAll<ZgloszeniaSerwisoweViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj serwis",
+                    new BaseCommand(() =>  this.CreateView(new NoweZgloszenieSerwisoweViewModel()))),
+
+                new CommandViewModel(
+                    "Transfery rowerow",
+                    new BaseCommand(() => this.ShowAll<ZgloszeniaSerwisoweViewModel>())),
+
+                new CommandViewModel(
+                    "Dodaj/edytuj transfer",
+                    new BaseCommand(() =>  this.CreateView(new NoweZgloszenieSerwisoweViewModel())))
             };
         }
         #endregion

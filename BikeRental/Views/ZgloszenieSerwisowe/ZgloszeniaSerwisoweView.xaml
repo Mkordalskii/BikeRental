@@ -1,0 +1,24 @@
+﻿<local:WszystkieViewBase x:Class="BikeRental.Views.ZgloszeniaSerwisoweView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BikeRental.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ZgloszenieId}"/>
+                <DataGridTextColumn Header="Kod roweru" Binding="{Binding KodFloty}"/>
+                <DataGridTextColumn Header="Nr seryjny" Binding="{Binding NumerSeryjny}"/>
+                <DataGridTextColumn Header="Zglaszajacy klient" Binding="{Binding NazwiskoKlienta}"/>
+                <DataGridTextColumn Header="Data zgloszenia" Binding="{Binding DataZgloszeniaUtc}"/>
+                <DataGridTextColumn Header="Priorytet" Binding="{Binding Priorytet}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Stacja docelowa" Binding="{Binding KodStacji}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

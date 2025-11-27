@@ -82,13 +82,16 @@
     <Compile Include="Models\Abonament.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlanCenowyStawkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RoweryForAllView.cs" />
     <Compile Include="Models\EntitiesForView\StojakiForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\TransferyRowerowForAllView.cs" />
     <Compile Include="Models\EntitiesForView\WypozyczenieOplataForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZgloszenieSerwisoweForAllView.cs" />
     <Compile Include="Models\Klient.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
@@ -149,6 +152,8 @@
     <Compile Include="Models\ZgloszenieSerwisowe.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abonament\AbonamentyViewModel.cs" />
+    <Compile Include="ViewModels\Abonament\NowyAbonamentViewModel.cs" />
     <Compile Include="ViewModels\Abstract\JedenViewModel.cs" />
     <Compile Include="ViewModels\Abstract\WszystkieViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -172,11 +177,21 @@
     <Compile Include="ViewModels\Stacje\StacjeViewModel.cs" />
     <Compile Include="ViewModels\Stojaki\NowyStojakViewModel.cs" />
     <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
+    <Compile Include="ViewModels\TransferRoweru\NowyTransferRoweruViewModel.cs" />
+    <Compile Include="ViewModels\TransferRoweru\TransferyRowerowViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\AktywneWypozyczeniaViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\NoweWypozyczenieOplataViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\NoweWypozyczenieViewModel.cs" />
     <Compile Include="ViewModels\Wypozyczenia\WypozyczenieOplataViewModel.cs" />
+    <Compile Include="ViewModels\ZgloszenieSerwisowe\NoweZgloszenieSerwisoweViewModel.cs" />
+    <Compile Include="ViewModels\ZgloszenieSerwisowe\ZgloszeniaSerwisoweViewModel.cs" />
+    <Compile Include="Views\Abonament\AbonamentyView.xaml.cs">
+      <DependentUpon>AbonamentyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Abonament\NowyAbonamentView.xaml.cs">
+      <DependentUpon>NowyAbonamentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
       <DependentUpon>KlienciView.xaml</DependentUpon>
@@ -235,6 +250,12 @@
     <Compile Include="Views\Stojaki\StojakiView.xaml.cs">
       <DependentUpon>StojakiView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TransferRoweru\NowyTransferRoweru.xaml.cs">
+      <DependentUpon>NowyTransferRoweru.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferRoweru\TransferyRowerowView.xaml.cs">
+      <DependentUpon>TransferyRowerowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WszystkieViewBase.cs" />
     <Compile Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml.cs">
       <DependentUpon>AktywneWypozyczeniaView.xaml</DependentUpon>
@@ -247,6 +268,12 @@
     </Compile>
     <Compile Include="Views\Wypozyczenia\WypozyczenieOplataView.xaml.cs">
       <DependentUpon>WypozyczenieOplataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZgloszenieSerwisowe\NoweZgloszenieSerwisoweView.xaml.cs">
+      <DependentUpon>NoweZgloszenieSerwisoweView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZgloszenieSerwisowe\ZgloszeniaSerwisoweView.xaml.cs">
+      <DependentUpon>ZgloszeniaSerwisoweView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +335,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Abonament\AbonamentyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Abonament\NowyAbonamentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Klienci\KlienciView.xaml">
       <SubType>Designer</SubType>
@@ -389,6 +424,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TransferRoweru\NowyTransferRoweru.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TransferRoweru\TransferyRowerowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Wypozyczenia\AktywneWypozyczeniaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -402,6 +445,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Wypozyczenia\WypozyczenieOplataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ZgloszenieSerwisowe\NoweZgloszenieSerwisoweView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ZgloszenieSerwisowe\ZgloszeniaSerwisoweView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -71,6 +71,24 @@
     <DataTemplate DataType="{x:Type vm:NoweWypozyczenieOplataViewModel}">
         <vw:NoweWypozyczenieOplataView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AbonamentyViewModel}">
+        <vw:AbonamentyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyAbonamentViewModel}">
+        <vw:NowyAbonamentView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ZgloszeniaSerwisoweViewModel}">
+        <vw:ZgloszeniaSerwisoweView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweZgloszenieSerwisoweViewModel}">
+        <vw:NoweZgloszenieSerwisoweView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:TransferyRowerowViewModel}">
+        <vw:TransferyRowerowView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyTransferRoweruViewModel}">
+        <vw:NowyTransferRoweru/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
