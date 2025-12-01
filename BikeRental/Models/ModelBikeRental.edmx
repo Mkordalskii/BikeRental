@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BikeRentalDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BikeRentalDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abonament">
           <Key>
             <PropertyRef Name="AbonamentId" />
@@ -163,6 +163,114 @@
           <Property Name="KtoWykasowal" Type="int" />
           <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
         </EntityType>
+        <EntityType Name="SlownikAbonamentStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikKlientTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikPlanCenowyStawkaTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikPlatnoscMetoda">
+          <Key>
+            <PropertyRef Name="MetodaId" />
+          </Key>
+          <Property Name="MetodaId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikPlatnoscStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikRezerwacjaStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikRowerStan">
+          <Key>
+            <PropertyRef Name="StanId" />
+          </Key>
+          <Property Name="StanId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikTransferStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikWypozyczenieOplataTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikWypozyczenieStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikZgloszeniePriorytet">
+          <Key>
+            <PropertyRef Name="PriorytetId" />
+          </Key>
+          <Property Name="PriorytetId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlownikZgloszenieStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Stacja">
           <Key>
             <PropertyRef Name="StacjaId" />
@@ -196,16 +304,6 @@
           <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
           <Property Name="KtoWykasowal" Type="int" />
           <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TransferRoweru">
           <Key>
@@ -367,6 +465,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Abonament_Status_Slownik">
+          <End Role="SlownikAbonamentStatus" Type="Self.SlownikAbonamentStatus" Multiplicity="1" />
+          <End Role="Abonament" Type="Self.Abonament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikAbonamentStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Abonament">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Klient_KtoDodal_Uzytkownik">
           <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
           <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
@@ -400,6 +510,30 @@
             </Principal>
             <Dependent Role="Klient">
               <PropertyRef Name="KtoWykasowal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klient_Typ_Slownik">
+          <End Role="SlownikKlientTyp" Type="Self.SlownikKlientTyp" Multiplicity="1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikKlientTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oplata_Typ_Slownik">
+          <End Role="SlownikWypozyczenieOplataTyp" Type="Self.SlownikWypozyczenieOplataTyp" Multiplicity="1" />
+          <End Role="WypozyczenieOplata" Type="Self.WypozyczenieOplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikWypozyczenieOplataTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="WypozyczenieOplata">
+              <PropertyRef Name="Typ" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -535,6 +669,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Platnosc_Metoda_Slownik">
+          <End Role="SlownikPlatnoscMetoda" Type="Self.SlownikPlatnoscMetoda" Multiplicity="1" />
+          <End Role="Platnosc" Type="Self.Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlatnoscMetoda">
+              <PropertyRef Name="MetodaId" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="Metoda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platnosc_Status_Slownik">
+          <End Role="SlownikPlatnoscStatus" Type="Self.SlownikPlatnoscStatus" Multiplicity="1" />
+          <End Role="Platnosc" Type="Self.Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlatnoscStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Platnosc_Wyp">
           <End Role="Wypozyczenie" Type="Self.Wypozyczenie" Multiplicity="0..1" />
           <End Role="Platnosc" Type="Self.Platnosc" Multiplicity="*" />
@@ -607,6 +765,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Rezerwacja_Status_Slownik">
+          <End Role="SlownikRezerwacjaStatus" Type="Self.SlownikRezerwacjaStatus" Multiplicity="1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikRezerwacjaStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Rower_KtoDodal_Uzytkownik">
           <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
           <End Role="Rower" Type="Self.Rower" Multiplicity="*" />
@@ -664,6 +834,18 @@
             </Principal>
             <Dependent Role="Rower">
               <PropertyRef Name="OstatniaStacjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rower_Stan_Slownik">
+          <End Role="SlownikRowerStan" Type="Self.SlownikRowerStan" Multiplicity="1" />
+          <End Role="Rower" Type="Self.Rower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikRowerStan">
+              <PropertyRef Name="StanId" />
+            </Principal>
+            <Dependent Role="Rower">
+              <PropertyRef Name="Stan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -763,6 +945,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Stawka_Typ_Slownik">
+          <End Role="SlownikPlanCenowyStawkaTyp" Type="Self.SlownikPlanCenowyStawkaTyp" Multiplicity="1" />
+          <End Role="PlanCenowyStawka" Type="Self.PlanCenowyStawka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlanCenowyStawkaTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="PlanCenowyStawka">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Stojak_KtoDodal_Uzytkownik">
           <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
           <End Role="Stojak" Type="Self.Stojak" Multiplicity="*" />
@@ -847,6 +1041,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transfer_Status_Slownik">
+          <End Role="SlownikTransferStatus" Type="Self.SlownikTransferStatus" Multiplicity="1" />
+          <End Role="TransferRoweru" Type="Self.TransferRoweru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikTransferStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="TransferRoweru">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransferRoweru_KtoDodal_Uzytkownik">
           <End Role="Uzytkownik" Type="Self.Uzytkownik" Multiplicity="1" />
           <End Role="TransferRoweru" Type="Self.TransferRoweru" Multiplicity="*" />
@@ -904,6 +1110,18 @@
             </Principal>
             <Dependent Role="Wypozyczenie">
               <PropertyRef Name="RowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyp_Status_Slownik">
+          <End Role="SlownikWypozyczenieStatus" Type="Self.SlownikWypozyczenieStatus" Multiplicity="1" />
+          <End Role="Wypozyczenie" Type="Self.Wypozyczenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikWypozyczenieStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Wypozyczenie">
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1015,6 +1233,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Zgl_Priorytet_Slownik">
+          <End Role="SlownikZgloszeniePriorytet" Type="Self.SlownikZgloszeniePriorytet" Multiplicity="1" />
+          <End Role="ZgloszenieSerwisowe" Type="Self.ZgloszenieSerwisowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikZgloszeniePriorytet">
+              <PropertyRef Name="PriorytetId" />
+            </Principal>
+            <Dependent Role="ZgloszenieSerwisowe">
+              <PropertyRef Name="Priorytet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Zgl_Rower">
           <End Role="Rower" Type="Self.Rower" Multiplicity="1" />
           <End Role="ZgloszenieSerwisowe" Type="Self.ZgloszenieSerwisowe" Multiplicity="*" />
@@ -1036,6 +1266,18 @@
             </Principal>
             <Dependent Role="ZgloszenieSerwisowe">
               <PropertyRef Name="StacjaDocelowaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zgl_Status_Slownik">
+          <End Role="SlownikZgloszenieStatus" Type="Self.SlownikZgloszenieStatus" Multiplicity="1" />
+          <End Role="ZgloszenieSerwisowe" Type="Self.ZgloszenieSerwisowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikZgloszenieStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="ZgloszenieSerwisowe">
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1084,9 +1326,20 @@
           <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rower" EntityType="Self.Rower" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RowerModel" EntityType="Self.RowerModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikAbonamentStatus" EntityType="Self.SlownikAbonamentStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikKlientTyp" EntityType="Self.SlownikKlientTyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikPlanCenowyStawkaTyp" EntityType="Self.SlownikPlanCenowyStawkaTyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikPlatnoscMetoda" EntityType="Self.SlownikPlatnoscMetoda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikPlatnoscStatus" EntityType="Self.SlownikPlatnoscStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikRezerwacjaStatus" EntityType="Self.SlownikRezerwacjaStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikRowerStan" EntityType="Self.SlownikRowerStan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikTransferStatus" EntityType="Self.SlownikTransferStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikWypozyczenieOplataTyp" EntityType="Self.SlownikWypozyczenieOplataTyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikWypozyczenieStatus" EntityType="Self.SlownikWypozyczenieStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikZgloszeniePriorytet" EntityType="Self.SlownikZgloszeniePriorytet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlownikZgloszenieStatus" EntityType="Self.SlownikZgloszenieStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stacja" EntityType="Self.Stacja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stojak" EntityType="Self.Stojak" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferRoweru" EntityType="Self.TransferRoweru" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uzytkownik" EntityType="Self.Uzytkownik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wypozyczenie" EntityType="Self.Wypozyczenie" Schema="dbo" store:Type="Tables" />
@@ -1112,6 +1365,10 @@
             <End Role="PlanCenowy" EntitySet="PlanCenowy" />
             <End Role="Abonament" EntitySet="Abonament" />
           </AssociationSet>
+          <AssociationSet Name="FK_Abonament_Status_Slownik" Association="Self.FK_Abonament_Status_Slownik">
+            <End Role="SlownikAbonamentStatus" EntitySet="SlownikAbonamentStatus" />
+            <End Role="Abonament" EntitySet="Abonament" />
+          </AssociationSet>
           <AssociationSet Name="FK_Klient_KtoDodal_Uzytkownik" Association="Self.FK_Klient_KtoDodal_Uzytkownik">
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Klient" EntitySet="Klient" />
@@ -1123,6 +1380,14 @@
           <AssociationSet Name="FK_Klient_KtoWykasowal_Uzytkownik" Association="Self.FK_Klient_KtoWykasowal_Uzytkownik">
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klient_Typ_Slownik" Association="Self.FK_Klient_Typ_Slownik">
+            <End Role="SlownikKlientTyp" EntitySet="SlownikKlientTyp" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oplata_Typ_Slownik" Association="Self.FK_Oplata_Typ_Slownik">
+            <End Role="SlownikWypozyczenieOplataTyp" EntitySet="SlownikWypozyczenieOplataTyp" />
+            <End Role="WypozyczenieOplata" EntitySet="WypozyczenieOplata" />
           </AssociationSet>
           <AssociationSet Name="FK_Oplata_Wyp" Association="Self.FK_Oplata_Wyp">
             <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
@@ -1168,6 +1433,14 @@
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Platnosc" EntitySet="Platnosc" />
           </AssociationSet>
+          <AssociationSet Name="FK_Platnosc_Metoda_Slownik" Association="Self.FK_Platnosc_Metoda_Slownik">
+            <End Role="SlownikPlatnoscMetoda" EntitySet="SlownikPlatnoscMetoda" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platnosc_Status_Slownik" Association="Self.FK_Platnosc_Status_Slownik">
+            <End Role="SlownikPlatnoscStatus" EntitySet="SlownikPlatnoscStatus" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
           <AssociationSet Name="FK_Platnosc_Wyp" Association="Self.FK_Platnosc_Wyp">
             <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
             <End Role="Platnosc" EntitySet="Platnosc" />
@@ -1192,6 +1465,10 @@
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Rezerwacja" EntitySet="Rezerwacja" />
           </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Status_Slownik" Association="Self.FK_Rezerwacja_Status_Slownik">
+            <End Role="SlownikRezerwacjaStatus" EntitySet="SlownikRezerwacjaStatus" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
           <AssociationSet Name="FK_Rower_KtoDodal_Uzytkownik" Association="Self.FK_Rower_KtoDodal_Uzytkownik">
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Rower" EntitySet="Rower" />
@@ -1210,6 +1487,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Rower_Stacja" Association="Self.FK_Rower_Stacja">
             <End Role="Stacja" EntitySet="Stacja" />
+            <End Role="Rower" EntitySet="Rower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rower_Stan_Slownik" Association="Self.FK_Rower_Stan_Slownik">
+            <End Role="SlownikRowerStan" EntitySet="SlownikRowerStan" />
             <End Role="Rower" EntitySet="Rower" />
           </AssociationSet>
           <AssociationSet Name="FK_Rower_Stojak" Association="Self.FK_Rower_Stojak">
@@ -1244,6 +1525,10 @@
             <End Role="PlanCenowy" EntitySet="PlanCenowy" />
             <End Role="PlanCenowyStawka" EntitySet="PlanCenowyStawka" />
           </AssociationSet>
+          <AssociationSet Name="FK_Stawka_Typ_Slownik" Association="Self.FK_Stawka_Typ_Slownik">
+            <End Role="SlownikPlanCenowyStawkaTyp" EntitySet="SlownikPlanCenowyStawkaTyp" />
+            <End Role="PlanCenowyStawka" EntitySet="PlanCenowyStawka" />
+          </AssociationSet>
           <AssociationSet Name="FK_Stojak_KtoDodal_Uzytkownik" Association="Self.FK_Stojak_KtoDodal_Uzytkownik">
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="Stojak" EntitySet="Stojak" />
@@ -1272,6 +1557,10 @@
             <End Role="Stacja" EntitySet="Stacja" />
             <End Role="TransferRoweru" EntitySet="TransferRoweru" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Status_Slownik" Association="Self.FK_Transfer_Status_Slownik">
+            <End Role="SlownikTransferStatus" EntitySet="SlownikTransferStatus" />
+            <End Role="TransferRoweru" EntitySet="TransferRoweru" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransferRoweru_KtoDodal_Uzytkownik" Association="Self.FK_TransferRoweru_KtoDodal_Uzytkownik">
             <End Role="Uzytkownik" EntitySet="Uzytkownik" />
             <End Role="TransferRoweru" EntitySet="TransferRoweru" />
@@ -1290,6 +1579,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Wyp_Rower" Association="Self.FK_Wyp_Rower">
             <End Role="Rower" EntitySet="Rower" />
+            <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyp_Status_Slownik" Association="Self.FK_Wyp_Status_Slownik">
+            <End Role="SlownikWypozyczenieStatus" EntitySet="SlownikWypozyczenieStatus" />
             <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
           </AssociationSet>
           <AssociationSet Name="FK_Wyp_StKoniec" Association="Self.FK_Wyp_StKoniec">
@@ -1328,12 +1621,20 @@
             <End Role="Klient" EntitySet="Klient" />
             <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
           </AssociationSet>
+          <AssociationSet Name="FK_Zgl_Priorytet_Slownik" Association="Self.FK_Zgl_Priorytet_Slownik">
+            <End Role="SlownikZgloszeniePriorytet" EntitySet="SlownikZgloszeniePriorytet" />
+            <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
+          </AssociationSet>
           <AssociationSet Name="FK_Zgl_Rower" Association="Self.FK_Zgl_Rower">
             <End Role="Rower" EntitySet="Rower" />
             <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
           </AssociationSet>
           <AssociationSet Name="FK_Zgl_Stacja" Association="Self.FK_Zgl_Stacja">
             <End Role="Stacja" EntitySet="Stacja" />
+            <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zgl_Status_Slownik" Association="Self.FK_Zgl_Status_Slownik">
+            <End Role="SlownikZgloszenieStatus" EntitySet="SlownikZgloszenieStatus" />
             <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
           </AssociationSet>
           <AssociationSet Name="FK_ZgloszenieSerwisowe_KtoDodal_Uzytkownik" Association="Self.FK_ZgloszenieSerwisowe_KtoDodal_Uzytkownik">
@@ -1349,8 +1650,7 @@
             <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BikeRentalDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1376,6 +1676,7 @@
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_Abonament_KtoModyfikowal_Uzytkownik" FromRole="Abonament" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_Abonament_KtoWykasowal_Uzytkownik" FromRole="Abonament" ToRole="Uzytkownik" />
           <NavigationProperty Name="PlanCenowy" Relationship="Self.FK_Abonament_PlanCenowy" FromRole="Abonament" ToRole="PlanCenowy" />
+          <NavigationProperty Name="SlownikAbonamentStatus" Relationship="BikeRentalDbModel.FK_Abonament_Status_Slownik" FromRole="Abonament" ToRole="SlownikAbonamentStatus" />
         </EntityType>
         <EntityType Name="Klient">
           <Key>
@@ -1404,6 +1705,7 @@
           <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_Rez_Klient" FromRole="Klient" ToRole="Rezerwacja" />
           <NavigationProperty Name="Wypozyczenie" Relationship="Self.FK_Wyp_Klient" FromRole="Klient" ToRole="Wypozyczenie" />
           <NavigationProperty Name="ZgloszenieSerwisowe" Relationship="Self.FK_Zgl_Klient" FromRole="Klient" ToRole="ZgloszenieSerwisowe" />
+          <NavigationProperty Name="SlownikKlientTyp" Relationship="BikeRentalDbModel.FK_Klient_Typ_Slownik" FromRole="Klient" ToRole="SlownikKlientTyp" />
         </EntityType>
         <EntityType Name="PlanCenowy">
           <Key>
@@ -1452,6 +1754,7 @@
           <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_PlanCenowyStawka_KtoDodal_Uzytkownik" FromRole="PlanCenowyStawka" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_PlanCenowyStawka_KtoModyfikowal_Uzytkownik" FromRole="PlanCenowyStawka" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_PlanCenowyStawka_KtoWykasowal_Uzytkownik" FromRole="PlanCenowyStawka" ToRole="Uzytkownik" />
+          <NavigationProperty Name="SlownikPlanCenowyStawkaTyp" Relationship="BikeRentalDbModel.FK_Stawka_Typ_Slownik" FromRole="PlanCenowyStawka" ToRole="SlownikPlanCenowyStawkaTyp" />
         </EntityType>
         <EntityType Name="Platnosc">
           <Key>
@@ -1478,6 +1781,8 @@
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_Platnosc_KtoModyfikowal_Uzytkownik" FromRole="Platnosc" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_Platnosc_KtoWykasowal_Uzytkownik" FromRole="Platnosc" ToRole="Uzytkownik" />
           <NavigationProperty Name="Wypozyczenie" Relationship="Self.FK_Platnosc_Wyp" FromRole="Platnosc" ToRole="Wypozyczenie" />
+          <NavigationProperty Name="SlownikPlatnoscMetoda" Relationship="BikeRentalDbModel.FK_Platnosc_Metoda_Slownik" FromRole="Platnosc" ToRole="SlownikPlatnoscMetoda" />
+          <NavigationProperty Name="SlownikPlatnoscStatus" Relationship="BikeRentalDbModel.FK_Platnosc_Status_Slownik" FromRole="Platnosc" ToRole="SlownikPlatnoscStatus" />
         </EntityType>
         <EntityType Name="Rezerwacja">
           <Key>
@@ -1501,6 +1806,7 @@
           <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_Rezerwacja_KtoDodal_Uzytkownik" FromRole="Rezerwacja" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_Rezerwacja_KtoModyfikowal_Uzytkownik" FromRole="Rezerwacja" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_Rezerwacja_KtoWykasowal_Uzytkownik" FromRole="Rezerwacja" ToRole="Uzytkownik" />
+          <NavigationProperty Name="SlownikRezerwacjaStatus" Relationship="BikeRentalDbModel.FK_Rezerwacja_Status_Slownik" FromRole="Rezerwacja" ToRole="SlownikRezerwacjaStatus" />
         </EntityType>
         <EntityType Name="Rower">
           <Key>
@@ -1535,6 +1841,7 @@
           <NavigationProperty Name="TransferRoweru" Relationship="Self.FK_Tr_Rower" FromRole="Rower" ToRole="TransferRoweru" />
           <NavigationProperty Name="Wypozyczenie" Relationship="Self.FK_Wyp_Rower" FromRole="Rower" ToRole="Wypozyczenie" />
           <NavigationProperty Name="ZgloszenieSerwisowe" Relationship="Self.FK_Zgl_Rower" FromRole="Rower" ToRole="ZgloszenieSerwisowe" />
+          <NavigationProperty Name="SlownikRowerStan" Relationship="BikeRentalDbModel.FK_Rower_Stan_Slownik" FromRole="Rower" ToRole="SlownikRowerStan" />
         </EntityType>
         <EntityType Name="RowerModel">
           <Key>
@@ -1607,16 +1914,6 @@
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_Stojak_KtoModyfikowal_Uzytkownik" FromRole="Stojak" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_Stojak_KtoWykasowal_Uzytkownik" FromRole="Stojak" ToRole="Uzytkownik" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="TransferRoweru">
           <Key>
             <PropertyRef Name="TransferId" />
@@ -1642,6 +1939,7 @@
           <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_TransferRoweru_KtoDodal_Uzytkownik" FromRole="TransferRoweru" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_TransferRoweru_KtoModyfikowal_Uzytkownik" FromRole="TransferRoweru" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_TransferRoweru_KtoWykasowal_Uzytkownik" FromRole="TransferRoweru" ToRole="Uzytkownik" />
+          <NavigationProperty Name="SlownikTransferStatus" Relationship="BikeRentalDbModel.FK_Transfer_Status_Slownik" FromRole="TransferRoweru" ToRole="SlownikTransferStatus" />
         </EntityType>
         <EntityType Name="Uzytkownik">
           <Key>
@@ -1735,6 +2033,7 @@
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_Wypozyczenie_KtoModyfikowal_Uzytkownik" FromRole="Wypozyczenie" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_Wypozyczenie_KtoWykasowal_Uzytkownik" FromRole="Wypozyczenie" ToRole="Uzytkownik" />
           <NavigationProperty Name="WypozyczenieOplata" Relationship="Self.FK_Oplata_Wyp" FromRole="Wypozyczenie" ToRole="WypozyczenieOplata" />
+          <NavigationProperty Name="SlownikWypozyczenieStatus" Relationship="BikeRentalDbModel.FK_Wyp_Status_Slownik" FromRole="Wypozyczenie" ToRole="SlownikWypozyczenieStatus" />
         </EntityType>
         <EntityType Name="WypozyczenieOplata">
           <Key>
@@ -1757,6 +2056,7 @@
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_WypozyczenieOplata_KtoModyfikowal_Uzytkownik" FromRole="WypozyczenieOplata" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_WypozyczenieOplata_KtoWykasowal_Uzytkownik" FromRole="WypozyczenieOplata" ToRole="Uzytkownik" />
           <NavigationProperty Name="Wypozyczenie" Relationship="Self.FK_Oplata_Wyp" FromRole="WypozyczenieOplata" ToRole="Wypozyczenie" />
+          <NavigationProperty Name="SlownikWypozyczenieOplataTyp" Relationship="BikeRentalDbModel.FK_Oplata_Typ_Slownik" FromRole="WypozyczenieOplata" ToRole="SlownikWypozyczenieOplataTyp" />
         </EntityType>
         <EntityType Name="ZgloszenieSerwisowe">
           <Key>
@@ -1783,6 +2083,8 @@
           <NavigationProperty Name="Uzytkownik" Relationship="Self.FK_ZgloszenieSerwisowe_KtoDodal_Uzytkownik" FromRole="ZgloszenieSerwisowe" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik1" Relationship="Self.FK_ZgloszenieSerwisowe_KtoModyfikowal_Uzytkownik" FromRole="ZgloszenieSerwisowe" ToRole="Uzytkownik" />
           <NavigationProperty Name="Uzytkownik2" Relationship="Self.FK_ZgloszenieSerwisowe_KtoWykasowal_Uzytkownik" FromRole="ZgloszenieSerwisowe" ToRole="Uzytkownik" />
+          <NavigationProperty Name="SlownikZgloszeniePriorytet" Relationship="BikeRentalDbModel.FK_Zgl_Priorytet_Slownik" FromRole="ZgloszenieSerwisowe" ToRole="SlownikZgloszeniePriorytet" />
+          <NavigationProperty Name="SlownikZgloszenieStatus" Relationship="BikeRentalDbModel.FK_Zgl_Status_Slownik" FromRole="ZgloszenieSerwisowe" ToRole="SlownikZgloszenieStatus" />
         </EntityType>
         <Association Name="FK_Abonament_Klient">
           <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
@@ -2563,7 +2865,6 @@
           <EntitySet Name="RowerModel" EntityType="Self.RowerModel" />
           <EntitySet Name="Stacja" EntityType="Self.Stacja" />
           <EntitySet Name="Stojak" EntityType="Self.Stojak" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TransferRoweru" EntityType="Self.TransferRoweru" />
           <EntitySet Name="Uzytkownik" EntityType="Self.Uzytkownik" />
           <EntitySet Name="Wypozyczenie" EntityType="Self.Wypozyczenie" />
@@ -2825,7 +3126,331 @@
             <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
             <End Role="WypozyczenieOplata" EntitySet="WypozyczenieOplata" />
           </AssociationSet>
+          <EntitySet Name="SlownikAbonamentStatus" EntityType="BikeRentalDbModel.SlownikAbonamentStatus" />
+          <EntitySet Name="SlownikKlientTyp" EntityType="BikeRentalDbModel.SlownikKlientTyp" />
+          <EntitySet Name="SlownikPlanCenowyStawkaTyp" EntityType="BikeRentalDbModel.SlownikPlanCenowyStawkaTyp" />
+          <EntitySet Name="SlownikPlatnoscMetoda" EntityType="BikeRentalDbModel.SlownikPlatnoscMetoda" />
+          <EntitySet Name="SlownikPlatnoscStatus" EntityType="BikeRentalDbModel.SlownikPlatnoscStatus" />
+          <EntitySet Name="SlownikRezerwacjaStatus" EntityType="BikeRentalDbModel.SlownikRezerwacjaStatus" />
+          <EntitySet Name="SlownikRowerStan" EntityType="BikeRentalDbModel.SlownikRowerStan" />
+          <EntitySet Name="SlownikTransferStatus" EntityType="BikeRentalDbModel.SlownikTransferStatus" />
+          <EntitySet Name="SlownikWypozyczenieOplataTyp" EntityType="BikeRentalDbModel.SlownikWypozyczenieOplataTyp" />
+          <EntitySet Name="SlownikWypozyczenieStatus" EntityType="BikeRentalDbModel.SlownikWypozyczenieStatus" />
+          <EntitySet Name="SlownikZgloszeniePriorytet" EntityType="BikeRentalDbModel.SlownikZgloszeniePriorytet" />
+          <EntitySet Name="SlownikZgloszenieStatus" EntityType="BikeRentalDbModel.SlownikZgloszenieStatus" />
+          <AssociationSet Name="FK_Abonament_Status_Slownik" Association="BikeRentalDbModel.FK_Abonament_Status_Slownik">
+            <End Role="SlownikAbonamentStatus" EntitySet="SlownikAbonamentStatus" />
+            <End Role="Abonament" EntitySet="Abonament" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klient_Typ_Slownik" Association="BikeRentalDbModel.FK_Klient_Typ_Slownik">
+            <End Role="SlownikKlientTyp" EntitySet="SlownikKlientTyp" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stawka_Typ_Slownik" Association="BikeRentalDbModel.FK_Stawka_Typ_Slownik">
+            <End Role="SlownikPlanCenowyStawkaTyp" EntitySet="SlownikPlanCenowyStawkaTyp" />
+            <End Role="PlanCenowyStawka" EntitySet="PlanCenowyStawka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platnosc_Metoda_Slownik" Association="BikeRentalDbModel.FK_Platnosc_Metoda_Slownik">
+            <End Role="SlownikPlatnoscMetoda" EntitySet="SlownikPlatnoscMetoda" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platnosc_Status_Slownik" Association="BikeRentalDbModel.FK_Platnosc_Status_Slownik">
+            <End Role="SlownikPlatnoscStatus" EntitySet="SlownikPlatnoscStatus" />
+            <End Role="Platnosc" EntitySet="Platnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Status_Slownik" Association="BikeRentalDbModel.FK_Rezerwacja_Status_Slownik">
+            <End Role="SlownikRezerwacjaStatus" EntitySet="SlownikRezerwacjaStatus" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rower_Stan_Slownik" Association="BikeRentalDbModel.FK_Rower_Stan_Slownik">
+            <End Role="SlownikRowerStan" EntitySet="SlownikRowerStan" />
+            <End Role="Rower" EntitySet="Rower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Status_Slownik" Association="BikeRentalDbModel.FK_Transfer_Status_Slownik">
+            <End Role="SlownikTransferStatus" EntitySet="SlownikTransferStatus" />
+            <End Role="TransferRoweru" EntitySet="TransferRoweru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oplata_Typ_Slownik" Association="BikeRentalDbModel.FK_Oplata_Typ_Slownik">
+            <End Role="SlownikWypozyczenieOplataTyp" EntitySet="SlownikWypozyczenieOplataTyp" />
+            <End Role="WypozyczenieOplata" EntitySet="WypozyczenieOplata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyp_Status_Slownik" Association="BikeRentalDbModel.FK_Wyp_Status_Slownik">
+            <End Role="SlownikWypozyczenieStatus" EntitySet="SlownikWypozyczenieStatus" />
+            <End Role="Wypozyczenie" EntitySet="Wypozyczenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zgl_Priorytet_Slownik" Association="BikeRentalDbModel.FK_Zgl_Priorytet_Slownik">
+            <End Role="SlownikZgloszeniePriorytet" EntitySet="SlownikZgloszeniePriorytet" />
+            <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zgl_Status_Slownik" Association="BikeRentalDbModel.FK_Zgl_Status_Slownik">
+            <End Role="SlownikZgloszenieStatus" EntitySet="SlownikZgloszenieStatus" />
+            <End Role="ZgloszenieSerwisowe" EntitySet="ZgloszenieSerwisowe" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SlownikAbonamentStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonament" Relationship="BikeRentalDbModel.FK_Abonament_Status_Slownik" FromRole="SlownikAbonamentStatus" ToRole="Abonament" />
+        </EntityType>
+        <EntityType Name="SlownikKlientTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="BikeRentalDbModel.FK_Klient_Typ_Slownik" FromRole="SlownikKlientTyp" ToRole="Klient" />
+        </EntityType>
+        <EntityType Name="SlownikPlanCenowyStawkaTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanCenowyStawka" Relationship="BikeRentalDbModel.FK_Stawka_Typ_Slownik" FromRole="SlownikPlanCenowyStawkaTyp" ToRole="PlanCenowyStawka" />
+        </EntityType>
+        <EntityType Name="SlownikPlatnoscMetoda">
+          <Key>
+            <PropertyRef Name="MetodaId" />
+          </Key>
+          <Property Name="MetodaId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Platnosc" Relationship="BikeRentalDbModel.FK_Platnosc_Metoda_Slownik" FromRole="SlownikPlatnoscMetoda" ToRole="Platnosc" />
+        </EntityType>
+        <EntityType Name="SlownikPlatnoscStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Platnosc" Relationship="BikeRentalDbModel.FK_Platnosc_Status_Slownik" FromRole="SlownikPlatnoscStatus" ToRole="Platnosc" />
+        </EntityType>
+        <EntityType Name="SlownikRezerwacjaStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rezerwacja" Relationship="BikeRentalDbModel.FK_Rezerwacja_Status_Slownik" FromRole="SlownikRezerwacjaStatus" ToRole="Rezerwacja" />
+        </EntityType>
+        <EntityType Name="SlownikRowerStan">
+          <Key>
+            <PropertyRef Name="StanId" />
+          </Key>
+          <Property Name="StanId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rower" Relationship="BikeRentalDbModel.FK_Rower_Stan_Slownik" FromRole="SlownikRowerStan" ToRole="Rower" />
+        </EntityType>
+        <EntityType Name="SlownikTransferStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TransferRoweru" Relationship="BikeRentalDbModel.FK_Transfer_Status_Slownik" FromRole="SlownikTransferStatus" ToRole="TransferRoweru" />
+        </EntityType>
+        <EntityType Name="SlownikWypozyczenieOplataTyp">
+          <Key>
+            <PropertyRef Name="TypId" />
+          </Key>
+          <Property Name="TypId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WypozyczenieOplata" Relationship="BikeRentalDbModel.FK_Oplata_Typ_Slownik" FromRole="SlownikWypozyczenieOplataTyp" ToRole="WypozyczenieOplata" />
+        </EntityType>
+        <EntityType Name="SlownikWypozyczenieStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Wypozyczenie" Relationship="BikeRentalDbModel.FK_Wyp_Status_Slownik" FromRole="SlownikWypozyczenieStatus" ToRole="Wypozyczenie" />
+        </EntityType>
+        <EntityType Name="SlownikZgloszeniePriorytet">
+          <Key>
+            <PropertyRef Name="PriorytetId" />
+          </Key>
+          <Property Name="PriorytetId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ZgloszenieSerwisowe" Relationship="BikeRentalDbModel.FK_Zgl_Priorytet_Slownik" FromRole="SlownikZgloszeniePriorytet" ToRole="ZgloszenieSerwisowe" />
+        </EntityType>
+        <EntityType Name="SlownikZgloszenieStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="Kod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ZgloszenieSerwisowe" Relationship="BikeRentalDbModel.FK_Zgl_Status_Slownik" FromRole="SlownikZgloszenieStatus" ToRole="ZgloszenieSerwisowe" />
+        </EntityType>
+        <Association Name="FK_Abonament_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikAbonamentStatus" Role="SlownikAbonamentStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Abonament" Role="Abonament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikAbonamentStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Abonament">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klient_Typ_Slownik">
+          <End Type="BikeRentalDbModel.SlownikKlientTyp" Role="SlownikKlientTyp" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Klient" Role="Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikKlientTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stawka_Typ_Slownik">
+          <End Type="BikeRentalDbModel.SlownikPlanCenowyStawkaTyp" Role="SlownikPlanCenowyStawkaTyp" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.PlanCenowyStawka" Role="PlanCenowyStawka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlanCenowyStawkaTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="PlanCenowyStawka">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platnosc_Metoda_Slownik">
+          <End Type="BikeRentalDbModel.SlownikPlatnoscMetoda" Role="SlownikPlatnoscMetoda" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Platnosc" Role="Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlatnoscMetoda">
+              <PropertyRef Name="MetodaId" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="Metoda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platnosc_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikPlatnoscStatus" Role="SlownikPlatnoscStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Platnosc" Role="Platnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikPlatnoscStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Platnosc">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezerwacja_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikRezerwacjaStatus" Role="SlownikRezerwacjaStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Rezerwacja" Role="Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikRezerwacjaStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rower_Stan_Slownik">
+          <End Type="BikeRentalDbModel.SlownikRowerStan" Role="SlownikRowerStan" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Rower" Role="Rower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikRowerStan">
+              <PropertyRef Name="StanId" />
+            </Principal>
+            <Dependent Role="Rower">
+              <PropertyRef Name="Stan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikTransferStatus" Role="SlownikTransferStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.TransferRoweru" Role="TransferRoweru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikTransferStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="TransferRoweru">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oplata_Typ_Slownik">
+          <End Type="BikeRentalDbModel.SlownikWypozyczenieOplataTyp" Role="SlownikWypozyczenieOplataTyp" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.WypozyczenieOplata" Role="WypozyczenieOplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikWypozyczenieOplataTyp">
+              <PropertyRef Name="TypId" />
+            </Principal>
+            <Dependent Role="WypozyczenieOplata">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyp_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikWypozyczenieStatus" Role="SlownikWypozyczenieStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.Wypozyczenie" Role="Wypozyczenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikWypozyczenieStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Wypozyczenie">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zgl_Priorytet_Slownik">
+          <End Type="BikeRentalDbModel.SlownikZgloszeniePriorytet" Role="SlownikZgloszeniePriorytet" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.ZgloszenieSerwisowe" Role="ZgloszenieSerwisowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikZgloszeniePriorytet">
+              <PropertyRef Name="PriorytetId" />
+            </Principal>
+            <Dependent Role="ZgloszenieSerwisowe">
+              <PropertyRef Name="Priorytet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zgl_Status_Slownik">
+          <End Type="BikeRentalDbModel.SlownikZgloszenieStatus" Role="SlownikZgloszenieStatus" Multiplicity="1" />
+          <End Type="BikeRentalDbModel.ZgloszenieSerwisowe" Role="ZgloszenieSerwisowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlownikZgloszenieStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="ZgloszenieSerwisowe">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3034,17 +3659,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BikeRentalDbModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TransferRoweru">
             <EntityTypeMapping TypeName="BikeRentalDbModel.TransferRoweru">
               <MappingFragment StoreEntitySet="TransferRoweru">
@@ -3147,6 +3761,126 @@
                 <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
                 <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
                 <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikAbonamentStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikAbonamentStatus">
+              <MappingFragment StoreEntitySet="SlownikAbonamentStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikKlientTyp">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikKlientTyp">
+              <MappingFragment StoreEntitySet="SlownikKlientTyp">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="TypId" ColumnName="TypId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikPlanCenowyStawkaTyp">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikPlanCenowyStawkaTyp">
+              <MappingFragment StoreEntitySet="SlownikPlanCenowyStawkaTyp">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="TypId" ColumnName="TypId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikPlatnoscMetoda">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikPlatnoscMetoda">
+              <MappingFragment StoreEntitySet="SlownikPlatnoscMetoda">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="MetodaId" ColumnName="MetodaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikPlatnoscStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikPlatnoscStatus">
+              <MappingFragment StoreEntitySet="SlownikPlatnoscStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikRezerwacjaStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikRezerwacjaStatus">
+              <MappingFragment StoreEntitySet="SlownikRezerwacjaStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikRowerStan">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikRowerStan">
+              <MappingFragment StoreEntitySet="SlownikRowerStan">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StanId" ColumnName="StanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikTransferStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikTransferStatus">
+              <MappingFragment StoreEntitySet="SlownikTransferStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikWypozyczenieOplataTyp">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikWypozyczenieOplataTyp">
+              <MappingFragment StoreEntitySet="SlownikWypozyczenieOplataTyp">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="TypId" ColumnName="TypId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikWypozyczenieStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikWypozyczenieStatus">
+              <MappingFragment StoreEntitySet="SlownikWypozyczenieStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikZgloszeniePriorytet">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikZgloszeniePriorytet">
+              <MappingFragment StoreEntitySet="SlownikZgloszeniePriorytet">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="PriorytetId" ColumnName="PriorytetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlownikZgloszenieStatus">
+            <EntityTypeMapping TypeName="BikeRentalDbModel.SlownikZgloszenieStatus">
+              <MappingFragment StoreEntitySet="SlownikZgloszenieStatus">
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

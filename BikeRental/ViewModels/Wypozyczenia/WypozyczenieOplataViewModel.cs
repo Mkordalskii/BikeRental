@@ -18,12 +18,7 @@ namespace BikeRental.ViewModels
                 {
                     OplataId = oplata.OplataId,
                     WypozyczenieId = oplata.WypozyczenieId,
-                    Typ =
-                        oplata.Typ == 0 ? "start" :
-                        oplata.Typ == 1 ? "czas" :
-                        oplata.Typ == 2 ? "doplata" :
-                        oplata.Typ == 3 ? "strefa" :
-                        oplata.Typ == 4 ? "kara" : "blad"
+                    Typ = oplata.SlownikWypozyczenieOplataTyp.Nazwa
                 }
                 );
         }

@@ -33,5 +33,6 @@ namespace BikeRental.Models
         public virtual Uzytkownik Uzytkownik1 { get; set; }
         public virtual Uzytkownik Uzytkownik2 { get; set; }
         public virtual PlanCenowy PlanCenowy { get; set; }
+        public virtual SlownikAbonamentStatus SlownikAbonamentStatus { get; set; }
     }
 }

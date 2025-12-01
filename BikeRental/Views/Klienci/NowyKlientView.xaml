@@ -23,6 +23,8 @@
         <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
         <ComboBox Grid.Column="1" Grid.Row="0"
           ItemsSource="{Binding DostepneTypy}"
+          DisplayMemberPath="Nazwa"
+          SelectedValuePath="TypId"
           SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
           Margin="0,8,0,8"
           Width="200"/>

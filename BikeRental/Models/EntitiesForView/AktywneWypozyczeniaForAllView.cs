@@ -17,6 +17,6 @@ namespace BikeRental.Models.EntitiesForView
         public decimal? KoniecSzerGeo { get; set; }
         public decimal? KoniecDlugGeo { get; set; }
         public decimal? OdlegloscKm { get; set; }
-        public string PlanCenowy { get; set; }
+        public int PlanCenowyIdSnapshot { get; set; }
     }
 }

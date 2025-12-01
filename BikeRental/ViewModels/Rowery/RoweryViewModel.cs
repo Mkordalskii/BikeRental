@@ -22,11 +22,7 @@ namespace BikeRental.ViewModels
                        RowerNazwaModelu = rower.RowerModel.Nazwa,
                        NumerSeryjny = rower.NumerSeryjny,
                        KodFloty = rower.KodFloty,
-                       Stan =
-                        rower.Stan == 0 ? "dostepny" :
-                        rower.Stan == 1 ? "wypozyczony" :
-                        rower.Stan == 2 ? "serwis" :
-                        rower.Stan == 3 ? "zgubiony / ukradziony" : "nieznany",
+                       Stan = rower.SlownikRowerStan.Nazwa,
                        OstatniaStacjaNazwa = rower.Stacja.Nazwa,
                        OstatniStojakId = rower.OstatniStojakId,
                        OstatniaSzerGeo = rower.OstatniaSzerGeo,

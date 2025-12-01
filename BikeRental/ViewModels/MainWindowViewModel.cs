@@ -141,11 +141,11 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Transfery rowerow",
-                    new BaseCommand(() => this.ShowAll<ZgloszeniaSerwisoweViewModel>())),
+                    new BaseCommand(() => this.ShowAll<TransferyRowerowViewModel>())),
 
                 new CommandViewModel(
                     "Dodaj/edytuj transfer",
-                    new BaseCommand(() =>  this.CreateView(new NoweZgloszenieSerwisoweViewModel())))
+                    new BaseCommand(() =>  this.CreateView(new NowyTransferRoweruViewModel())))
             };
         }
         #endregion

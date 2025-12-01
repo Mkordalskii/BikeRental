@@ -32,5 +32,6 @@ namespace BikeRental.Models
         public virtual Uzytkownik Uzytkownik1 { get; set; }
         public virtual Uzytkownik Uzytkownik2 { get; set; }
         public virtual Wypozyczenie Wypozyczenie { get; set; }
+        public virtual SlownikWypozyczenieOplataTyp SlownikWypozyczenieOplataTyp { get; set; }
     }
 }

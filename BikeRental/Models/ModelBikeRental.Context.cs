@@ -35,11 +35,22 @@ namespace BikeRental.Models
         public virtual DbSet<RowerModel> RowerModel { get; set; }
         public virtual DbSet<Stacja> Stacja { get; set; }
         public virtual DbSet<Stojak> Stojak { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TransferRoweru> TransferRoweru { get; set; }
         public virtual DbSet<Uzytkownik> Uzytkownik { get; set; }
         public virtual DbSet<Wypozyczenie> Wypozyczenie { get; set; }
         public virtual DbSet<WypozyczenieOplata> WypozyczenieOplata { get; set; }
         public virtual DbSet<ZgloszenieSerwisowe> ZgloszenieSerwisowe { get; set; }
+        public virtual DbSet<SlownikAbonamentStatus> SlownikAbonamentStatus { get; set; }
+        public virtual DbSet<SlownikKlientTyp> SlownikKlientTyp { get; set; }
+        public virtual DbSet<SlownikPlanCenowyStawkaTyp> SlownikPlanCenowyStawkaTyp { get; set; }
+        public virtual DbSet<SlownikPlatnoscMetoda> SlownikPlatnoscMetoda { get; set; }
+        public virtual DbSet<SlownikPlatnoscStatus> SlownikPlatnoscStatus { get; set; }
+        public virtual DbSet<SlownikRezerwacjaStatus> SlownikRezerwacjaStatus { get; set; }
+        public virtual DbSet<SlownikRowerStan> SlownikRowerStan { get; set; }
+        public virtual DbSet<SlownikTransferStatus> SlownikTransferStatus { get; set; }
+        public virtual DbSet<SlownikWypozyczenieOplataTyp> SlownikWypozyczenieOplataTyp { get; set; }
+        public virtual DbSet<SlownikWypozyczenieStatus> SlownikWypozyczenieStatus { get; set; }
+        public virtual DbSet<SlownikZgloszeniePriorytet> SlownikZgloszeniePriorytet { get; set; }
+        public virtual DbSet<SlownikZgloszenieStatus> SlownikZgloszenieStatus { get; set; }
     }
 }

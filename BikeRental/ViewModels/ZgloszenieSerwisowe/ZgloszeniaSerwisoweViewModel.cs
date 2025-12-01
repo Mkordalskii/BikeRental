@@ -21,15 +21,9 @@ namespace BikeRental.ViewModels
                       NumerSeryjny = zgloszenie.Rower.NumerSeryjny,
                       NazwiskoKlienta = zgloszenie.Klient.Nazwisko,
                       DataZgloszeniaUtc = zgloszenie.DataZgloszeniaUtc,
-                      Priorytet =
-                        zgloszenie.Priorytet == 0 ? "niski" :
-                        zgloszenie.Priorytet == 1 ? "sredni" :
-                        zgloszenie.Priorytet == 2 ? "wysoki" : "brak",
+                      Priorytet = zgloszenie.SlownikZgloszeniePriorytet.Nazwa,
                       Opis = zgloszenie.Opis,
-                      Status =
-                        zgloszenie.Status == 0 ? "nowe" :
-                        zgloszenie.Status == 1 ? "w trakcie" :
-                        zgloszenie.Status == 2 ? "zamkniete" : "blad",
+                      Status = zgloszenie.SlownikZgloszenieStatus.Nazwa,
                       KodStacji = zgloszenie.Stacja.Kod
                   }
                 );

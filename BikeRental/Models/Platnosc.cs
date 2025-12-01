@@ -36,5 +36,7 @@ namespace BikeRental.Models
         public virtual Uzytkownik Uzytkownik1 { get; set; }
         public virtual Uzytkownik Uzytkownik2 { get; set; }
         public virtual Wypozyczenie Wypozyczenie { get; set; }
+        public virtual SlownikPlatnoscMetoda SlownikPlatnoscMetoda { get; set; }
+        public virtual SlownikPlatnoscStatus SlownikPlatnoscStatus { get; set; }
     }
 }

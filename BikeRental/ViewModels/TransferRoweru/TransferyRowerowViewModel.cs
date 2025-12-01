@@ -23,11 +23,7 @@ namespace BikeRental.ViewModels
                       KodStacjiDocelowej = transfer.Stacja.Kod,
                       DataStartUtc = transfer.DataStartUtc,
                       DataKoniecUtc = transfer.DataKoniecUtc,
-                      Status =
-                        transfer.Status == 0 ? "planowany" :
-                        transfer.Status == 1 ? "w toku" :
-                        transfer.Status == 2 ? "zakonczony" :
-                        transfer.Status == 3 ? "anulowany" : "blad",
+                      Status = transfer.SlownikTransferStatus.Nazwa,
                       Uwagi = transfer.Uwagi
                   }
                 );

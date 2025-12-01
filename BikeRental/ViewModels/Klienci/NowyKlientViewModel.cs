@@ -2,6 +2,7 @@
 using BikeRental.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BikeRental.ViewModels
 {
@@ -12,8 +13,10 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj klienta";
             item = new Klient();
-            DostepneTypy = new List<string> { "Osoba prywatna", "Firma" };
-            WybranyTyp = DostepneTypy[0];
+            DostepneTypy = db.SlownikKlientTyp
+                .OrderBy(t => t.Kolejnosc)
+                .ToList();
+            Typ = (byte)DostepneTypy[0].TypId; // ustawienie domyslnego typu
         }
         #endregion
         #region Properties
@@ -129,37 +132,14 @@ namespace BikeRental.ViewModels
         public override void Save()
         {
             item.CzyAktywny = true;
-            item.KtoDodal = /* np. zalogowany użytkownik */ 5;
+            item.KtoDodal = /* np. zalogowany użytkownik */ 1;
             item.KiedyDodal = DateTime.Now;
             db.Klient.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
         }
         #endregion
         #region ComboBoxList
-        public List<string> DostepneTypy { get; }
-
-        private string _wybranyTyp;
-        public string WybranyTyp
-        {
-            get
-            {
-                return _wybranyTyp;
-            }
-            set
-            {
-                if (_wybranyTyp != value)
-                {
-                    _wybranyTyp = value;
-                    OnPropertyChanged(() => WybranyTyp);
-
-                    // mapowanie tekstu na byte do bazy
-                    if (value == "Osoba prywatna")
-                        Typ = 0;
-                    else if (value == "Firma")
-                        Typ = 1;
-                }
-            }
-        }
+        public List<SlownikKlientTyp> DostepneTypy { get; }
         #endregion
     }
 }

@@ -13,10 +13,10 @@
                 <DataGridTextColumn Header="Typ" Binding="{Binding Typ}"/>
                 <DataGridTextColumn Header="Imie" Binding="{Binding Imie}"/>
                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
-                <DataGridTextColumn Header="NIP" Binding="{Binding Nip}"/>
+                <DataGridTextColumn Header="NIP" Binding="{Binding NIP}"/>
                 <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
                 <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}"/>
-                <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, StringFormat=\{0:yyyy-MM-dd\}}"/>
             </DataGrid.Columns>
         </DataGrid> 
     </Grid>

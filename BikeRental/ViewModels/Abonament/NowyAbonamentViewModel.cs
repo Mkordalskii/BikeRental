@@ -96,7 +96,7 @@ namespace BikeRental.ViewModels
         public override void Save()
         {
             item.CzyAktywny = true;
-            item.KtoDodal = /* np. zalogowany użytkownik */ 5;
+            item.KtoDodal = /* np. zalogowany użytkownik */ 1;
             item.KiedyDodal = DateTime.Now;
             db.Abonament.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych

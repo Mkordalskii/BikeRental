@@ -23,17 +23,9 @@ namespace BikeRental.ViewModels
                       DataPlatnosci = platnosc.DataPlatnosci,
                       Kwota = platnosc.Kwota,
                       Waluta = platnosc.Waluta,
-                      MetodaPlatnosci =
-                        platnosc.Metoda == 0 ? "karta" :
-                        platnosc.Metoda == 1 ? "blik" :
-                        platnosc.Metoda == 2 ? "gotowka" :
-                        platnosc.Metoda == 3 ? "przelew" : "nieznana",
+                      MetodaPlatnosci = platnosc.SlownikPlatnoscMetoda.Nazwa,
                       Referencja = platnosc.Referencja,
-                      Status =
-                        platnosc.Status == 0 ? "autoryzacja" :
-                        platnosc.Status == 1 ? "zaksiegowana" :
-                        platnosc.Status == 2 ? "zwrot" :
-                        platnosc.Status == 3 ? "odrzucona" : "blad"
+                      Status = platnosc.SlownikPlatnoscStatus.Nazwa
                   }
                 );
         }

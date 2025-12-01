@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KlienciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlanCenowyStawkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
@@ -128,13 +129,46 @@
     <Compile Include="Models\RowerModel.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SlownikAbonamentStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikKlientTyp.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikPlanCenowyStawkaTyp.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikPlatnoscMetoda.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikPlatnoscStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikRezerwacjaStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikRowerStan.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikTransferStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikWypozyczenieOplataTyp.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikWypozyczenieStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikZgloszeniePriorytet.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlownikZgloszenieStatus.cs">
+      <DependentUpon>ModelBikeRental.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Stacja.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stojak.cs">
-      <DependentUpon>ModelBikeRental.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TransferRoweru.cs">

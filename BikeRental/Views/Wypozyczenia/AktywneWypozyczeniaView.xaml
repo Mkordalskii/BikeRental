@@ -22,7 +22,7 @@
                 <DataGridTextColumn Header="Szerokosc geo. koniec" Binding="{Binding KoniecSzerGeo}"/>
                 <DataGridTextColumn Header="Dlugosc geo. koniec" Binding="{Binding KoniecDlugGeo}"/>
                 <DataGridTextColumn Header="Odleglosc[KM]" Binding="{Binding OdlegloscKm}"/>
-                <DataGridTextColumn Header="Plan cenowy" Binding="{Binding PlanCenowy}"/>
+                <DataGridTextColumn Header="PlanCenowyIdSnapshot" Binding="{Binding PlanCenowyIdSnapshot}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

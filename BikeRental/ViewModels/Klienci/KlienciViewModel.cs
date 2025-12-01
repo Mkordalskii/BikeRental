@@ -1,18 +1,30 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BikeRental.ViewModels
 {
-    public class KlienciViewModel : WszystkieViewModel<Klient>
+    public class KlienciViewModel : WszystkieViewModel<KlienciForAllView>
     {
         #region Lista
         public override void Load()
         {
-            List = new ObservableCollection<Klient>
+            List = new ObservableCollection<KlienciForAllView>
                 (
-                db.Klient.ToList()// z bazy danych, pobieram wszystkich klientow i zamieniam na liste
+                from klient in db.Klient
+                where klient.CzyAktywny == true
+                select new KlienciForAllView
+                {
+                    KlientId = klient.KlientId,
+                    Typ = klient.SlownikKlientTyp.Nazwa,
+                    Imie = klient.Imie,
+                    Nazwisko = klient.Nazwisko,
+                    NIP = klient.NIP,
+                    Email = klient.Email,
+                    Telefon = klient.Telefon,
+                    DataUrodzenia = klient.DataUrodzenia
+                }
                 );
         }
         #endregion

@@ -18,11 +18,7 @@ namespace BikeRental.ViewModels
                     {
                         StawkaId = stawka.StawkaId,
                         PlanCenowyNazwa = stawka.PlanCenowy.Nazwa,
-                        Typ =
-                            stawka.Typ == 0 ? "czas" :
-                            stawka.Typ == 1 ? "strefa" :
-                            stawka.Typ == 2 ? "oplata stala" :
-                            stawka.Typ == 3 ? "kara" : "blad",
+                        Typ = stawka.SlownikPlanCenowyStawkaTyp.Nazwa,
                         OdMinuty = stawka.OdMinuty,
                         DoMinuty = stawka.DoMinuty,
                         CenaZaMin = stawka.CenaZaMin,

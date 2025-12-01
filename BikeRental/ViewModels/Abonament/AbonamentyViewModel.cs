@@ -22,10 +22,7 @@ namespace BikeRental.ViewModels
                       PlanCenowyNazwa = abonament.PlanCenowy.Nazwa,
                       DataStart = abonament.DataStart,
                       DataKoniec = abonament.DataKoniec,
-                      Status =
-                        abonament.Status == 0 ? "aktywny" :
-                        abonament.Status == 1 ? "nieaktywny" :
-                        abonament.Status == 2 ? "zawieszony" : "brak"
+                      Status = abonament.SlownikAbonamentStatus.Nazwa
                   }
                 );
         }

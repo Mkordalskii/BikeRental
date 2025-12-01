@@ -54,5 +54,6 @@ namespace BikeRental.Models
         public virtual Uzytkownik Uzytkownik2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WypozyczenieOplata> WypozyczenieOplata { get; set; }
+        public virtual SlownikWypozyczenieStatus SlownikWypozyczenieStatus { get; set; }
     }
 }

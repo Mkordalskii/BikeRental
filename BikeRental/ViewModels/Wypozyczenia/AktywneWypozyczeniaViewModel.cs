@@ -29,10 +29,7 @@ namespace BikeRental.ViewModels
                     KoniecSzerGeo = wypozyczenie.KoniecSzerGeo,
                     KoniecDlugGeo = wypozyczenie.KoniecDlugGeo,
                     OdlegloscKm = wypozyczenie.OdlegloscKm,
-                    PlanCenowy =
-                        wypozyczenie.PlanCenowyIdSnapshot == 1 ? "HappyWeek" :
-                        wypozyczenie.PlanCenowyIdSnapshot == 2 ? "CrazyCovid" :
-                        wypozyczenie.PlanCenowyIdSnapshot == 3 ? "Standard" : "Brak"
+                    PlanCenowyIdSnapshot = wypozyczenie.PlanCenowyIdSnapshot
                 }
                 );
         }

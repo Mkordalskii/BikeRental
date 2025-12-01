@@ -36,5 +36,6 @@ namespace BikeRental.Models
         public virtual Uzytkownik Uzytkownik { get; set; }
         public virtual Uzytkownik Uzytkownik1 { get; set; }
         public virtual Uzytkownik Uzytkownik2 { get; set; }
+        public virtual SlownikTransferStatus SlownikTransferStatus { get; set; }
     }
 }

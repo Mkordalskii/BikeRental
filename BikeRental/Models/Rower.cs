@@ -57,5 +57,6 @@ namespace BikeRental.Models
         public virtual ICollection<Wypozyczenie> Wypozyczenie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ZgloszenieSerwisowe> ZgloszenieSerwisowe { get; set; }
+        public virtual SlownikRowerStan SlownikRowerStan { get; set; }
     }
 }
