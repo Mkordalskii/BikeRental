@@ -21,7 +21,7 @@ namespace BikeRental.ViewModels
         #endregion
         #region Properties
         //dla kazdego pola ktore bedziemy dodawac dodajemy properties
-        public byte Typ // 0 - osoba prywatna, 1 - firma
+        public byte Typ // FK do SlownikKlientTyp.TypId
         {
             get
             {

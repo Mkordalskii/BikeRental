@@ -2,6 +2,7 @@
 using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -15,6 +16,10 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj Rower";
             item = new Rower();
+            DostepneStany = db.SlownikRowerStan
+                .OrderBy(s => s.Kolejnosc)
+                .ToList();
+            Stan = (byte)DostepneStany[0].StanId; // ustawienie domyslnego typu
             DostepneModele = new ObservableCollection<ForeignKeyIdAndNameRecord>();
             DostepneStacje = new ObservableCollection<ForeignKeyIdAndNameRecord>();
             DostepneStojaki = new ObservableCollection<ForeignKeyIdAndNameRecord>();
@@ -101,6 +106,7 @@ namespace BikeRental.ViewModels
                 {
                     item.OstatniaStacjaId = value;
                     OnPropertyChanged(() => OstatniaStacjaId);
+                    LoadStojakiForStation(value); // po wybraniu stacji przeladuje stojaki
                 }
             }
         }
@@ -217,6 +223,7 @@ namespace BikeRental.ViewModels
         #endregion Commands
 
         #region ComboBoxList
+        public List<SlownikRowerStan> DostepneStany { get; }
 
         public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneModele { get; }
         public ObservableCollection<ForeignKeyIdAndNameRecord> DostepneStacje { get; }
@@ -235,12 +242,28 @@ namespace BikeRental.ViewModels
                 .OrderBy(x => x.Nazwa)
                 .Select(x => new ForeignKeyIdAndNameRecord { Id = x.StacjaId, Name = x.Nazwa })
                 .ToList());
+        }
 
-            Fill(DostepneStojaki, db.Stojak
+        private void LoadStojakiForStation(int? stacjaId)
+        {
+            DostepneStojaki.Clear();
+            if (!stacjaId.HasValue)
+            {
+                OstatniStojakId = null;
+                return;
+            }
+            List<ForeignKeyIdAndNameRecord> stojaki = db.Stojak
                 .AsNoTracking()
-                .OrderBy(x => x.StojakId)
-                .Select(x => new ForeignKeyIdAndNameRecord { Id = x.StojakId, Name = x.NumerMiejsca.ToString() })
-                .ToList());
+                .Where(s => s.StacjaId == stacjaId.Value && s.Sprawny == true)
+                .OrderBy(s => s.NumerMiejsca)
+                .Select(s => new ForeignKeyIdAndNameRecord
+                {
+                    Id = s.StojakId,
+                    Name = s.NumerMiejsca.ToString()
+                })
+                .ToList();
+            Fill(DostepneStojaki, stojaki); // wypelnienie dostepnych stojakow przefiltrowanymi stojakami
+            OstatniStojakId = null; // ustawienie ostatniego stojaka na null
         }
 
         #endregion ComboBoxList

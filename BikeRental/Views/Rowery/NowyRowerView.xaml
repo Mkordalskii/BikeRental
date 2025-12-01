@@ -20,6 +20,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Wybierz model" Margin="0,8,0,8"/>
         <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8"
@@ -62,5 +63,14 @@
         
         <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Poziom baterii [%]" Margin="0,8,0,8"/>
         <TextBox Grid.Column="1" Grid.Row="7" Margin="0,8,0,8" Text="{Binding Path=PoziomBateriiProc, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Grid.Column="0" Grid.Row="8" FontSize="10" Content="Stan" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="8"
+  ItemsSource="{Binding DostepneStany}"
+  DisplayMemberPath="Nazwa"
+  SelectedValuePath="StanId"
+  SelectedValue="{Binding Stan, Mode=TwoWay}"
+  Margin="0,8,0,8"
+  Width="200"/>
     </Grid>
 </local:JedenViewBase>

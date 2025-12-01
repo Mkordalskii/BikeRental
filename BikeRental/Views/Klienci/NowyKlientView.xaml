@@ -25,7 +25,7 @@
           ItemsSource="{Binding DostepneTypy}"
           DisplayMemberPath="Nazwa"
           SelectedValuePath="TypId"
-          SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
+          SelectedValue="{Binding Typ, Mode=TwoWay}"
           Margin="0,8,0,8"
           Width="200"/>
 
