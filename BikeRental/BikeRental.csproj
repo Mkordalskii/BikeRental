@@ -82,8 +82,12 @@
     <Compile Include="Models\Abonament.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\RaportWypozyczenB.cs" />
+    <Compile Include="Models\BusinessLogic\RaportWypozyczenPodsumowanieB.cs" />
     <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\KlienciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlanCenowyStawkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
@@ -201,6 +205,7 @@
     <Compile Include="ViewModels\PlanCenowy\PlanCenowyViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\NowaPlatnoscViewModel.cs" />
     <Compile Include="ViewModels\Platnosci\PlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\RaportWypozyczenViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\NowaRezerwacjaViewModel.cs" />
     <Compile Include="ViewModels\Rezerwacje\RezerwacjeViewModel.cs" />
     <Compile Include="ViewModels\Rowery\ModeleRowerowViewModel.cs" />
@@ -253,6 +258,9 @@
     </Compile>
     <Compile Include="Views\Platnosci\PlatnosciView.xaml.cs">
       <DependentUpon>PlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportWypozyczenView.xaml.cs">
+      <DependentUpon>RaportWypozyczenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Rezerwacje\NowaRezerwacjaView.xaml.cs">
       <DependentUpon>NowaRezerwacjaView.xaml</DependentUpon>
@@ -415,6 +423,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Platnosci\PlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportWypozyczenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

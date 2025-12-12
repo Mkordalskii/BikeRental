@@ -263,7 +263,7 @@ namespace BikeRental.ViewModels
                 })
                 .ToList();
             Fill(DostepneStojaki, stojaki); // wypelnienie dostepnych stojakow przefiltrowanymi stojakami
-            OstatniStojakId = null; // ustawienie ostatniego stojaka na null
+            OstatniStojakId = null; // ustawienie ostatniego stojaka na null zeby sie nie pogryzlo pozniej z FK
         }
 
         #endregion ComboBoxList

@@ -89,6 +89,9 @@
     <DataTemplate DataType="{x:Type vm:NowyTransferRoweruViewModel}">
         <vw:NowyTransferRoweru/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RaportWypozyczenViewModel}">
+        <vw:RaportWypozyczenView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

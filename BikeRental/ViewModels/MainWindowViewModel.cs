@@ -145,7 +145,11 @@ namespace BikeRental.ViewModels
 
                 new CommandViewModel(
                     "Dodaj/edytuj transfer",
-                    new BaseCommand(() =>  this.CreateView(new NowyTransferRoweruViewModel())))
+                    new BaseCommand(() =>  this.CreateView(new NowyTransferRoweruViewModel()))),
+
+                 new CommandViewModel(
+                    "Raport wypozyczen",
+                    new BaseCommand(() =>  this.CreateView(new RaportWypozyczenViewModel())))
             };
         }
         #endregion
