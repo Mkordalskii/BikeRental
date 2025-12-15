@@ -22,7 +22,7 @@ namespace BikeRental.ViewModels
                     KodFloty = wypozyczenie.Rower.KodFloty,
                     StartUtc = wypozyczenie.StartUtc,
                     KoniecUtc = wypozyczenie.KoniecUtc,
-                    NazwaStacjiPoczatkowej = wypozyczenie.Stacja.Nazwa,
+                    NazwaStacjiPoczatkowej = wypozyczenie.Stacja1.Nazwa,
                     NazwaStacjiKoncowej = wypozyczenie.Stacja.Nazwa,
                     StartSzerGeo = wypozyczenie.StartSzerGeo,
                     StartDlugGeo = wypozyczenie.StartDlugGeo,

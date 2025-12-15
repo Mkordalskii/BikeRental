@@ -25,7 +25,7 @@ namespace BikeRental.ViewModels
         }
         #endregion
 
-        #region Pola i właściwości
+        #region Pola i wlasciwosci
         private int? _PlanCenowyId;
         public int? PlanCenowyId
         {

@@ -13,25 +13,27 @@ namespace BikeRental.ViewModels
         #region Baza danych
         private readonly BikeRentalDbEntities db;
         #endregion
+
         #region Konstruktor
         public RaportWypozyczenViewModel()
         {
-            DisplayName = "Raport wypozyczen";
+            DisplayName = "Raport wypożyczeń";
             db = new BikeRentalDbEntities();
-            _Raport = new RaportWypozyczenB(db);
-            DataDo = DateTime.Today;
+
             DataOd = DateTime.Today.AddDays(-30);
-            Wynik = new RaportWypozyczenPodsumowanieB();
+            DataDo = DateTime.Today;
+
+            WyczyscWynik();
         }
         #endregion
-        #region Pola i wlasciwosci
+
+        #region Pola i właściwości (filtry)
         private DateTime _DataOd;
         private DateTime _DataDo;
         private int? _IdKlienta;
+        private int? _IdRoweru;
         private int? _IdStacjaStart;
         private int? _IdStacjaKoniec;
-        private int? _IdRoweru;
-        private RaportWypozyczenB _Raport;
 
         public DateTime DataOd
         {
@@ -41,13 +43,11 @@ namespace BikeRental.ViewModels
             }
             set
             {
-                if (_DataOd != value)
-                {
-                    _DataOd = value;
-                    OnPropertyChanged(() => DataOd);
-                }
+                _DataOd = value;
+                OnPropertyChanged(() => DataOd);
             }
         }
+
         public DateTime DataDo
         {
             get
@@ -56,13 +56,11 @@ namespace BikeRental.ViewModels
             }
             set
             {
-                if (_DataDo != value)
-                {
-                    _DataDo = value;
-                    OnPropertyChanged(() => DataDo);
-                }
+                _DataDo = value;
+                OnPropertyChanged(() => DataDo);
             }
         }
+
         public int? IdKlienta
         {
             get
@@ -71,43 +69,11 @@ namespace BikeRental.ViewModels
             }
             set
             {
-                if (_IdKlienta != value)
-                {
-                    _IdKlienta = value;
-                    OnPropertyChanged(() => IdKlienta);
-                }
+                _IdKlienta = value;
+                OnPropertyChanged(() => IdKlienta);
             }
         }
-        public int? IdStacjaStart
-        {
-            get
-            {
-                return _IdStacjaStart;
-            }
-            set
-            {
-                if (_IdStacjaStart != value)
-                {
-                    _IdStacjaStart = value;
-                    OnPropertyChanged(() => IdStacjaStart);
-                }
-            }
-        }
-        public int? IdStacjaKoniec
-        {
-            get
-            {
-                return _IdStacjaKoniec;
-            }
-            set
-            {
-                if (_IdStacjaKoniec != value)
-                {
-                    _IdStacjaKoniec = value;
-                    OnPropertyChanged(() => IdStacjaKoniec);
-                }
-            }
-        }
+
         public int? IdRoweru
         {
             get
@@ -116,63 +82,119 @@ namespace BikeRental.ViewModels
             }
             set
             {
-                if (_IdRoweru != value)
-                {
-                    _IdRoweru = value;
-                    OnPropertyChanged(() => IdRoweru);
-                }
+                _IdRoweru = value;
+                OnPropertyChanged(() => IdRoweru);
             }
         }
-        public RaportWypozyczenB Raport
+
+        public int? IdStacjaStart
         {
             get
             {
-                return _Raport;
+                return _IdStacjaStart;
             }
             set
             {
-                if (_Raport != value)
-                {
-                    _Raport = value;
-                    OnPropertyChanged(() => Raport);
-                }
+                _IdStacjaStart = value;
+                OnPropertyChanged(() => IdStacjaStart);
             }
         }
-        private RaportWypozyczenPodsumowanieB _wynik;
-        public RaportWypozyczenPodsumowanieB Wynik
+
+        public int? IdStacjaKoniec
         {
-            get => _wynik;
+            get
+            {
+                return _IdStacjaKoniec;
+            }
             set
             {
-                _wynik = value;
-                OnPropertyChanged(() => Wynik);
-            }
-        }
-        public IQueryable<KeyAndValue> KlienciComboBoxItems
-        {
-            get
-            {
-                return new RaportWypozyczenB(db).GetKlienciCollection();
-            }
-        }
-        public IQueryable<KeyAndValue> StacjeComboBoxItems
-        {
-            get
-            {
-                return new RaportWypozyczenB(db).GetStacjeCollection();
-            }
-        }
-        public IQueryable<KeyAndValue> RoweryComboBoxItems
-        {
-            get
-            {
-                return new RaportWypozyczenB(db).GetRoweryCollection();
+                _IdStacjaKoniec = value;
+                OnPropertyChanged(() => IdStacjaKoniec);
             }
         }
         #endregion
+
+        #region Wyniki
+        private int? _LiczbaWypozyczen;
+        private int? _LacznyCzasMin;
+        private decimal? _LacznyDystansKm;
+        private decimal? _Przychod;
+
+        public int? LiczbaWypozyczen
+        {
+            get
+            {
+                return
+                    _LiczbaWypozyczen;
+            }
+            set
+            {
+                _LiczbaWypozyczen = value;
+                OnPropertyChanged(() => LiczbaWypozyczen);
+            }
+        }
+
+        public int? LacznyCzasMin
+        {
+            get
+            {
+                return _LacznyCzasMin;
+            }
+            set
+            {
+                _LacznyCzasMin = value;
+                OnPropertyChanged(() => LacznyCzasMin);
+            }
+        }
+
+        public decimal? LacznyDystansKm
+        {
+            get
+            {
+                return _LacznyDystansKm;
+            }
+            set
+            {
+                _LacznyDystansKm = value;
+                OnPropertyChanged(() => LacznyDystansKm);
+            }
+        }
+
+        public decimal? Przychod
+        {
+            get
+            {
+                return _Przychod;
+            }
+            set
+            {
+                _Przychod = value;
+                OnPropertyChanged(() => Przychod);
+            }
+        }
+        #endregion
+
+        #region ComboBox Items
+        public IQueryable<KeyAndValue> KlienciComboBoxItems
+        {
+            get { return new KlientB(db).GetKlienciKeyAndValueItems(); }
+        }
+
+        public IQueryable<KeyAndValue> StacjeComboBoxItems
+        {
+            get { return new StacjaB(db).GetStacjeKeyAndValueItems(); }
+        }
+
+        public IQueryable<KeyAndValue> RoweryComboBoxItems
+        {
+            get { return new RowerB(db).GetRoweryKeyAndValueItems(); }
+        }
+        #endregion
+
         #region Komendy
         private BaseCommand _GenerujRaport;
         private BaseCommand _Wyczysc;
+
         public ICommand GenerujRaport
         {
             get
@@ -182,6 +204,7 @@ namespace BikeRental.ViewModels
                 return _GenerujRaport;
             }
         }
+
         public ICommand Wyczysc
         {
             get
@@ -191,37 +214,32 @@ namespace BikeRental.ViewModels
                 return _Wyczysc;
             }
         }
+
+        private void generujRaportClick()
+        {
+            RaportWypozyczenPodsumowanieB b = new RaportWypozyczenPodsumowanieB(db);
+
+            LiczbaWypozyczen = b.LiczbaWypozyczenOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
+            LacznyCzasMin = b.LacznyCzasMinOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
+            LacznyDystansKm = b.LacznyDystansKmOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
+            Przychod = b.PrzychodOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
+        }
+
         private void wyczyscClick()
         {
-            //domysle daty
-            //DataOd = DateTime.Today.AddDays(-30);
-            //DataDo = DateTime.Today;
-
-            //filtry (ComboBoxy)
             IdKlienta = null;
             IdRoweru = null;
             IdStacjaStart = null;
             IdStacjaKoniec = null;
-
-            //wynik raportu
-            Wynik = new RaportWypozyczenPodsumowanieB
-            {
-                LiczbaWypozyczen = null,
-                LacznyCzasMin = null,
-                LacznyDystansKm = null,
-                Przychod = null
-            };
+            WyczyscWynik();
         }
-        private void generujRaportClick()
+
+        private void WyczyscWynik()
         {
-            //to jest wywolanie funkcji z klasy logiki biznesowej
-            Wynik = _Raport.GenerujPodsumowanie(
-                DataOd,
-                DataDo,
-                IdKlienta,
-                IdRoweru,
-                IdStacjaStart,
-                IdStacjaKoniec);
+            LiczbaWypozyczen = null;
+            LacznyCzasMin = null;
+            LacznyDystansKm = null;
+            Przychod = null;
         }
         #endregion
     }

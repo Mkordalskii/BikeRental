@@ -83,9 +83,11 @@
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\KlientB.cs" />
     <Compile Include="Models\BusinessLogic\PlanCenowyB.cs" />
-    <Compile Include="Models\BusinessLogic\RaportWypozyczenB.cs" />
     <Compile Include="Models\BusinessLogic\RaportWypozyczenPodsumowanieB.cs" />
+    <Compile Include="Models\BusinessLogic\RowerB.cs" />
+    <Compile Include="Models\BusinessLogic\StacjaB.cs" />
     <Compile Include="Models\BusinessLogic\SymulacjaWypozyczeniaB.cs" />
     <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
