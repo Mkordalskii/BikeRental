@@ -39,7 +39,7 @@ namespace BikeRental.Models.BusinessLogic
 
             decimal koszt = oplataStartowa;
 
-            // 1) Jeśli mamy przedziały czasowe (Typ=0, CenaZaMin) -> liczymy przedziałami (Standard)
+            //Jeśli mamy przedziały czasowe (Typ=0, CenaZaMin) -> liczymy przedziałami (Standard)
             var przedzialy = stawki
                 .Where(s => s.Typ == 0 && s.CenaZaMin.HasValue)
                 .OrderBy(s => s.OdMinuty ?? 0)
@@ -52,20 +52,20 @@ namespace BikeRental.Models.BusinessLogic
                     int od = (p.OdMinuty ?? 0);
                     int doM = p.DoMinuty ?? int.MaxValue;
 
-                    // płacimy tylko za część wspólną: [paidFromMin..totalMin] ∩ [od..doM]
+                    //płacimy tylko za część wspólną: [paidFromMin..totalMin] czyli [od..doM]
                     int start = Math.Max(paidFromMin, od);
                     int end = Math.Min(totalMin, doM);
 
                     if (end < start) continue;
 
-                    int iloscMinut = (end - start) + 1; // inkluzywnie
+                    int iloscMinut = (end - start) + 1;
                     koszt += iloscMinut * p.CenaZaMin.Value;
                 }
 
                 return Math.Round(koszt, 2);
             }
 
-            // 2) Jeśli NIE mamy Typ=0 (np. Firma), to liczymy: darmowe minuty + DoplataPoLimicie
+            //Jeśli NIE mamy Typ=0 (np. Firma), to liczymy: darmowe minuty + DoplataPoLimicie
             int platneMinuty = Math.Max(0, totalMin - darmoweMin);
 
             decimal doplataPoLimicie = stawki
@@ -74,7 +74,7 @@ namespace BikeRental.Models.BusinessLogic
                 .DefaultIfEmpty(0m)
                 .Max();
 
-            // awaryjnie: gdyby ktoś trzymał stawkę w CenaZaMin mimo braku przedziałów
+            //awaryjnie: gdyby ktoś trzymał stawkę w CenaZaMin mimo braku przedziałów
             if (doplataPoLimicie == 0m)
             {
                 doplataPoLimicie = stawki
