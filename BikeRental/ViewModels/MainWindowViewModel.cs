@@ -149,7 +149,11 @@ namespace BikeRental.ViewModels
 
                  new CommandViewModel(
                     "Raport wypozyczen",
-                    new BaseCommand(() =>  this.CreateView(new RaportWypozyczenViewModel())))
+                    new BaseCommand(() =>  this.CreateView(new RaportWypozyczenViewModel()))),
+
+                 new CommandViewModel(
+                    "Symulacja wypozyczen",
+                    new BaseCommand(() =>  this.CreateView(new SymulacjaWypozyczeniaViewModel())))
             };
         }
         #endregion

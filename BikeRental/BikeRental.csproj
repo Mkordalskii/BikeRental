@@ -83,8 +83,10 @@
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\PlanCenowyB.cs" />
     <Compile Include="Models\BusinessLogic\RaportWypozyczenB.cs" />
     <Compile Include="Models\BusinessLogic\RaportWypozyczenPodsumowanieB.cs" />
+    <Compile Include="Models\BusinessLogic\SymulacjaWypozyczeniaB.cs" />
     <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\AktywneWypozyczeniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="ViewModels\Stacje\StacjeViewModel.cs" />
     <Compile Include="ViewModels\Stojaki\NowyStojakViewModel.cs" />
     <Compile Include="ViewModels\Stojaki\StojakiViewModel.cs" />
+    <Compile Include="ViewModels\SymulacjaWypozyczeniaViewModel.cs" />
     <Compile Include="ViewModels\TransferRoweru\NowyTransferRoweruViewModel.cs" />
     <Compile Include="ViewModels\TransferRoweru\TransferyRowerowViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
@@ -291,6 +294,9 @@
     </Compile>
     <Compile Include="Views\Stojaki\StojakiView.xaml.cs">
       <DependentUpon>StojakiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SymulacjaWypozyczeniaView.xaml.cs">
+      <DependentUpon>SymulacjaWypozyczeniaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransferRoweru\NowyTransferRoweru.xaml.cs">
       <DependentUpon>NowyTransferRoweru.xaml</DependentUpon>
@@ -467,6 +473,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Stojaki\StojakiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SymulacjaWypozyczeniaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
