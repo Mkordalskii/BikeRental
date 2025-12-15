@@ -40,14 +40,14 @@ namespace BikeRental.Models.BusinessLogic
             decimal koszt = oplataStartowa;
 
             //Jeśli mamy przedziały czasowe (Typ=0, CenaZaMin) -> liczymy przedziałami (Standard)
-            var przedzialy = stawki
+            List<PlanCenowyStawka> przedzialy = stawki
                 .Where(s => s.Typ == 0 && s.CenaZaMin.HasValue)
                 .OrderBy(s => s.OdMinuty ?? 0)
                 .ToList();
 
             if (przedzialy.Any())
             {
-                foreach (var p in przedzialy)
+                foreach (PlanCenowyStawka p in przedzialy)
                 {
                     int od = (p.OdMinuty ?? 0);
                     int doM = p.DoMinuty ?? int.MaxValue;

@@ -29,7 +29,10 @@ namespace BikeRental.ViewModels
         private int? _PlanCenowyId;
         public int? PlanCenowyId
         {
-            get => _PlanCenowyId;
+            get
+            {
+                return _PlanCenowyId;
+            }
             set
             {
                 if (_PlanCenowyId != value)
@@ -43,7 +46,10 @@ namespace BikeRental.ViewModels
         private int? _Godziny;
         public int? Godziny
         {
-            get => _Godziny;
+            get
+            {
+                return _Godziny;
+            }
             set
             {
                 if (_Godziny != value)
@@ -57,7 +63,10 @@ namespace BikeRental.ViewModels
         private int? _Dni;
         public int? Dni
         {
-            get => _Dni;
+            get
+            {
+                return _Dni;
+            }
             set
             {
                 if (_Dni != value)
@@ -71,7 +80,10 @@ namespace BikeRental.ViewModels
         private decimal? _Koszt;
         public decimal? Koszt
         {
-            get => _Koszt;
+            get
+            {
+                return _Koszt;
+            }
             set
             {
                 if (_Koszt != value)
