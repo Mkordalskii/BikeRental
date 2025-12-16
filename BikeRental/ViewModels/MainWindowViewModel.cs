@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
@@ -15,7 +16,16 @@ namespace BikeRental.ViewModels
         #region Fields
         private ReadOnlyCollection<CommandViewModel> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
+        public ICommand OpenRaportWypozyczenCommand { get; }
+        public ICommand OpenSymulacjaWypozyczeniaCommand { get; }
+        public ICommand OpenListaDoSerwisuCommand { get; }
         #endregion
+        public MainWindowViewModel()
+        {
+            OpenRaportWypozyczenCommand = new BaseCommand(() => this.ShowAll<RaportWypozyczenViewModel>());
+            OpenSymulacjaWypozyczeniaCommand = new BaseCommand(() => this.ShowAll<SymulacjaWypozyczeniaViewModel>());
+            OpenListaDoSerwisuCommand = new BaseCommand(() => this.ShowAll<ListaDoSerwisuViewModel>());
+        }
 
         #region Commands
         public ReadOnlyCollection<CommandViewModel> Commands
@@ -153,7 +163,11 @@ namespace BikeRental.ViewModels
 
                  new CommandViewModel(
                     "Symulacja wypozyczen",
-                    new BaseCommand(() =>  this.CreateView(new SymulacjaWypozyczeniaViewModel())))
+                    new BaseCommand(() =>  this.CreateView(new SymulacjaWypozyczeniaViewModel()))),
+
+                new CommandViewModel(
+                    "Lista do serwisu",
+                    new BaseCommand(() =>  this.CreateView(new ListaDoSerwisuViewModel())))
             };
         }
         #endregion

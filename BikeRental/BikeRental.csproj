@@ -87,6 +87,7 @@
     <Compile Include="Models\BusinessLogic\PlanCenowyB.cs" />
     <Compile Include="Models\BusinessLogic\RaportWypozyczenPodsumowanieB.cs" />
     <Compile Include="Models\BusinessLogic\RowerB.cs" />
+    <Compile Include="Models\BusinessLogic\SerwisB.cs" />
     <Compile Include="Models\BusinessLogic\StacjaB.cs" />
     <Compile Include="Models\BusinessLogic\SymulacjaWypozyczeniaB.cs" />
     <Compile Include="Models\EntitiesForView\AbonamentyForAllView.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Models\EntitiesForView\PlanCenowyStawkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlatnosciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RezerwacjeForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RowerDoSerwisuForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RoweryForAllView.cs" />
     <Compile Include="Models\EntitiesForView\StojakiForAllView.cs" />
     <Compile Include="Models\EntitiesForView\TransferyRowerowForAllView.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />
     <Compile Include="ViewModels\Klienci\NowyKlientViewModel.cs" />
+    <Compile Include="ViewModels\ListaDoSerwisuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\NowyPlanCenowyStawkaViewModel.cs" />
     <Compile Include="ViewModels\PlanCenowy\NowyPlanCenowyViewModel.cs" />
@@ -242,6 +245,9 @@
     </Compile>
     <Compile Include="Views\Klienci\NowyKlientView.xaml.cs">
       <DependentUpon>NowyKlientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaDoSerwisuView.xaml.cs">
+      <DependentUpon>ListaDoSerwisuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -399,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Klienci\NowyKlientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListaDoSerwisuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

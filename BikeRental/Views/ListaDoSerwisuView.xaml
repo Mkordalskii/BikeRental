@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="BikeRental.Views.ListaDoSerwisuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BikeRental.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1041.514">
+    <Grid Background="White" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Lista rowerów do serwisu"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Margin="0,0,0,10"/>
+
+        <!-- Filtry -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Stacja" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Margin="3"
+                      ItemsSource="{Binding StacjeComboBoxItems}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding IdStacji, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <CheckBox Grid.Column="2"
+                      Content="Tylko dostępne"
+                      IsChecked="{Binding TylkoDostepne, Mode=TwoWay}"
+                      VerticalAlignment="Center"
+                      Margin="10,0,0,0"/>
+
+            <Label Grid.Column="3" Content="Przebieg" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="4" Margin="3"
+                     Text="{Binding ProgPrzebieguKm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="5" Content="Dni od przegl." VerticalAlignment="Center"/>
+            <TextBox Grid.Column="6" Margin="3"
+                     Text="{Binding ProgDniOdPrzegladu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Width="80"/>
+
+            <StackPanel Grid.Column="7" Orientation="Horizontal" Margin="10,0,0,0">
+                <Button Content="Szukaj" Command="{Binding SzukajCommand}" Padding="12,4" Margin="0,0,6,0"/>
+                <Button Content="Wyczyść" Command="{Binding WyczyscCommand}" Padding="12,4"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Wyniki -->
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Lista}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}" Width="100"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="160"/>
+                <DataGridTextColumn Header="Stan" Binding="{Binding Stan}" Width="120"/>
+                <DataGridTextColumn Header="Stacja" Binding="{Binding Stacja}" Width="160"/>
+                <DataGridTextColumn Header="Przebieg (km)" Binding="{Binding PrzebiegKm}" Width="110"/>
+                <DataGridTextColumn Header="Data przeglądu" Binding="{Binding DataPrzegladu, StringFormat=yyyy-MM-dd}" Width="120"/>
+                <DataGridTextColumn Header="Powód" Binding="{Binding Powod}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

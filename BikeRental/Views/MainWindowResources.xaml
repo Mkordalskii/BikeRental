@@ -95,6 +95,9 @@
     <DataTemplate DataType="{x:Type vm:SymulacjaWypozyczeniaViewModel}">
         <vw:SymulacjaWypozyczeniaView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ListaDoSerwisuViewModel}">
+        <vw:ListaDoSerwisuView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

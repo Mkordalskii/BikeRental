@@ -20,11 +20,13 @@
         </Grid.RowDefinitions>
         <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="2">
             <MenuItem Header="_Plik"/>
-            <MenuItem Header="_Magazyn">
-                <MenuItem Header="Wszystkie towary"/>
-                <MenuItem Header="Nowy towar"/>
-                <MenuItem Header="Wydanie Zewnętrzne (WZ)"/>
-                <MenuItem Header="Przyjęcie Zewnętrzne (PZ)"/>
+            <MenuItem Header="_Funkcje">
+                <MenuItem Header="Raport wypożyczeń"
+                           Command="{Binding OpenRaportWypozyczenCommand}"/>
+                <MenuItem Header="Symulacja wypożyczenia"
+                           Command="{Binding OpenSymulacjaWypozyczeniaCommand}"/>
+                <MenuItem Header="Serwis rowerów"
+                          Command="{Binding OpenListaDoSerwisuCommand}"/>
             </MenuItem>
             <MenuItem Header="Program"/>
         </Menu>
