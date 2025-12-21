@@ -32,7 +32,25 @@
                             </ToggleButton>
                         </ToolBar>
                         <Expander Grid.Row="1" Background="Azure" Header="Sortowanie i filtrowanie">
-                            <Label>Tu bedzie filtrowanie i sortowanie</Label>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition  Height="25"/>
+                                    <RowDefinition  Height="25"/>
+                                    <RowDefinition  Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="230"/>
+                                    <ColumnDefinition  Width="60"/>
+                                    <ColumnDefinition  Width="230"/>
+                                </Grid.ColumnDefinitions>
+                                <Label  Grid.Row="0"  Grid.Column="0" Content="Sortowanie:  "/>
+                                <ComboBox  Grid.Row="1"  Grid.Column="0" ItemsSource="{Binding SortComboBoxItems}"  SelectedValue="{Binding Path=SortField,Mode=TwoWay}"  Margin="0,0,60,0"/>
+                                <Button  Content="Sortuj"  Grid.Row="1"  Grid.Column="0" Command="{Binding SortCommand}" Margin="170,0,0,0"/>
+                                <Label  Grid.Row="0"  Grid.Column="2" Content="Wyszukiwanie:  "/>
+                                <ComboBox  Grid.Row="1"  Grid.Column="2" ItemsSource="{Binding FindComboBoxItems}"  SelectedValue="{Binding Path=FindField,Mode=TwoWay}"  />
+                                <TextBox  Grid.Row="2"  Grid.Column="2" Margin="0,5,60,0"  Text="{Binding FindTextBox}"/>
+                                <Button  Content="Szukaj"  Grid.Row="3"  Grid.Column="2" Command="{Binding FindCommand}" Margin="170,5,0,0"/>
+                            </Grid>
                         </Expander>
                         <ContentPresenter Grid.Row="2" Margin="0,5,0,5" /> <!--w tym miejscu wyswietlaj zawartosc widoku ktory bedzie dziedziczyl z tego widoku-->
                     </Grid>

@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -35,6 +36,23 @@ namespace BikeRental.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie platnosci";
+        }
+        #endregion
+        #region Sortowanie i filtrowanie
+        //decydujemy po czym mozna sortowac
+        public override List<string> getComboBoxSortList()
+        {
+            return new List<string> { "cena", "kod", "nazwa" };
+        }
+        public override List<string> getComboBoxFindList()
+        {
+            return null;
+        }
+        public override void Sort()
+        { }
+        public override void Find()
+        {
+
         }
         #endregion
     }
