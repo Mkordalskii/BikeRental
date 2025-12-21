@@ -60,7 +60,7 @@ namespace BikeRental.Models.BusinessLogic
                 );
             }
 
-            // Bierzemy dane do pamięci
+            //Bierzemy dane do pamięci
             List<Rower> rowery = q.ToList();
 
             List<RowerDoSerwisuForAllView> wynik = new List<RowerDoSerwisuForAllView>();

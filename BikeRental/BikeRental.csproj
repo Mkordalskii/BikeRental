@@ -537,6 +537,10 @@
       <DependentUpon>ModelBikeRental.edmx</DependentUpon>
       <LastGenOutput>ModelBikeRental.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icons\Dodaj.png" />
+    <Resource Include="Resources\Icons\Edytuj.png" />
+    <Resource Include="Resources\Icons\Odswiez.png" />
+    <Resource Include="Resources\Icons\Usun.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
