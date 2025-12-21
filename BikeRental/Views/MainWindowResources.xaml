@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:BikeRental.ViewModels"
                     xmlns:vw="clr-namespace:BikeRental.Views"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    >
-    
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--VIEW <-> VIEWMODEL MAP -->
     <DataTemplate DataType="{x:Type vm:KlienciViewModel}">
         <vw:KlienciView/>
     </DataTemplate>
@@ -99,134 +99,235 @@
         <vw:ListaDoSerwisuView/>
     </DataTemplate>
 
+    <!--PALETA -->
+    <SolidColorBrush x:Key="AppBgBrush" Color="#FFF3F4F6"/>
+    <SolidColorBrush x:Key="CardBgBrush" Color="#FFF8FAFC"/>
+    <SolidColorBrush x:Key="BorderBrushSoft" Color="#FFE1E4E8"/>
+
+    <SolidColorBrush x:Key="AccentBrush" Color="#FF2B6CB0"/>
+    <SolidColorBrush x:Key="TextBrush" Color="#FF1F2937"/>
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#FF6B7280"/>
+
+    <SolidColorBrush x:Key="NavItemBgBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="NavItemHoverBgBrush" Color="#FFEAF2FF"/>
+    <SolidColorBrush x:Key="NavItemPressedBgBrush" Color="#FFDCEBFF"/>
+
+    <!--HeaderedContentControl style (poprawiony HeaderTemplate)-->
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Border 
-            Background="Blue" 
-            BorderBrush="LightGray" 
-            BorderThickness="1" 
-            CornerRadius="5" 
-            Margin="4" 
-            Padding="4" 
-            SnapsToDevicePixels="True" 
-            >
-                        <TextBlock 
-              FontSize="14"
-              FontWeight="Bold"
-              Foreground="White" 
-              HorizontalAlignment="Center"  
-              Text="{TemplateBinding Content}" 
-              />
+                    <Border Background="{StaticResource AccentBrush}"
+                            BorderBrush="{StaticResource BorderBrushSoft}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="6"
+                            Padding="6"
+                            SnapsToDevicePixels="True">
+                        <TextBlock FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   Text="{Binding}"/>
                     </Border>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <!-- 
-        This template ensures that content of a HeaderedContentControl 
-        fills the available vertical space. 
-        -->
                 <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
                     <DockPanel>
-                        <ContentPresenter 
-              DockPanel.Dock="Top"
-              ContentSource="Header" 
-              ContentTemplate="{TemplateBinding HeaderTemplate}" 
-              />
-                        <ContentPresenter 
-              ContentSource="Content" 
-              ContentTemplate="{TemplateBinding ContentTemplate}" 
-              />
+                        <ContentPresenter DockPanel.Dock="Top"
+                                          ContentSource="Header"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                        <ContentPresenter ContentSource="Content"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"/>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!--
-  This style ensures that the borders in the main window are consistent.
-  -->
+    <!--Spójne Border w oknie-->
     <Style x:Key="MainBorderStyle" TargetType="{x:Type Border}">
-        <Setter Property="Background" Value="WhiteSmoke" />
-        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="Background" Value="{StaticResource CardBgBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSoft}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
 
-    <!--
-  This template explains how to render the list of commands on the left
-  side in the main window (the 'Control Panel' area).
-  -->
-    <DataTemplate x:Key="CommandsTemplate">
-        <ScrollViewer VerticalScrollBarVisibility="Auto"> <!--dodaje scrollbar do panelu z zakladkami-->
-            <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!--<TextBlock Margin="2,6">
-            <Hyperlink Command="{Binding Path=Command}">
-              <TextBlock Text="{Binding Path=DisplayName}" />
-            </Hyperlink>
-          </TextBlock>-->
-                        <Button
-                    Command="{Binding Command}"
-                    Content="{Binding DisplayName}"
-                    Margin="0,4,0,0"
-                    Padding="10,6"
-                    Background="Khaki"
-                    HorizontalAlignment="Stretch"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </DataTemplate>
+    <!--ToolBar ToggleButton -->
+    <Style x:Key="ToolbarIconToggleStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Width" Value="36"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Margin" Value="4,0,0,0"/>
+        <Setter Property="Background" Value="{StaticResource NavItemBgBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSoft}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="Bd"
+                            CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NavItemHoverBgBrush}"/>
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NavItemPressedBgBrush}"/>
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NavItemPressedBgBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.55"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-    <!-- 
-  This template explains how to render 
-  a tab item with a close button.
-  -->
-    <DataTemplate x:Key="ClosableTabItemTemplate">
-        <DockPanel Width="120">
-            <Button 
-        Command="{Binding Path=CloseCommand}"
-        Content="X"
-        Cursor="Hand"
-        DockPanel.Dock="Right"
-        Focusable="False"
-        FontFamily="Courier" 
-        FontSize="9"
-        FontWeight="Bold"  
-        Margin="0,1,0,0"
-        Padding="0"
-        VerticalContentAlignment="Bottom"
-        Width="16" Height="16" 
-        />
-            <ContentPresenter 
-        Content="{Binding Path=DisplayName}" 
-        VerticalAlignment="Center" 
-        />
+    <!--Przycisk w panelu-->
+    <Style x:Key="NavButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource NavItemBgBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSoft}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Margin" Value="0,6,0,0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Border x:Name="Accent"
+                                    Width="4"
+                                    HorizontalAlignment="Left"
+                                    Background="Transparent"
+                                    CornerRadius="8,0,0,8"/>
+                            <ContentPresenter Margin="10,0,0,0"
+                                              VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NavItemHoverBgBrush}"/>
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NavItemPressedBgBrush}"/>
+                            <Setter TargetName="Accent" Property="Background" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.55"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Belka/sekcja-->
+    <DataTemplate x:Key="NavSectionTemplate">
+        <DockPanel Margin="0,14,0,6">
+            <TextBlock Text="{Binding}"
+                       Foreground="{StaticResource MutedTextBrush}"
+                       FontSize="12"
+                       FontWeight="SemiBold"/>
+            <Separator Margin="8,0,0,0" VerticalAlignment="Center"/>
         </DockPanel>
     </DataTemplate>
 
-    <!--
-  This template explains how to render the 'Workspace' content area in the main window.
-  -->
-    <DataTemplate x:Key="WorkspacesTemplate">
-        <TabControl 
-      IsSynchronizedWithCurrentItem="True" 
-      ItemsSource="{Binding}" 
-      ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-      Margin="4"
-      />
+    <!--TEMPLATE: lista komend po lewej-->
+    <DataTemplate x:Key="CommandsTemplate">
+        <Border Background="{StaticResource CardBgBrush}"
+                BorderBrush="{StaticResource BorderBrushSoft}"
+                BorderThickness="0"
+                CornerRadius="8"
+                Padding="10">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <!-- Sekcje -->
+                    <ContentPresenter Content="NAWIGACJA" ContentTemplate="{StaticResource NavSectionTemplate}"/>
+
+                    <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="0,2,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Command}"
+                                        Content="{Binding DisplayName}"
+                                        Style="{StaticResource NavButtonStyle}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Przykładowa dodatkowa belka pod koniec -->
+                    <ContentPresenter Content="INNE" ContentTemplate="{StaticResource NavSectionTemplate}"/>
+
+                    <!-- Tu mogę dodać np. dodatkowe statyczne przyciski -->
+                    <!--
+                    <Button Content="Pomoc" Style="{StaticResource NavButtonStyle}"/>
+                    -->
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
     </DataTemplate>
 
-    <!-- TextBox z placeholderem: tekst placeholdera podawaj w Tag -->
+    <!--Tab item z X-->
+    <DataTemplate x:Key="ClosableTabItemTemplate">
+        <DockPanel Width="140">
+            <Button Command="{Binding Path=CloseCommand}"
+                    Content="X"
+                    Cursor="Hand"
+                    DockPanel.Dock="Right"
+                    Focusable="False"
+                    FontFamily="Courier"
+                    FontSize="9"
+                    FontWeight="Bold"
+                    Margin="6,1,0,0"
+                    Padding="0"
+                    VerticalContentAlignment="Bottom"
+                    Width="16" Height="16"/>
+            <ContentPresenter Content="{Binding Path=DisplayName}"
+                              VerticalAlignment="Center"/>
+        </DockPanel>
+    </DataTemplate>
+
+    <!--WorkspacesTemplate-->
+    <DataTemplate x:Key="WorkspacesTemplate">
+        <TabControl IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding}"
+                    ItemTemplate="{StaticResource ClosableTabItemTemplate}"
+                    Margin="6"/>
+    </DataTemplate>
+
+    <!--TextBox placeholder -->
     <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
-        <!-- zachowaj standardowe marginesy itp. w razie potrzeby -->
         <Setter Property="Padding" Value="2"/>
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -240,10 +341,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True">
                         <Grid>
-                            <!-- Właściwa treść TextBoxa -->
                             <ScrollViewer x:Name="PART_ContentHost"/>
-
-                            <!-- Placeholder – bierze tekst z Tag -->
                             <TextBlock x:Name="Watermark"
                                        Text="{TemplateBinding Tag}"
                                        Foreground="Gray"
@@ -254,23 +352,16 @@
                                        Visibility="Collapsed"/>
                         </Grid>
                     </Border>
-
-                    <!-- Stany/focus/disabled (proste) -->
                     <ControlTemplate.Triggers>
-                        <!-- POKAŻ placeholder, gdy Text pusty lub null -->
                         <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
                             <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="Text" Value="{x:Null}">
                             <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
                         </Trigger>
-
-                        <!-- Efekt focus: przyciemnij obramowanie jak chcesz -->
                         <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter TargetName="Bd" Property="BorderBrush" Value="#FF3399FF"/>
                         </Trigger>
-
-                        <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
                         </Trigger>
@@ -279,4 +370,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>
