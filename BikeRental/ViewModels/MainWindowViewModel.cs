@@ -209,7 +209,7 @@ namespace BikeRental.ViewModels
         #endregion // Workspaces
 
         #region Private Helpers
-        private void CreateView(WorkspaceViewModel workspace)
+        public void CreateView(WorkspaceViewModel workspace)
         {
             this.Workspaces.Add(workspace); //dodajemy zakladkie do kolekcji zakladek
             this.SetActiveWorkspace(workspace); //aktywowanie zakladki (zeby byla wlaczona)

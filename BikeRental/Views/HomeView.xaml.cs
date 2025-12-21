@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BikeRental.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BikeRental.Views
 {
@@ -23,6 +12,27 @@ namespace BikeRental.Views
         public HomeView()
         {
             InitializeComponent();
+        }
+        private void NoweWypozyczenie_Click(object sender, RoutedEventArgs e)
+        {
+            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            if (mainVm == null) return;
+
+            mainVm.CreateView(new NoweWypozyczenieViewModel());
+        }
+        private void NowaRezerwacja_Click(object sender, RoutedEventArgs e)
+        {
+            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            if (mainVm == null) return;
+
+            mainVm.CreateView(new NowaRezerwacjaViewModel());
+        }
+        private void NowyKlient_Click(object sender, RoutedEventArgs e)
+        {
+            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            if (mainVm == null) return;
+
+            mainVm.CreateView(new NowyKlientViewModel());
         }
     }
 }

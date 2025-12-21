@@ -30,14 +30,17 @@
                         <Button Content="Nowe wypożyczenie"
                                 Margin="0,0,8,0"
                                 Padding="12,8"
+                                Click="NoweWypozyczenie_Click"
                                 Style="{StaticResource NavButtonStyle}" Width="140"/>
                         <Button Content="Nowa rezerwacja"
                                 Margin="0,0,8,0"
                                 Padding="12,8"
+                                Click="NowaRezerwacja_Click"
                                 Style="{StaticResource NavButtonStyle}" Width="120"/>
                         <Button Content="Dodaj klienta"
                                 Margin="0,0,8,0"
                                 Padding="12,8"
+                                Click="NowyKlient_Click"
                                 Style="{StaticResource NavButtonStyle}" Width="100"/>
                     </StackPanel>
                 </DockPanel>
