@@ -537,6 +537,8 @@
       <DependentUpon>ModelBikeRental.edmx</DependentUpon>
       <LastGenOutput>ModelBikeRental.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icons\Anuluj.png" />
+    <Resource Include="Resources\Icons\Zapisz.png" />
     <Resource Include="Resources\Icons\Dodaj.png" />
     <Resource Include="Resources\Icons\Edytuj.png" />
     <Resource Include="Resources\Icons\Odswiez.png" />

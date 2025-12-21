@@ -112,7 +112,7 @@
     <SolidColorBrush x:Key="NavItemHoverBgBrush" Color="#FFEAF2FF"/>
     <SolidColorBrush x:Key="NavItemPressedBgBrush" Color="#FFDCEBFF"/>
 
-    <!--HeaderedContentControl style (poprawiony HeaderTemplate)-->
+    <!--HeaderedContentControl style -->
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
@@ -207,6 +207,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="12,8"/>
         <Setter Property="Margin" Value="0,6,0,0"/>
+        <Setter Property="MinHeight" Value="30"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
         <Setter Property="FontSize" Value="13"/>
@@ -257,7 +258,8 @@
                        Foreground="{StaticResource MutedTextBrush}"
                        FontSize="12"
                        FontWeight="SemiBold"/>
-            <Separator Margin="8,0,0,0" VerticalAlignment="Center"/>
+            <Separator Margin="8,0,0,0"
+                       VerticalAlignment="Center"/>
         </DockPanel>
     </DataTemplate>
 
@@ -270,30 +272,47 @@
                 Padding="10">
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+                <ItemsControl IsTabStop="False"
+                              ItemsSource="{Binding}"
+                              Margin="0,2,0,0">
 
-                    <!-- Sekcje -->
-                    <ContentPresenter Content="NAWIGACJA" ContentTemplate="{StaticResource NavSectionTemplate}"/>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
 
-                    <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="0,2,0,0">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding Command}"
+                                <!-- Belka "INNE" tylko nad "Raport wypozyczen" -->
+                                <ContentPresenter x:Name="InneHeader"
+                                                  Content="Inne"
+                                                  ContentTemplate="{StaticResource NavSectionTemplate}"
+                                                  Visibility="Collapsed"/>
+                                <ContentPresenter x:Name="NawigacjaHeader"
+                                                  Content="Nawigacja"
+                                                  ContentTemplate="{StaticResource NavSectionTemplate}"
+                                                  Visibility="Collapsed"/>  
+
+                                <Button x:Name="CmdButton"
+                                        Command="{Binding Command}"
                                         Content="{Binding DisplayName}"
                                         Style="{StaticResource NavButtonStyle}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
 
-                    <!-- Przykładowa dodatkowa belka pod koniec -->
-                    <ContentPresenter Content="INNE" ContentTemplate="{StaticResource NavSectionTemplate}"/>
+                            </StackPanel>
 
-                    <!-- Tu mogę dodać np. dodatkowe statyczne przyciski -->
-                    <!--
-                    <Button Content="Pomoc" Style="{StaticResource NavButtonStyle}"/>
-                    -->
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CmdButton, Path=Content}"
+                                             Value="Raport wypozyczen">
+                                    <Setter TargetName="InneHeader"
+                                            Property="Visibility"
+                                            Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CmdButton, Path=Content}" Value="Dodaj/edytuj Klienta">
+                                    <Setter TargetName="NawigacjaHeader" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
 
-                </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
             </ScrollViewer>
         </Border>
     </DataTemplate>
@@ -312,7 +331,8 @@
                     Margin="6,1,0,0"
                     Padding="0"
                     VerticalContentAlignment="Bottom"
-                    Width="16" Height="16"/>
+                    Width="16"
+                    Height="16"/>
             <ContentPresenter Content="{Binding Path=DisplayName}"
                               VerticalAlignment="Center"/>
         </DockPanel>
