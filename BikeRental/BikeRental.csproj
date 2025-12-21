@@ -231,6 +231,7 @@
     <Compile Include="ViewModels\Abstract\WszystkieViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Klienci\KlienciViewModel.cs" />
     <Compile Include="ViewModels\Klienci\NowyKlientViewModel.cs" />
     <Compile Include="ViewModels\ListaDoSerwisuViewModel.cs" />
@@ -267,6 +268,9 @@
     </Compile>
     <Compile Include="Views\Abonament\NowyAbonamentView.xaml.cs">
       <DependentUpon>NowyAbonamentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\Klienci\KlienciView.xaml.cs">
@@ -427,6 +431,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Abonament\NowyAbonamentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,6 +5,9 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--VIEW <-> VIEWMODEL MAP -->
+    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+        <vw:HomeView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:KlienciViewModel}">
         <vw:KlienciView/>
     </DataTemplate>

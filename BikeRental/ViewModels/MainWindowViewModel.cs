@@ -25,6 +25,7 @@ namespace BikeRental.ViewModels
             OpenRaportWypozyczenCommand = new BaseCommand(() => this.ShowAll<RaportWypozyczenViewModel>());
             OpenSymulacjaWypozyczeniaCommand = new BaseCommand(() => this.ShowAll<SymulacjaWypozyczeniaViewModel>());
             OpenListaDoSerwisuCommand = new BaseCommand(() => this.ShowAll<ListaDoSerwisuViewModel>());
+            this.ShowAll<HomeViewModel>(); //otwieranie HomeView przy starcie
         }
 
         #region Commands
@@ -44,6 +45,9 @@ namespace BikeRental.ViewModels
         {
             return new List<CommandViewModel>
             {
+                new CommandViewModel(
+                    "Strona główna",
+                    new BaseCommand(() => this.CreateView(new HomeViewModel()))),
 
                 new CommandViewModel(
                     "Dodaj/edytuj Klienta",
