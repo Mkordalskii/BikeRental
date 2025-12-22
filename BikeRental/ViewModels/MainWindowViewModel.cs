@@ -47,7 +47,7 @@ namespace BikeRental.ViewModels
             {
                 new CommandViewModel(
                     "Strona główna",
-                    new BaseCommand(() => this.CreateView(new HomeViewModel()))),
+                    new BaseCommand(() => this.ShowAll<HomeViewModel>())),
 
                 new CommandViewModel(
                     "Dodaj/edytuj Klienta",
