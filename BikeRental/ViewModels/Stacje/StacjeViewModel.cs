@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,17 +29,32 @@ namespace BikeRental.ViewModels
         //decydujemy po czym mozna sortowac
         public override List<string> getComboBoxSortList()
         {
-            return new List<string> { "cena", "kod", "nazwa" };
+            return new List<string> { "kod", "nazwa" };
         }
         public override List<string> getComboBoxFindList()
         {
-            return null;
+            return new List<string> { "kod", "nazwa" };
         }
         public override void Sort()
-        { }
+        {
+            if (SortField == "kod")
+                List = new ObservableCollection<Stacja>(List.OrderBy(item => item.Kod));
+            if (SortField == "nazwa")
+                List = new ObservableCollection<Stacja>(List.OrderBy(item => item.Nazwa));
+        }
         public override void Find()
         {
-
+            try
+            {
+                if (FindField == "kod")
+                    List = new ObservableCollection<Stacja>(List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+                if (FindField == "nazwa")
+                    List = new ObservableCollection<Stacja>(List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
+            }
+            catch (Exception e)
+            {
+                ShowMessageBox("Wpisz wartość do okienka");
+            }
         }
         #endregion
     }

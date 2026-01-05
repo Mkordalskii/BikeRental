@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -37,17 +38,34 @@ namespace BikeRental.ViewModels
         //decydujemy po czym mozna sortowac
         public override List<string> getComboBoxSortList()
         {
-            return new List<string> { "cena", "kod", "nazwa" };
+            return new List<string> { "stacja", "nr miejsca", "sprawnosc" };
         }
         public override List<string> getComboBoxFindList()
         {
-            return null;
+            return new List<string> { "stacja", "nr miejsca" };
         }
         public override void Sort()
-        { }
+        {
+            if (SortField == "stacja")
+                List = new ObservableCollection<StojakiForAllView>(List.OrderBy(item => item.NazwaStacji));
+            if (SortField == "nr miejsca")
+                List = new ObservableCollection<StojakiForAllView>(List.OrderBy(item => item.NumerMiejsca));
+            if (SortField == "sprawnosc")
+                List = new ObservableCollection<StojakiForAllView>(List.OrderBy(item => item.CzySprawny));
+        }
         public override void Find()
         {
-
+            try
+            {
+                if (FindField == "stacja")
+                    List = new ObservableCollection<StojakiForAllView>(List.Where(item => item.NazwaStacji != null && item.NazwaStacji.StartsWith(FindTextBox)));
+                if (FindField == "nr miejsca")
+                    List = new ObservableCollection<StojakiForAllView>(List.Where(item => item.NumerMiejsca != null && item.NumerMiejsca.ToString().StartsWith(FindTextBox.ToString())));
+            }
+            catch (Exception e)
+            {
+                ShowMessageBox("Wpisz wartość do okienka");
+            }
         }
         #endregion
     }

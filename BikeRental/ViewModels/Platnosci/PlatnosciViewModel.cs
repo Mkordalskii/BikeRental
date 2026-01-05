@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -42,17 +43,50 @@ namespace BikeRental.ViewModels
         //decydujemy po czym mozna sortowac
         public override List<string> getComboBoxSortList()
         {
-            return new List<string> { "cena", "kod", "nazwa" };
+            return new List<string> { "imie", "nazwisko", "data platnosci", "kwota", "waluta", "metoda platnosci", "status" };
         }
         public override List<string> getComboBoxFindList()
         {
-            return null;
+            return new List<string> { "imie", "nazwisko", "kwota", "waluta", "metoda platnosci", "status" };
         }
         public override void Sort()
-        { }
+        {
+            if (SortField == "imie")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.KlientImie));
+            if (SortField == "nazwisko")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.KlientNazwisko));
+            if (SortField == "data platnosci")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.DataPlatnosci));
+            if (SortField == "kwota")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.Kwota));
+            if (SortField == "waluta")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.Waluta));
+            if (SortField == "metoda platnosci")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.MetodaPlatnosci));
+            if (SortField == "status")
+                List = new ObservableCollection<PlatnosciForAllView>(List.OrderBy(item => item.Status));
+        }
         public override void Find()
         {
-
+            try
+            {
+                if (FindField == "imie")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.KlientImie != null && item.KlientImie.StartsWith(FindTextBox)));
+                if (FindField == "nazwisko")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.KlientNazwisko != null && item.KlientNazwisko.StartsWith(FindTextBox)));
+                if (FindField == "kwota")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.Kwota != null && item.Kwota.ToString().StartsWith(FindTextBox.ToString())));
+                if (FindField == "waluta")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.Waluta != null && item.Waluta.StartsWith(FindTextBox)));
+                if (FindField == "metoda platnosci")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.MetodaPlatnosci != null && item.MetodaPlatnosci.StartsWith(FindTextBox)));
+                if (FindField == "status")
+                    List = new ObservableCollection<PlatnosciForAllView>(List.Where(item => item.Status != null && item.Status.StartsWith(FindTextBox)));
+            }
+            catch (Exception e)
+            {
+                ShowMessageBox("Wpisz wartość do okienka");
+            }
         }
         #endregion
     }

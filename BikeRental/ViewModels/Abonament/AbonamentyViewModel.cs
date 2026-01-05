@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -39,17 +40,44 @@ namespace BikeRental.ViewModels
         //decydujemy po czym mozna sortowac
         public override List<string> getComboBoxSortList()
         {
-            return new List<string> { "cena", "kod", "nazwa" };
+            return new List<string> { "imie", "nazwisko", "plan cenowy", "data start", "data koniec", "status" };
         }
         public override List<string> getComboBoxFindList()
         {
-            return null;
+            return new List<string> { "imie", "nazwisko", "plan cenowy", "status" };
         }
         public override void Sort()
-        { }
+        {
+            if (SortField == "imie")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.ImieKlienta));
+            if (SortField == "nazwisko")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.NazwiskoKlienta));
+            if (SortField == "plan cenowy")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.PlanCenowyNazwa));
+            if (SortField == "data start")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.DataStart));
+            if (SortField == "data koniec")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.DataKoniec));
+            if (SortField == "status")
+                List = new ObservableCollection<AbonamentyForAllView>(List.OrderBy(item => item.Status));
+        }
         public override void Find()
         {
-
+            try
+            {
+                if (FindField == "imie")
+                    List = new ObservableCollection<AbonamentyForAllView>(List.Where(item => item.ImieKlienta != null && item.ImieKlienta.StartsWith(FindTextBox)));
+                if (FindField == "nazwisko")
+                    List = new ObservableCollection<AbonamentyForAllView>(List.Where(item => item.NazwiskoKlienta != null && item.NazwiskoKlienta.StartsWith(FindTextBox)));
+                if (FindField == "plan cenowy")
+                    List = new ObservableCollection<AbonamentyForAllView>(List.Where(item => item.PlanCenowyNazwa != null && item.PlanCenowyNazwa.StartsWith(FindTextBox)));
+                if (FindField == "status")
+                    List = new ObservableCollection<AbonamentyForAllView>(List.Where(item => item.Status != null && item.Status.StartsWith(FindTextBox)));
+            }
+            catch (Exception e)
+            {
+                ShowMessageBox("Wpisz wartość do okienka");
+            }
         }
         #endregion
     }
