@@ -307,7 +307,7 @@
                                             Property="Visibility"
                                             Value="Visible"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CmdButton, Path=Content}" Value="Dodaj/edytuj Klienta">
+                                <DataTrigger Binding="{Binding ElementName=CmdButton, Path=Content}" Value="Klienci">
                                     <Setter TargetName="NawigacjaHeader" Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>

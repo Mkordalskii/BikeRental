@@ -51,9 +51,9 @@ namespace BikeRental.ViewModels
                     "Strona główna",
                     new BaseCommand(() => this.ShowAll<HomeViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj Klienta",
-                    new BaseCommand(() => this.CreateView(new NowyKlientViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj Klienta",
+                //    new BaseCommand(() => this.CreateView(new NowyKlientViewModel()))),
 
                 new CommandViewModel(
                     "Klienci",
@@ -63,53 +63,53 @@ namespace BikeRental.ViewModels
                     "Platnosci",
                     new BaseCommand(() => this.ShowAll<PlatnosciViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj platnosc",
-                    new BaseCommand(() => this.CreateView(new NowaPlatnoscViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj platnosc",
+                //    new BaseCommand(() => this.CreateView(new NowaPlatnoscViewModel()))),
 
                 new CommandViewModel(
                     "Rezerwacje",
                     new BaseCommand(() => this.ShowAll<RezerwacjeViewModel>())),
 
-                   new CommandViewModel(
-                    "Dodaj/edytuj rezerwacje",
-                    new BaseCommand(() => this.CreateView(new NowaRezerwacjaViewModel()))),
+                   //new CommandViewModel(
+                   // "Dodaj/edytuj rezerwacje",
+                   // new BaseCommand(() => this.CreateView(new NowaRezerwacjaViewModel()))),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj rower",
-                    new BaseCommand(() => this.CreateView(new NowyRowerViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj rower",
+                //    new BaseCommand(() => this.CreateView(new NowyRowerViewModel()))),
 
                 new CommandViewModel(
                     "Rowery",
                     new BaseCommand(() => this.ShowAll<RoweryViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj stacje",
-                    new BaseCommand(() => this.CreateView(new NowaStacjaViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj stacje",
+                //    new BaseCommand(() => this.CreateView(new NowaStacjaViewModel()))),
 
                 new CommandViewModel(
                     "Stacje",
                     new BaseCommand(() => this.ShowAll<StacjeViewModel>())),
 
-                new CommandViewModel(
-                    "Aktywne wypozyczenia",
-                    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
+                //new CommandViewModel(
+                //    "Aktywne wypozyczenia",
+                //    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj wypozyczenie",
-                    new BaseCommand(() => this.CreateView(new NoweWypozyczenieViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj wypozyczenie",
+                //    new BaseCommand(() => this.CreateView(new NoweWypozyczenieViewModel()))),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj modele",
-                    new BaseCommand(() => this.CreateView(new NowyModelRoweruViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj modele",
+                //    new BaseCommand(() => this.CreateView(new NowyModelRoweruViewModel()))),
 
                 new CommandViewModel(
                     "Modele rowerow",
                     new BaseCommand(() => this.ShowAll<ModeleRowerowViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj stojak",
-                    new BaseCommand(() => this.CreateView(new NowyStojakViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj stojak",
+                //    new BaseCommand(() => this.CreateView(new NowyStojakViewModel()))),
 
                 new CommandViewModel(
                     "Stojaki",
@@ -119,49 +119,49 @@ namespace BikeRental.ViewModels
                     "Plany cenowe",
                     new BaseCommand(() => this.ShowAll<PlanCenowyViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj plan cenowy",
-                    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj plan cenowy",
+                //    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyViewModel()))),
 
                 new CommandViewModel(
                     "Stawki planow cenowych",
                     new BaseCommand(() => this.ShowAll<PlanCenowyStawkaViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj stawke",
-                    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyStawkaViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj stawke",
+                //    new BaseCommand(() =>  this.CreateView(new NowyPlanCenowyStawkaViewModel()))),
 
                 new CommandViewModel(
                     "Oplaty wypozyczenia",
                     new BaseCommand(() => this.ShowAll<WypozyczenieOplataViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj oplate",
-                    new BaseCommand(() =>  this.CreateView(new NoweWypozyczenieViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj oplate",
+                //    new BaseCommand(() =>  this.CreateView(new NoweWypozyczenieViewModel()))),
 
                 new CommandViewModel(
                     "Abonamenty",
                     new BaseCommand(() => this.ShowAll<AbonamentyViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj abonament",
-                    new BaseCommand(() =>  this.CreateView(new NowyAbonamentViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj abonament",
+                //    new BaseCommand(() =>  this.CreateView(new NowyAbonamentViewModel()))),
 
                 new CommandViewModel(
                     "Zgloszenia serwisowe",
                     new BaseCommand(() => this.ShowAll<ZgloszeniaSerwisoweViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj serwis",
-                    new BaseCommand(() =>  this.CreateView(new NoweZgloszenieSerwisoweViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj serwis",
+                //    new BaseCommand(() =>  this.CreateView(new NoweZgloszenieSerwisoweViewModel()))),
 
                 new CommandViewModel(
                     "Transfery rowerow",
                     new BaseCommand(() => this.ShowAll<TransferyRowerowViewModel>())),
 
-                new CommandViewModel(
-                    "Dodaj/edytuj transfer",
-                    new BaseCommand(() =>  this.CreateView(new NowyTransferRoweruViewModel()))),
+                //new CommandViewModel(
+                //    "Dodaj/edytuj transfer",
+                //    new BaseCommand(() =>  this.CreateView(new NowyTransferRoweruViewModel()))),
 
                  new CommandViewModel(
                     "Raport wypozyczen",
