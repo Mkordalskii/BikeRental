@@ -1,6 +1,7 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Linq;
 
 namespace BikeRental.ViewModels
 {
@@ -11,6 +12,8 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj abonament";
             item = new Abonament();
+            DataStart = DateTime.Today;
+            DataKoniec = DateTime.Today;
         }
         #endregion
         #region Properties
@@ -88,6 +91,29 @@ namespace BikeRental.ViewModels
                     item.Status = value;
                     OnPropertyChanged(() => Status);
                 }
+            }
+        }
+        public IQueryable<SlownikAbonamentStatus> StatusItems
+        {
+            get
+            {
+                return
+                    (
+                        from status in db.SlownikAbonamentStatus
+                        select status
+                    ).ToList().AsQueryable();
+            }
+        }
+        public IQueryable<PlanCenowy> PlanCenowyItems
+        {
+            get
+            {
+                return
+                    (
+                        from planCenowy in db.PlanCenowy
+                        where planCenowy.CzyAktywny == true
+                        select planCenowy
+                    ).ToList().AsQueryable();
             }
         }
 

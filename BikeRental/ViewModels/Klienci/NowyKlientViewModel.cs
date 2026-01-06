@@ -1,7 +1,6 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BikeRental.ViewModels
@@ -13,15 +12,11 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj klienta";
             item = new Klient();
-            DostepneTypy = db.SlownikKlientTyp
-                .OrderBy(t => t.Kolejnosc)
-                .ToList();
-            Typ = (byte)DostepneTypy[0].TypId; // ustawienie domyslnego typu
         }
         #endregion
         #region Properties
-        //dla kazdego pola ktore bedziemy dodawac dodajemy properties
-        public byte Typ // FK do SlownikKlientTyp.TypId
+        //dla kazdego pola ktore bedziemy dodawac dodajemy properties + dla kluczy obcych
+        public byte Typ // FK do SlownikKlientTyp.Typ
         {
             get
             {
@@ -128,7 +123,7 @@ namespace BikeRental.ViewModels
             }
         }
         #endregion
-        #region Commands
+        #region helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -138,8 +133,18 @@ namespace BikeRental.ViewModels
             db.SaveChanges();//to jest zapisanie danych do bazy danych
         }
         #endregion
-        #region ComboBoxList
-        public List<SlownikKlientTyp> DostepneTypy { get; }
+        #region ComboBox
+        public IQueryable<SlownikKlientTyp> TypItems
+        {
+            get
+            {
+                return
+                    (
+                        from typ in db.SlownikKlientTyp
+                        select typ
+                    ).ToList().AsQueryable();
+            }
+        }
         #endregion
     }
 }
