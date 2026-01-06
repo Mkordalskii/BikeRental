@@ -1,5 +1,6 @@
 ﻿using BikeRental.Helper;
 using BikeRental.Models;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -27,6 +28,15 @@ namespace BikeRental.ViewModels.Abstract
                 return _LoadCommand;
             }
         }
+        private BaseCommand _AddCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_AddCommand == null) _AddCommand = new BaseCommand(Add); //ta komenda wywola metode Add ktora jest zdefiniowana nizej
+                return _AddCommand;
+            }
+        }
         #endregion
         #region Lista
         //tu beda przechowwyani wszyscy klienci
@@ -50,6 +60,11 @@ namespace BikeRental.ViewModels.Abstract
         //ta metoda pobierze wszystkie obiekty z bazy danych i zapisze je do listy jako ObservableCollection
         //poniewaz ladowanie obiektow jest inne dla kazdego typu obiektow dlatego Load jest abstrakcyjna
         public abstract void Load();
+        private void Add()
+        {
+            //ten Messenger jest z CommunityToolkit, wysyla komunikat do MainWindowViewModel
+            Messenger.Default.Send(DisplayName + "Add");
+        }
         #endregion
         #region Constructor
         public WszystkieViewModel()

@@ -1,4 +1,5 @@
 ﻿using BikeRental.Helper;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,7 @@ namespace BikeRental.ViewModels
         }
         private List<CommandViewModel> CreateCommands()
         {
+            Messenger.Default.Register<string>(this, open);
             return new List<CommandViewModel>
             {
                 new CommandViewModel(
@@ -234,6 +236,23 @@ namespace BikeRental.ViewModels
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
+        }
+        private void open(string name)
+        {
+            if (name == "Wszyscy klienciAdd") CreateView(new NowyKlientViewModel());
+            if (name == "Wszystkie abonamentyAdd") CreateView(new NowyAbonamentViewModel());
+            if (name == "Stawki planow cenowychAdd") CreateView(new NowyPlanCenowyStawkaViewModel());
+            if (name == "Wszystkie plany cenoweAdd") CreateView(new NowyPlanCenowyViewModel());
+            if (name == "Wszystkie platnosciAdd") CreateView(new NowaPlatnoscViewModel());
+            if (name == "Wszystkie rezerwacjeAdd") CreateView(new NowaRezerwacjaViewModel());
+            if (name == "Modele rowerowAdd") CreateView(new NowyModelRoweruViewModel());
+            if (name == "Wszystkie roweryAdd") CreateView(new NowyRowerViewModel());
+            if (name == "Wszystkie stacjeAdd") CreateView(new NowaStacjaViewModel());
+            if (name == "Wszystkie stojakiAdd") CreateView(new NowyStojakViewModel());
+            if (name == "Transfery rowerowAdd") CreateView(new NowyTransferRoweruViewModel());
+            if (name == "Wszystkie oplaty za wypozyczenieAdd") CreateView(new NoweWypozyczenieOplataViewModel());
+            if (name == "Wszystkie aktywne wypozyczeniaAdd") CreateView(new NoweWypozyczenieViewModel());
+            if (name == "Zgloszenia serwisoweAdd") CreateView(new NoweZgloszenieSerwisoweViewModel());
         }
         #endregion
     }
