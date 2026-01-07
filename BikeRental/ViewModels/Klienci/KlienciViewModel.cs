@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,6 +36,25 @@ namespace BikeRental.ViewModels
             : base()
         {
             base.DisplayName = "Wszyscy klienci";
+        }
+        #endregion
+        #region Properties
+        private KlienciForAllView _WybranyKlient;
+        public KlienciForAllView WybranyKlient
+        {
+            get
+            {
+                return _WybranyKlient;
+            }
+            set //jak ustawiamy _WybranyKlient to zamykane jest okno
+            {
+                if (_WybranyKlient != value)
+                {
+                    _WybranyKlient = value;
+                    Messenger.Default.Send(_WybranyKlient);
+                    OnRequestClose();
+                }
+            }
         }
         #endregion
         #region Sortowanie i filtrowanie

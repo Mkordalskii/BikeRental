@@ -239,6 +239,7 @@ namespace BikeRental.ViewModels
         }
         private void open(string name)
         {
+            //przycisk "dodaj"
             if (name == "Wszyscy klienciAdd") CreateView(new NowyKlientViewModel());
             if (name == "Wszystkie abonamentyAdd") CreateView(new NowyAbonamentViewModel());
             if (name == "Stawki planow cenowychAdd") CreateView(new NowyPlanCenowyStawkaViewModel());
@@ -253,6 +254,8 @@ namespace BikeRental.ViewModels
             if (name == "Wszystkie oplaty za wypozyczenieAdd") CreateView(new NoweWypozyczenieOplataViewModel());
             if (name == "Wszystkie aktywne wypozyczeniaAdd") CreateView(new NoweWypozyczenieViewModel());
             if (name == "Zgloszenia serwisoweAdd") CreateView(new NoweZgloszenieSerwisoweViewModel());
+            //buttony z kluczami obcymi
+            if (name == "KlienciShow") ShowAll<KlienciViewModel>();
         }
         #endregion
     }

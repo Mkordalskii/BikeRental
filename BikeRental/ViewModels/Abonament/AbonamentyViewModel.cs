@@ -36,6 +36,7 @@ namespace BikeRental.ViewModels
             base.DisplayName = "Wszystkie abonamenty";
         }
         #endregion
+
         #region Sortowanie i filtrowanie
         //decydujemy po czym mozna sortowac
         public override List<string> getComboBoxSortList()

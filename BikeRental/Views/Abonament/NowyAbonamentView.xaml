@@ -22,10 +22,11 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Imie" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=ImieKlienta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="..." Grid.Column="1"  Grid.Row="0" Margin="170,8,0,8" Command="{Binding ShowKlienciCommand}"/>
 
         <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=NazwiskoKlienta, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Plan cenowy" Margin="0,8,0,8"/>
         <ComboBox Grid.Column="1" Grid.Row="2"

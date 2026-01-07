@@ -1,7 +1,11 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Helper;
+using BikeRental.Models;
+using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Linq;
+using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
@@ -14,6 +18,7 @@ namespace BikeRental.ViewModels
             item = new Abonament();
             DataStart = DateTime.Today;
             DataKoniec = DateTime.Today;
+            Messenger.Default.Register<KlienciForAllView>(this, getWybranyKlient);
         }
         #endregion
         #region Properties
@@ -29,6 +34,38 @@ namespace BikeRental.ViewModels
                 {
                     item.KlientId = value;
                     OnPropertyChanged(() => KlientId);
+                }
+            }
+        }
+        private string _ImieKlienta;
+        public string ImieKlienta
+        {
+            get
+            {
+                return _ImieKlienta;
+            }
+            set
+            {
+                if (_ImieKlienta != value)
+                {
+                    _ImieKlienta = value;
+                    OnPropertyChanged(() => ImieKlienta);
+                }
+            }
+        }
+        private string _NazwiskoKlienta;
+        public string NazwiskoKlienta
+        {
+            get
+            {
+                return _NazwiskoKlienta;
+            }
+            set
+            {
+                if (_NazwiskoKlienta != value)
+                {
+                    _NazwiskoKlienta = value;
+                    OnPropertyChanged(() => NazwiskoKlienta);
                 }
             }
         }
@@ -119,6 +156,19 @@ namespace BikeRental.ViewModels
 
         #endregion
         #region Commands
+        private BaseCommand _ShowKlienciCommand;
+        public ICommand ShowKlienciCommand
+        {
+            get
+            {
+                if (_ShowKlienciCommand == null) _ShowKlienciCommand = new BaseCommand(
+                    () => Messenger.Default.Send("KlienciShow")
+                    );
+                return _ShowKlienciCommand;
+            }
+        }
+        #endregion
+        #region helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -126,6 +176,12 @@ namespace BikeRental.ViewModels
             item.KiedyDodal = DateTime.Now;
             db.Abonament.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
+        }
+        private void getWybranyKlient(KlienciForAllView klient)
+        {
+            KlientId = klient.KlientId;
+            ImieKlienta = klient.Imie;
+            NazwiskoKlienta = klient.Nazwisko;
         }
         #endregion
     }
