@@ -1,6 +1,7 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Linq;
 
 namespace BikeRental.ViewModels
 {
@@ -15,18 +16,19 @@ namespace BikeRental.ViewModels
         }
         #endregion
         #region Properties
-        public Stacja Stacja
+        public int StacjaId
         {
             get
             {
-                return item.Stacja;
+                return item.StacjaId;
             }
             set
             {
-                if (item.Stacja != value)
+                if (item.StacjaId != value)
                 {
-                    item.Stacja = value;
-                    OnPropertyChanged(() => Stacja);
+                    item.StacjaId = value;
+                    OnPropertyChanged(() => StacjaId);
+                    NumerMiejsca = GetNextNumerMiejsca(value);
                 }
             }
         }
@@ -72,7 +74,7 @@ namespace BikeRental.ViewModels
         }
 
         #endregion
-        #region Commands
+        #region Helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -81,7 +83,32 @@ namespace BikeRental.ViewModels
             db.Stojak.Add(item);//to jest dodanie roweru do kolekcji rowerow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
         }
+        //podpowiada kolejny wolny numer miejsca
+        private int GetNextNumerMiejsca(int stacjaId)
+        {
+            var max = db.Stojak
+                .Where(s => s.StacjaId == stacjaId)
+                .Select(s => (int?)s.NumerMiejsca)
+                .Max();
 
-        #endregion Commands
+            return (max ?? 0) + 1;
+        }
+
+        #endregion
+        #region ComboBox
+        public IQueryable<Stacja> StacjaItems
+        {
+            get
+            {
+                return
+                    (
+                        from stacja in db.Stacja
+                        where stacja.CzyAktywny == true
+                        select stacja
+                    ).ToList().AsQueryable();
+            }
+        }
+
+        #endregion
     }
 }

@@ -20,7 +20,13 @@
 
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Stacja" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Stacja, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox Grid.Column="1" Grid.Row="0"
+          ItemsSource="{Binding StacjaItems}"
+          DisplayMemberPath="Nazwa"
+          SelectedValuePath="StacjaId"
+          SelectedValue="{Binding StacjaId, Mode=TwoWay}"
+          Margin="0,8,0,8"
+          Width="200"/>
 
         <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Numer miejsca" Margin="0,8,0,8"/>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=NumerMiejsca, UpdateSourceTrigger=PropertyChanged}"/>
