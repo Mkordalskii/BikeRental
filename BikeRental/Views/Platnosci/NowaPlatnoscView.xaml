@@ -11,6 +11,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -19,36 +20,88 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="0"
-      ItemsSource="{Binding DostepneTypy}"
-      SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
-      Margin="0,8,0,8"
-      Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Imie" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Imię klienta -->
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Imię klienta" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0"
+                 Margin="0,8,0,8"
+                 Width="200"
+                 IsEnabled="False"
+                 Text="{Binding ImieKlienta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="1" Grid.Row="0"
+                Content="..."
+                Margin="170,8,0,8"
+                Command="{Binding ShowKlienciCommand}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Nazwisko klienta -->
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nazwisko klienta" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1"
+                 Margin="0,8,0,8"
+                 Width="200"
+                 IsEnabled="False"
+                 Text="{Binding NazwiskoKlienta, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="NIP" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Id wypożyczenia -->
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Id wypożyczenia" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="2"
+          ItemsSource="{Binding IdWypozyczeniaItems}"
+          DisplayMemberPath="WypozyczenieId"
+          SelectedValuePath="WypozyczenieId"
+          SelectedValue="{Binding WypozyczenieId, Mode=TwoWay}"
+          Margin="0,8,0,8"
+          Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="E-mail" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Data płatności -->
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Data płatności" Margin="0,8,0,8"/>
+        <DatePicker Grid.Column="1" Grid.Row="3"
+                    Margin="0,8,0,8"
+                    Width="200"
+                    SelectedDateFormat="Short"
+                    Language="pl-PL"
+                    SelectedDate="{Binding DataPlatnosci, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Telefon" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Kwota -->
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Kwota" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="4"
+                 Margin="0,8,0,8"
+                 Width="200"
+                 Text="{Binding Kwota, UpdateSourceTrigger=LostFocus}"/>
 
-        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Data urodzenia (dd.mm.rrrr)" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" 
-                x:Name="dpDataUrodzenia" 
-                SelectedDateFormat="Short"
-                Language="pl-PL"
-                Margin="0,8,0,8"
-                Width="200"
-                SelectedDate="{Binding DataUrodzenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Waluta -->
+        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Waluta" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="5"
+                 Margin="0,8,0,8"
+                 Width="200"
+                 Text="{Binding Waluta, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Metoda płatności -->
+        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Metoda płatności" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="6"
+                  ItemsSource="{Binding MetodaItems}"
+                  DisplayMemberPath="Nazwa"
+                  SelectedValuePath="MetodaId"
+                  SelectedValue="{Binding Metoda, Mode=TwoWay}"
+                  Margin="0,8,0,8"
+                  Width="200"/>
+
+        <!-- Referencja -->
+        <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Referencja" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="7"
+                 Margin="0,8,0,8"
+                 Width="200"
+                 Text="{Binding Referencja, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Status -->
+        <Label Grid.Column="0" Grid.Row="8" FontSize="10" Content="Status" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="8"
+                  ItemsSource="{Binding StatusItems}"
+                  DisplayMemberPath="Nazwa"
+                  SelectedValuePath="StatusId"
+                  SelectedValue="{Binding Status, Mode=TwoWay}"
+                  Margin="0,8,0,8"
+                  Width="200"/>
     </Grid>
 </local:JedenViewBase>

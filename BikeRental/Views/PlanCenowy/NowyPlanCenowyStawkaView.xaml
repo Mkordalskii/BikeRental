@@ -17,32 +17,44 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Nazwa" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Plan cenowy" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="0"
+            ItemsSource="{Binding PlanCenowyItems}"
+            DisplayMemberPath="Nazwa"
+            SelectedValuePath="PlanCenowyId"
+            SelectedValue="{Binding PlanCenowyId, Mode=TwoWay}"
+            Margin="0,8,0,8"
+            Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Waluta" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Waluta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="1"
+            ItemsSource="{Binding TypItems}"
+            DisplayMemberPath="Nazwa"
+            SelectedValuePath="TypId"
+            SelectedValue="{Binding Typ, Mode=TwoWay}"
+            Margin="0,8,0,8"
+            Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Opis" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Od minuty" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=OdMinuty, UpdateSourceTrigger=LostFocus}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Aktywny od" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="3" 
-        x:Name="dpAktywnaOd" 
-        SelectedDateFormat="Short"
-        Language="pl-PL"
-        Width="200"
-        Margin="0,8,0,8"
-        SelectedDate="{Binding AktywnaOd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Do minuty" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=DoMinuty, UpdateSourceTrigger=LostFocus}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Aktywny do" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="4" 
-        x:Name="dpAktywnaDo" 
-        SelectedDateFormat="Short"
-        Language="pl-PL"
-        Width="200"
-        Margin="0,8,0,8"
-        SelectedDate="{Binding AktywnaDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Cena za min" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=CenaZaMin, UpdateSourceTrigger=LostFocus}"/>
+
+        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Oplata startowa" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=OplataStartowa, UpdateSourceTrigger=LostFocus}"/>
+
+        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Limit darmowych minut" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8" Text="{Binding Path=LimitDarmowychMin, UpdateSourceTrigger=LostFocus}"/>
+
+        <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Doplata po limicie" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="0,8,0,8" Text="{Binding Path=DoplataPoLimicie, UpdateSourceTrigger=Default}"/>
     </Grid>
 </local:JedenViewBase>

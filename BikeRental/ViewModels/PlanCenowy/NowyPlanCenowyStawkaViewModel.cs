@@ -1,6 +1,7 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Linq;
 
 namespace BikeRental.ViewModels
 {
@@ -11,6 +12,7 @@ namespace BikeRental.ViewModels
         public NowyPlanCenowyStawkaViewModel() : base()
         {
             base.DisplayName = "Dodaj/Edytuj stawke";
+            item = new PlanCenowyStawka();
         }
 
         #endregion Constructor
@@ -142,10 +144,34 @@ namespace BikeRental.ViewModels
             }
         }
 
-        #endregion Properties
+        #endregion
+        #region Combobox
+        public IQueryable<SlownikPlanCenowyStawkaTyp> TypItems
+        {
+            get
+            {
+                return
+                    (
+                        from typ in db.SlownikPlanCenowyStawkaTyp
+                        select typ
+                    ).ToList().AsQueryable();
+            }
+        }
+        public IQueryable<PlanCenowy> PlanCenowyItems
+        {
+            get
+            {
+                return
+                    (
+                        from planCenowy in db.PlanCenowy
+                        where planCenowy.CzyAktywny == true
+                        select planCenowy
+                    ).ToList().AsQueryable();
+            }
+        }
+        #endregion
 
-        #region Commands
-
+        #region Helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -155,6 +181,6 @@ namespace BikeRental.ViewModels
             db.SaveChanges();//to jest zapisanie danych do bazy danych
         }
 
-        #endregion Commands
+        #endregion
     }
 }

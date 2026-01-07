@@ -1,6 +1,11 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Helper;
+using BikeRental.Models;
+using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Linq;
+using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
@@ -11,6 +16,7 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj rezerwacje";
             item = new Rezerwacja();
+            Messenger.Default.Register<KlienciForAllView>(this, getWybranyKlient);
         }
         #endregion
         #region Properties
@@ -26,6 +32,38 @@ namespace BikeRental.ViewModels
                 {
                     item.KlientId = value;
                     OnPropertyChanged(() => KlientId);
+                }
+            }
+        }
+        private string _ImieKlienta;
+        public string ImieKlienta
+        {
+            get
+            {
+                return _ImieKlienta;
+            }
+            set
+            {
+                if (_ImieKlienta != value)
+                {
+                    _ImieKlienta = value;
+                    OnPropertyChanged(() => ImieKlienta);
+                }
+            }
+        }
+        private string _NazwiskoKlienta;
+        public string NazwiskoKlienta
+        {
+            get
+            {
+                return _NazwiskoKlienta;
+            }
+            set
+            {
+                if (_NazwiskoKlienta != value)
+                {
+                    _NazwiskoKlienta = value;
+                    OnPropertyChanged(() => NazwiskoKlienta);
                 }
             }
         }
@@ -92,7 +130,7 @@ namespace BikeRental.ViewModels
         }
 
         #endregion
-        #region Commands
+        #region Helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -100,6 +138,40 @@ namespace BikeRental.ViewModels
             item.KiedyDodal = DateTime.Now;
             db.Rezerwacja.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
+        }
+        private void getWybranyKlient(KlienciForAllView klient)
+        {
+            KlientId = klient.KlientId;
+            ImieKlienta = klient.Imie;
+            NazwiskoKlienta = klient.Nazwisko;
+        }
+        #endregion
+        #region Commands
+
+        private BaseCommand _ShowKlienciCommand;
+        public ICommand ShowKlienciCommand
+        {
+            get
+            {
+                if (_ShowKlienciCommand == null) _ShowKlienciCommand = new BaseCommand(
+                    () => Messenger.Default.Send("KlienciShow")
+                    );
+                return _ShowKlienciCommand;
+            }
+        }
+        #endregion
+        #region ComboBox
+        public IQueryable<Rower> KodFlotyItems
+        {
+            get
+            {
+                return
+                    (
+                        from rower in db.Rower
+                        where rower.CzyAktywny == true
+                        select rower
+                    ).ToList().AsQueryable();
+            }
         }
         #endregion
     }
