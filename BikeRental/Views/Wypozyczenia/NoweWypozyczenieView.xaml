@@ -11,6 +11,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -19,36 +20,125 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="0"
-  ItemsSource="{Binding DostepneTypy}"
-  SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
-  Margin="0,8,0,8"
-  Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Klient" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Imię -->
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Imię" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0"
+             Margin="0,8,0,8"
+             Width="200"
+             IsEnabled="False"
+             Text="{Binding ImieKlienta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="1" Grid.Row="0"
+            Content="..."
+            Margin="170,8,0,8"
+            Command="{Binding ShowKlienciCommand}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Nazwisko -->
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1"
+             Margin="0,8,0,8"
+             Width="200"
+             IsEnabled="False"
+             Text="{Binding NazwiskoKlienta, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="NIP" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Kod floty -->
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Kod floty" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="2"
+              ItemsSource="{Binding RoweryItems}"
+              DisplayMemberPath="KodFloty"
+              SelectedValuePath="RowerId"
+              SelectedValue="{Binding RowerId, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="E-mail" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Start -->
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Start" Margin="0,8,0,8"/>
+        <DatePicker Grid.Column="1" Grid.Row="3"
+                Margin="0,8,0,8"
+                Width="200"
+                SelectedDateFormat="Short"
+                Language="pl-PL"
+                SelectedDate="{Binding StartUtc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Telefon" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Koniec -->
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Koniec" Margin="0,8,0,8"/>
+        <DatePicker Grid.Column="1" Grid.Row="4"
+                Margin="0,8,0,8"
+                Width="200"
+                SelectedDateFormat="Short"
+                Language="pl-PL"
+                SelectedDate="{Binding KoniecUtc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Data urodzenia (dd.mm.rrrr)" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" 
-            x:Name="dpDataUrodzenia" 
-            SelectedDateFormat="Short"
-            Language="pl-PL"
-            Margin="0,8,0,8"
-            Width="200"
-            SelectedDate="{Binding DataUrodzenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Stacja początkowa -->
+        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Stacja początkowa" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="5"
+              ItemsSource="{Binding StacjaItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="StacjaId"
+              SelectedValue="{Binding StartStacjaId, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
+
+        <!-- Stacja końcowa -->
+        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Stacja końcowa" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="6"
+              ItemsSource="{Binding StacjaItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="StacjaId"
+              SelectedValue="{Binding KoniecStacjaId, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
+
+        <!-- Szerokość geo. start -->
+        <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Szerokość geo. start" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="7"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding StartSzerGeo, UpdateSourceTrigger=LostFocus}"/>
+
+        <!-- Długość geo. start -->
+        <Label Grid.Column="0" Grid.Row="8" FontSize="10" Content="Długość geo. start" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="8"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding StartDlugGeo, UpdateSourceTrigger=LostFocus}"/>
+
+        <!-- Szerokość geo. koniec -->
+        <Label Grid.Column="0" Grid.Row="9" FontSize="10" Content="Szerokość geo. koniec" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="9"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding KoniecSzerGeo, UpdateSourceTrigger=LostFocus}"/>
+
+        <!-- Długość geo. koniec -->
+        <Label Grid.Column="0" Grid.Row="10" FontSize="10" Content="Długość geo. koniec" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="10"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding KoniecDlugGeo, UpdateSourceTrigger=LostFocus}"/>
+
+        <!-- Odległość [KM] -->
+        <Label Grid.Column="0" Grid.Row="11" FontSize="10" Content="Odległość [KM]" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="11"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding OdlegloscKm, UpdateSourceTrigger=LostFocus}"/>
+
+        <!-- PlanCenowyIdSnapshot -->
+        <Label Grid.Column="0" Grid.Row="12" FontSize="10" Content="Plan cenowy" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="12"
+              ItemsSource="{Binding PlanCenowyItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="PlanCenowyId"
+              SelectedValue="{Binding PlanCenowyIdSnapshot, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
     </Grid>
 </local:JedenViewBase>

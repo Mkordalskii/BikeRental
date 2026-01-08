@@ -91,9 +91,9 @@ namespace BikeRental.ViewModels
                     "Stacje",
                     new BaseCommand(() => this.ShowAll<StacjeViewModel>())),
 
-                //new CommandViewModel(
-                //    "Aktywne wypozyczenia",
-                //    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
+                new CommandViewModel(
+                    "Aktywne wypozyczenia",
+                    new BaseCommand(() => this.ShowAll<AktywneWypozyczeniaViewModel>())),
 
                 //new CommandViewModel(
                 //    "Dodaj/edytuj wypozyczenie",

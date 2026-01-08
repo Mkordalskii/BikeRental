@@ -16,6 +16,8 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj transfer";
             item = new TransferRoweru();
+            DataStartUtc = DateTime.Today;
+            DataKoniecUtc = DateTime.Today;
             Messenger.Default.Register<RoweryForAllView>(this, getWybranyRower);
         }
         #endregion
