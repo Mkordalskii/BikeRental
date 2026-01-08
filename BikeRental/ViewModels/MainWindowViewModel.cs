@@ -256,6 +256,7 @@ namespace BikeRental.ViewModels
             if (name == "Zgloszenia serwisoweAdd") CreateView(new NoweZgloszenieSerwisoweViewModel());
             //buttony z kluczami obcymi
             if (name == "KlienciShow") ShowAll<KlienciViewModel>();
+            if (name == "RoweryShow") ShowAll<RoweryViewModel>();
         }
         #endregion
     }

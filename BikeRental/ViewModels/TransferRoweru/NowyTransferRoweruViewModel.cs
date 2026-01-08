@@ -1,6 +1,11 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Helper;
+using BikeRental.Models;
+using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Linq;
+using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
@@ -11,6 +16,7 @@ namespace BikeRental.ViewModels
         {
             base.DisplayName = "Dodaj/Edytuj transfer";
             item = new TransferRoweru();
+            Messenger.Default.Register<RoweryForAllView>(this, getWybranyRower);
         }
         #endregion
         #region Properties
@@ -26,6 +32,38 @@ namespace BikeRental.ViewModels
                 {
                     item.RowerId = value;
                     OnPropertyChanged(() => RowerId);
+                }
+            }
+        }
+        private string _KodFloty;
+        public string KodFloty
+        {
+            get
+            {
+                return _KodFloty;
+            }
+            set
+            {
+                if (_KodFloty != value)
+                {
+                    _KodFloty = value;
+                    OnPropertyChanged(() => KodFloty);
+                }
+            }
+        }
+        private string _NrSeryjny;
+        public string NrSeryjny
+        {
+            get
+            {
+                return _NrSeryjny;
+            }
+            set
+            {
+                if (_NrSeryjny != value)
+                {
+                    _NrSeryjny = value;
+                    OnPropertyChanged(() => NrSeryjny);
                 }
             }
         }
@@ -122,6 +160,19 @@ namespace BikeRental.ViewModels
 
         #endregion
         #region Commands
+        private BaseCommand _ShowRoweryCommand;
+        public ICommand ShowRoweryCommand
+        {
+            get
+            {
+                if (_ShowRoweryCommand == null) _ShowRoweryCommand = new BaseCommand(
+                    () => Messenger.Default.Send("RoweryShow")
+                    );
+                return _ShowRoweryCommand;
+            }
+        }
+        #endregion
+        #region Helpers
         public override void Save()
         {
             item.CzyAktywny = true;
@@ -129,6 +180,37 @@ namespace BikeRental.ViewModels
             item.KiedyDodal = DateTime.Now;
             db.TransferRoweru.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
+        }
+        private void getWybranyRower(RoweryForAllView rower)
+        {
+            RowerId = rower.RowerId;
+            KodFloty = rower.KodFloty;
+            NrSeryjny = rower.NumerSeryjny;
+        }
+        #endregion
+        #region ComboBox
+        public IQueryable<Stacja> StacjaItems
+        {
+            get
+            {
+                return
+                    (
+                        from stacja in db.Stacja
+                        where stacja.CzyAktywny == true
+                        select stacja
+                    ).ToList().AsQueryable();
+            }
+        }
+        public IQueryable<SlownikTransferStatus> StatusItems
+        {
+            get
+            {
+                return
+                    (
+                        from status in db.SlownikTransferStatus
+                        select status
+                    ).ToList().AsQueryable();
+            }
         }
         #endregion
     }

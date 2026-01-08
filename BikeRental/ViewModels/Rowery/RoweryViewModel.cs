@@ -1,5 +1,6 @@
 ﻿using BikeRental.Models.EntitiesForView;
 using BikeRental.ViewModels.Abstract;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,6 +38,25 @@ namespace BikeRental.ViewModels
         }
 
         #endregion Lista
+        #region Properties
+        private RoweryForAllView _WybranyRower;
+        public RoweryForAllView WybranyRower
+        {
+            get
+            {
+                return _WybranyRower;
+            }
+            set //jak ustawiamy _WybranyRower to zamykane jest okno
+            {
+                if (_WybranyRower != value)
+                {
+                    _WybranyRower = value;
+                    Messenger.Default.Send(_WybranyRower);
+                    OnRequestClose();
+                }
+            }
+        }
+        #endregion
 
         #region Constructor
 
