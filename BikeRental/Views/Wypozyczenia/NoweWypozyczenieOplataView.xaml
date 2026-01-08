@@ -11,44 +11,54 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
+
+        <!-- Id wypożyczenia -->
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Id wypożyczenia" Margin="0,8,0,8"/>
         <ComboBox Grid.Column="1" Grid.Row="0"
-ItemsSource="{Binding DostepneTypy}"
-SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
-Margin="0,8,0,8"
-Width="200"/>
+              ItemsSource="{Binding WypozyczenieItems}"
+              DisplayMemberPath="WypozyczenieId"
+              SelectedValuePath="WypozyczenieId"
+              SelectedValue="{Binding WypozyczenieId, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Klient" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Typ -->
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="1"
+              ItemsSource="{Binding TypItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="TypId"
+              SelectedValue="{Binding Typ, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Ilość minut -->
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Ilość minut" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding IloscMin, UpdateSourceTrigger=LostFocus}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="NIP" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Stawka -->
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Stawka" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="3"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding Stawka, UpdateSourceTrigger=LostFocus}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="E-mail" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Telefon" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Data urodzenia (dd.mm.rrrr)" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" 
-          x:Name="dpDataUrodzenia" 
-          SelectedDateFormat="Short"
-          Language="pl-PL"
-          Margin="0,8,0,8"
-          Width="200"
-          SelectedDate="{Binding DataUrodzenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Kwota -->
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Kwota" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="4"
+             Margin="0,8,0,8"
+             Width="200"
+             Text="{Binding Kwota, UpdateSourceTrigger=LostFocus}"/>
     </Grid>
 </local:JedenViewBase>

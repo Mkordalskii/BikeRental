@@ -1,6 +1,10 @@
 ﻿using BikeRental.Models;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace BikeRental.ViewModels
 {
@@ -91,14 +95,41 @@ namespace BikeRental.ViewModels
             }
         }
         #endregion
-        #region Commands
+        #region Helpers
         public override void Save()
         {
+            Keyboard.ClearFocus(); // aby wartość liczbowa z ostatniego okienka automatycznie straciła focus przy zapisywaniu i została wysłana
+            Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
             item.CzyAktywny = true;
             item.KtoDodal = /* np. zalogowany użytkownik */ 1;
             item.KiedyDodal = DateTime.Now;
             db.WypozyczenieOplata.Add(item);//to jest dodanie towaru do kolekcji towarow
             db.SaveChanges();//to jest zapisanie danych do bazy danych
+        }
+        #endregion
+        #region ComboBox
+        public IQueryable<Wypozyczenie> WypozyczenieItems
+        {
+            get
+            {
+                return
+                    (
+                        from wypozyczenie in db.Wypozyczenie
+                        where wypozyczenie.CzyAktywny == true
+                        select wypozyczenie
+                    ).ToList().AsQueryable();
+            }
+        }
+        public IQueryable<SlownikWypozyczenieOplataTyp> TypItems
+        {
+            get
+            {
+                return
+                    (
+                        from typ in db.SlownikWypozyczenieOplataTyp
+                        select typ
+                    ).ToList().AsQueryable();
+            }
         }
         #endregion
     }

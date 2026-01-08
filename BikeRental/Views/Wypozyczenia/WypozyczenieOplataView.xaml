@@ -12,7 +12,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding OplataId}"/>
                 <DataGridTextColumn Header="Id wypozyczenia" Binding="{Binding WypozyczenieId}"/>
                 <DataGridTextColumn Header="Typ" Binding="{Binding Typ}"/>
-                <DataGridTextColumn Header="IloscMin" Binding="{Binding IloscMin}"/>
+                <DataGridTextColumn Header="Minuty" Binding="{Binding IloscMin}"/>
                 <DataGridTextColumn Header="Stawka" Binding="{Binding Stawka}"/>
                 <DataGridTextColumn Header="Kwota" Binding="{Binding Kwota}"/>
             </DataGrid.Columns>
