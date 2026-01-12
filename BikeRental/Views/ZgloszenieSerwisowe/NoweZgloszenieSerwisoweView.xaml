@@ -11,6 +11,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -18,37 +19,91 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Typ" Margin="0,8,0,8"/>
-        <ComboBox Grid.Column="1" Grid.Row="0"
-  ItemsSource="{Binding DostepneTypy}"
-  SelectedItem="{Binding WybranyTyp, Mode=TwoWay}"
-  Margin="0,8,0,8"
-  Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Imie" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Kod roweru -->
+        <Label Grid.Column="0" Grid.Row="0" FontSize="10" Content="Kod floty" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0"
+             Margin="0,8,0,8"
+             Width="200"
+             IsEnabled="False"
+             Text="{Binding KodFloty, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="1" Grid.Row="0"
+            Content="..."
+            Margin="170,8,0,8"
+            Command="{Binding ShowRoweryCommand}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Nazwisko" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Nr seryjny -->
+        <Label Grid.Column="0" Grid.Row="1" FontSize="10" Content="Nr seryjny" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1"
+             Margin="0,8,0,8"
+             Width="200"
+             IsEnabled="False"
+             Text="{Binding NrSeryjny, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="NIP" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Zgłaszający klient -->
+        <Label Grid.Column="0" Grid.Row="2" FontSize="10" Content="Zgłaszający klient" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2"
+             Margin="0,8,0,8"
+             Width="200"
+             IsEnabled="False"
+             Text="{Binding NazwiskoKlienta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="1" Grid.Row="2"
+            Content="..."
+            Margin="170,8,0,8"
+            Command="{Binding ShowKlienciCommand}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="E-mail" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Data zgłoszenia -->
+        <Label Grid.Column="0" Grid.Row="3" FontSize="10" Content="Data zgłoszenia" Margin="0,8,0,8"/>
+        <DatePicker Grid.Column="1" Grid.Row="3"
+                Margin="0,8,0,8"
+                Width="200"
+                SelectedDateFormat="Short"
+                Language="pl-PL"
+                SelectedDate="{Binding DataZgloszeniaUtc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Telefon" Margin="0,8,0,8"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Priorytet -->
+        <Label Grid.Column="0" Grid.Row="4" FontSize="10" Content="Priorytet" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="4"
+              ItemsSource="{Binding PriorytetItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="PriorytetId"
+              SelectedValue="{Binding Priorytet, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
 
-        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Data urodzenia (dd.mm.rrrr)" Margin="0,8,0,8"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" 
-            x:Name="dpDataUrodzenia" 
-            SelectedDateFormat="Short"
-            Language="pl-PL"
-            Margin="0,8,0,8"
-            Width="200"
-            SelectedDate="{Binding DataUrodzenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Status -->
+        <Label Grid.Column="0" Grid.Row="5" FontSize="10" Content="Status" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="5"
+              ItemsSource="{Binding StatusItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="StatusId"
+              SelectedValue="{Binding Status, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
+
+        <!-- Opis -->
+        <Label Grid.Column="0" Grid.Row="6" FontSize="10" Content="Opis" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="6"
+             Margin="0,8,0,8"
+             Width="200"
+             Height="70"
+             TextWrapping="Wrap"
+             AcceptsReturn="True"
+             VerticalScrollBarVisibility="Auto"
+             Text="{Binding Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Stacja docelowa -->
+        <Label Grid.Column="0" Grid.Row="7" FontSize="10" Content="Stacja docelowa" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="7"
+              ItemsSource="{Binding StacjaDocelowaItems}"
+              DisplayMemberPath="Nazwa"
+              SelectedValuePath="StacjaId"
+              SelectedValue="{Binding StacjaDocelowaId, Mode=TwoWay}"
+              Margin="0,8,0,8"
+              Width="200"/>
     </Grid>
+
 </local:JedenViewBase>

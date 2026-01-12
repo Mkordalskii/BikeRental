@@ -269,7 +269,6 @@ namespace BikeRental.ViewModels
         }
         #endregion
         #region Commands
-
         private BaseCommand _ShowKlienciCommand;
         public ICommand ShowKlienciCommand
         {

@@ -10,7 +10,7 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ZgloszenieId}"/>
-                <DataGridTextColumn Header="Kod roweru" Binding="{Binding KodFloty}"/>
+                <DataGridTextColumn Header="Kod floty" Binding="{Binding KodFloty}"/>
                 <DataGridTextColumn Header="Nr seryjny" Binding="{Binding NumerSeryjny}"/>
                 <DataGridTextColumn Header="Zglaszajacy klient" Binding="{Binding NazwiskoKlienta}"/>
                 <DataGridTextColumn Header="Data zgloszenia" Binding="{Binding DataZgloszeniaUtc}"/>
