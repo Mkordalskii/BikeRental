@@ -1,0 +1,825 @@
+CREATE DATABASE BikeRentalDb;
+GO
+
+USE BikeRentalDb;
+GO
+CREATE TABLE dbo.Uzytkownik(
+    UzytkownikId INT IDENTITY PRIMARY KEY,
+    Login NVARCHAR(100) NOT NULL UNIQUE,
+    Email NVARCHAR(200) NOT NULL UNIQUE,
+    Rola NVARCHAR(50) NOT NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL
+);
+
+----------------------------------------------------
+-- Tabele słownikowe
+----------------------------------------------------
+
+CREATE TABLE dbo.SlownikKlientTyp(
+    TypId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikRowerStan(
+    StanId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikPlanCenowyStawkaTyp(
+    TypId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikAbonamentStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikWypozyczenieStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikWypozyczenieOplataTyp(
+    TypId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikPlatnoscMetoda(
+    MetodaId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikPlatnoscStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikRezerwacjaStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikZgloszeniePriorytet(
+    PriorytetId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikZgloszenieStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+CREATE TABLE dbo.SlownikTransferStatus(
+    StatusId TINYINT PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(100) NOT NULL,
+    Kolejnosc INT NOT NULL
+);
+
+----------------------------------------------------
+-- Stacja / Stojak
+----------------------------------------------------
+
+CREATE TABLE dbo.Stacja(
+    StacjaId INT IDENTITY PRIMARY KEY,
+    Kod NVARCHAR(50) NOT NULL UNIQUE,
+    Nazwa NVARCHAR(150) NOT NULL,
+    SzerGeo DECIMAL(9,6) NOT NULL,
+    DlugGeo DECIMAL(9,6) NOT NULL,
+    GodzinyOtwarcia NVARCHAR(100) NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Stacja_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stacja_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stacja_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId)
+);
+
+CREATE TABLE dbo.Stojak(
+    StojakId INT IDENTITY PRIMARY KEY,
+    StacjaId INT NOT NULL,
+    NumerMiejsca INT NOT NULL,
+    Sprawny BIT NOT NULL DEFAULT 1,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Stojak_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stojak_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stojak_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stojak_Stacja                    FOREIGN KEY (StacjaId)      REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT UQ_Stojak UNIQUE(StacjaId, NumerMiejsca)
+);
+
+----------------------------------------------------
+-- Rower / RowerModel
+----------------------------------------------------
+
+CREATE TABLE dbo.RowerModel(
+    RowerModelId INT IDENTITY PRIMARY KEY,
+    Producent NVARCHAR(100) NOT NULL,
+    Nazwa NVARCHAR(150) NOT NULL,
+    Typ NVARCHAR(50) NOT NULL, -- miejski, gorski, gravel, szosa
+    E_Bike BIT NOT NULL DEFAULT 0,
+    MasaKg DECIMAL(5,2) NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_RowerModel_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_RowerModel_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_RowerModel_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId)
+);
+
+CREATE TABLE dbo.Rower(
+    RowerId INT IDENTITY PRIMARY KEY,
+    RowerModelId INT NOT NULL,
+    NumerSeryjny NVARCHAR(100) NOT NULL UNIQUE,
+    KodFloty NVARCHAR(50) NOT NULL UNIQUE,
+    Stan TINYINT NOT NULL, --0 dostepny, 1 wypozyczony, 2 serwis, 3 zgubiony/ukradziony
+    OstatniaStacjaId INT NULL,
+    OstatniStojakId INT NULL,
+    OstatniaSzerGeo DECIMAL(9,6) NULL,
+    OstatniaDlugGeo DECIMAL(9,6) NULL,
+    PrzebiegKm DECIMAL(10,2) NULL,
+    PoziomBateriiProc TINYINT NULL,
+    DataPrzegladu DATE NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Rower_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rower_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rower_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rower_Model                     FOREIGN KEY (RowerModelId)   REFERENCES dbo.RowerModel(RowerModelId),
+    CONSTRAINT FK_Rower_Stacja                    FOREIGN KEY (OstatniaStacjaId) REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Rower_Stojak                    FOREIGN KEY (OstatniStojakId)  REFERENCES dbo.Stojak(StojakId),
+    CONSTRAINT FK_Rower_Stan_Slownik              FOREIGN KEY (Stan)           REFERENCES dbo.SlownikRowerStan(StanId)
+);
+
+----------------------------------------------------
+-- Klient
+----------------------------------------------------
+
+CREATE TABLE dbo.Klient(
+    KlientId INT IDENTITY PRIMARY KEY,
+    Typ TINYINT NOT NULL, 
+    Imie NVARCHAR(100) NULL,
+    Nazwisko NVARCHAR(150) NULL,
+    NIP NVARCHAR(20) NULL,
+    Email NVARCHAR(200) NOT NULL,
+    Telefon NVARCHAR(50) NULL,
+    DataUrodzenia DATE NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Klient_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Klient_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Klient_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Klient_Typ_Slownik               FOREIGN KEY (Typ)           REFERENCES dbo.SlownikKlientTyp(TypId)
+);
+
+----------------------------------------------------
+-- Plan cenowy / stawki
+----------------------------------------------------
+
+CREATE TABLE dbo.PlanCenowy(
+    PlanCenowyId INT IDENTITY PRIMARY KEY,
+    Nazwa NVARCHAR(100) NOT NULL UNIQUE,
+    Waluta CHAR(3) NOT NULL DEFAULT 'PLN',
+    Opis NVARCHAR(200) NULL,
+    AktywnaOd DATE NOT NULL,
+    AktywnaDo DATE NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_PlanCenowy_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_PlanCenowy_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_PlanCenowy_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId)
+);
+
+CREATE TABLE dbo.PlanCenowyStawka(
+    StawkaId INT IDENTITY PRIMARY KEY,
+    PlanCenowyId INT NOT NULL,
+    Typ TINYINT NOT NULL, --0 czas, 1 strefa ,2 oplata stala, 3 kara
+    OdMinuty INT NULL,
+    DoMinuty INT NULL,
+    CenaZaMin DECIMAL(18,4) NULL,
+    OplataStartowa DECIMAL(18,2) NULL,
+    LimitDarmowychMin INT NULL,
+    DoplataPoLimicie DECIMAL(18,4) NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_PlanCenowyStawka_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_PlanCenowyStawka_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_PlanCenowyStawka_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Stawka_Plan                               FOREIGN KEY (PlanCenowyId)  REFERENCES dbo.PlanCenowy(PlanCenowyId),
+    CONSTRAINT FK_Stawka_Typ_Slownik                        FOREIGN KEY (Typ)           REFERENCES dbo.SlownikPlanCenowyStawkaTyp(TypId)
+);
+
+----------------------------------------------------
+-- Abonament
+----------------------------------------------------
+
+CREATE TABLE dbo.Abonament(
+    AbonamentId INT IDENTITY PRIMARY KEY,
+    KlientId INT NOT NULL,
+    PlanCenowyId INT NOT NULL,
+    DataStart DATE NOT NULL,
+    DataKoniec DATE NOT NULL,
+    [Status] TINYINT NOT NULL, --0 aktywny, 1 nieaktywny, 2 zawieszony
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Abonament_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Abonament_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Abonament_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Abonament_Klient                    FOREIGN KEY (KlientId)       REFERENCES dbo.Klient(KlientId),
+    CONSTRAINT FK_Abonament_PlanCenowy                FOREIGN KEY (PlanCenowyId)   REFERENCES dbo.PlanCenowy(PlanCenowyId),
+    CONSTRAINT FK_Abonament_Status_Slownik            FOREIGN KEY ([Status])       REFERENCES dbo.SlownikAbonamentStatus(StatusId)
+);
+
+----------------------------------------------------
+-- Wypozyczenie / WypozyczenieOplata
+----------------------------------------------------
+
+CREATE TABLE dbo.Wypozyczenie(
+    WypozyczenieId INT IDENTITY PRIMARY KEY,
+    KlientId INT NOT NULL,
+    RowerId INT NOT NULL,
+    StartUtc DATETIME2 NOT NULL,
+    KoniecUtc DATETIME2 NOT NULL,
+    StartStacjaId INT NULL,
+    KoniecStacjaId INT NULL,
+    StartSzerGeo DECIMAL(9,6) NULL,
+    StartDlugGeo DECIMAL(9,6) NULL,
+    KoniecSzerGeo DECIMAL(9,6) NULL,
+    KoniecDlugGeo DECIMAL(9,6) NULL,
+    OdlegloscKm DECIMAL(10,2) NULL,
+    PlanCenowyIdSnapshot INT NOT NULL,
+    [Status] TINYINT NOT NULL, --0 otwarte, 1 zamkniete, 2 anulowane
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Wypozyczenie_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Wypozyczenie_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Wypozyczenie_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Wyp_Klient                             FOREIGN KEY (KlientId)       REFERENCES dbo.Klient(KlientId),
+    CONSTRAINT FK_Wyp_Rower                              FOREIGN KEY (RowerId)        REFERENCES dbo.Rower(RowerId),
+    CONSTRAINT FK_Wyp_StStart                            FOREIGN KEY (StartStacjaId)  REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Wyp_StKoniec                           FOREIGN KEY (KoniecStacjaId) REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Wyp_Status_Slownik                     FOREIGN KEY ([Status])       REFERENCES dbo.SlownikWypozyczenieStatus(StatusId)
+);
+
+CREATE INDEX IX_Wypozyczenie_Status ON dbo.Wypozyczenie([Status], StartUtc);
+
+CREATE TABLE dbo.WypozyczenieOplata(
+    OplataId INT IDENTITY PRIMARY KEY,
+    WypozyczenieId INT NOT NULL,
+    Typ TINYINT NOT NULL, --0 start, 1 czas, 2 doplata, 3 strefa, 4 kara
+    IloscMin INT NULL,
+    Stawka DECIMAL(18,4) NULL,
+    Kwota DECIMAL(18,2) NOT NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_WypozyczenieOplata_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_WypozyczenieOplata_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_WypozyczenieOplata_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Oplata_Wyp                                   FOREIGN KEY (WypozyczenieId) REFERENCES dbo.Wypozyczenie(WypozyczenieId),
+    CONSTRAINT FK_Oplata_Typ_Slownik                           FOREIGN KEY (Typ)            REFERENCES dbo.SlownikWypozyczenieOplataTyp(TypId)
+);
+
+----------------------------------------------------
+-- Płatność
+----------------------------------------------------
+
+CREATE TABLE dbo.Platnosc(
+    PlatnoscId INT IDENTITY PRIMARY KEY,
+    KlientId INT NOT NULL,
+    WypozyczenieId INT NULL,
+    DataPlatnosci DATETIME2 NOT NULL,
+    Kwota DECIMAL(18,2) NOT NULL,
+    Waluta CHAR(3) NOT NULL,
+    Metoda TINYINT NOT NULL, --0 karta, 1 blik, 2 gotowka, 3 inne
+    Referencja NVARCHAR(100) NULL,
+    [Status] TINYINT NOT NULL, -- 0 autoryzacja, 1 zaksiegowana, 2 zwrot, 3 odrzucona
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Platnosc_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Platnosc_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Platnosc_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Platnosc_Klient                    FOREIGN KEY (KlientId)       REFERENCES dbo.Klient(KlientId),
+    CONSTRAINT FK_Platnosc_Wyp                       FOREIGN KEY (WypozyczenieId) REFERENCES dbo.Wypozyczenie(WypozyczenieId),
+    CONSTRAINT FK_Platnosc_Metoda_Slownik            FOREIGN KEY (Metoda)         REFERENCES dbo.SlownikPlatnoscMetoda(MetodaId),
+    CONSTRAINT FK_Platnosc_Status_Slownik            FOREIGN KEY ([Status])       REFERENCES dbo.SlownikPlatnoscStatus(StatusId)
+);
+
+CREATE INDEX IX_Platnosc_Status ON dbo.Platnosc([Status], DataPlatnosci);
+
+----------------------------------------------------
+-- Rezerwacja
+----------------------------------------------------
+
+CREATE TABLE dbo.Rezerwacja(
+    RezerwacjaId INT IDENTITY PRIMARY KEY,
+    KlientId INT NOT NULL,
+    RowerId INT NOT NULL,
+    DataOdUtc DATETIME2 NOT NULL,
+    DataDoUtc DATETIME2 NOT NULL,
+    [Status] TINYINT NOT NULL, --0 aktywna, 1 realizwana, 2 anulowana, 3 wygasla
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_Rezerwacja_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rezerwacja_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rezerwacja_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Rez_Klient                           FOREIGN KEY (KlientId)       REFERENCES dbo.Klient(KlientId),
+    CONSTRAINT FK_Rez_Rower                            FOREIGN KEY (RowerId)        REFERENCES dbo.Rower(RowerId),
+    CONSTRAINT FK_Rezerwacja_Status_Slownik            FOREIGN KEY ([Status])       REFERENCES dbo.SlownikRezerwacjaStatus(StatusId)
+);
+
+CREATE INDEX IX_Rezerwacja_Status ON dbo.Rezerwacja([Status], DataOdUtc);
+
+----------------------------------------------------
+-- Zgłoszenie serwisowe
+----------------------------------------------------
+
+CREATE TABLE dbo.ZgloszenieSerwisowe(
+    ZgloszenieId INT IDENTITY PRIMARY KEY,
+    RowerId INT NOT NULL,
+    ZglaszajacyKlientId INT NULL,
+    DataZgloszeniaUtc DATETIME2 NOT NULL,
+    Priorytet TINYINT NOT NULL, --0 niski, 1 sredni, 2 wysoki
+    Opis NVARCHAR(500) NOT NULL,
+    [Status] TINYINT NOT NULL, --0 nowe, 1 w trakcie, 2 zamkniete
+    StacjaDocelowaId INT NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_ZgloszenieSerwisowe_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_ZgloszenieSerwisowe_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_ZgloszenieSerwisowe_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Zgl_Rower                                     FOREIGN KEY (RowerId)        REFERENCES dbo.Rower(RowerId),
+    CONSTRAINT FK_Zgl_Klient                                    FOREIGN KEY (ZglaszajacyKlientId) REFERENCES dbo.Klient(KlientId),
+    CONSTRAINT FK_Zgl_Stacja                                    FOREIGN KEY (StacjaDocelowaId)    REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Zgl_Priorytet_Slownik                         FOREIGN KEY (Priorytet)      REFERENCES dbo.SlownikZgloszeniePriorytet(PriorytetId),
+    CONSTRAINT FK_Zgl_Status_Slownik                            FOREIGN KEY ([Status])       REFERENCES dbo.SlownikZgloszenieStatus(StatusId)
+);
+
+----------------------------------------------------
+-- Transfer roweru
+----------------------------------------------------
+
+CREATE TABLE dbo.TransferRoweru(
+    TransferId INT IDENTITY PRIMARY KEY,
+    RowerId INT NOT NULL,
+    StacjaZrodlowaId INT NOT NULL,
+    StacjaDocelowaId INT NOT NULL,
+    DataStartUtc DATETIME2 NOT NULL,
+    DataKoniecUtc DATETIME2 NULL,
+    [Status] TINYINT NOT NULL, --0 planowany, 1 w toku, 2 zakonczony, 3 anulowany
+    Uwagi NVARCHAR(500) NULL,
+
+    CzyAktywny BIT NOT NULL DEFAULT 1,
+    KtoDodal INT NOT NULL,
+    KiedyDodal DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    KtoModyfikowal INT NULL,
+    KiedyModyfikowal DATETIME2 NULL,
+    KtoWykasowal INT NULL,
+    KiedyWykasowal DATETIME2 NULL,
+
+    CONSTRAINT FK_TransferRoweru_KtoDodal_Uzytkownik       FOREIGN KEY (KtoDodal)       REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_TransferRoweru_KtoModyfikowal_Uzytkownik FOREIGN KEY (KtoModyfikowal) REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_TransferRoweru_KtoWykasowal_Uzytkownik   FOREIGN KEY (KtoWykasowal)   REFERENCES dbo.Uzytkownik(UzytkownikId),
+    CONSTRAINT FK_Tr_Rower                                 FOREIGN KEY (RowerId)        REFERENCES dbo.Rower(RowerId),
+    CONSTRAINT FK_Tr_StacjaZ                               FOREIGN KEY (StacjaZrodlowaId) REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Tr_StacjaDoc                             FOREIGN KEY (StacjaDocelowaId) REFERENCES dbo.Stacja(StacjaId),
+    CONSTRAINT FK_Transfer_Status_Slownik                  FOREIGN KEY ([Status])       REFERENCES dbo.SlownikTransferStatus(StatusId)
+);
+
+----------------------------------------------------
+-- Indeksy dodatkowe
+----------------------------------------------------
+
+CREATE INDEX IX_Rower_Stan_Stacja ON dbo.Rower(Stan, OstatniaStacjaId);
+CREATE INDEX IX_Wypozyczenie_KlientOtwarte ON dbo.Wypozyczenie(KlientId) WHERE [Status] = 0;
+CREATE INDEX IX_Rezerwacja_Rower_Czas ON dbo.Rezerwacja(RowerId, DataOdUtc, DataDoUtc);
+
+USE BikeRentalDb;
+GO
+
+----------------------------------------------------
+-- UZYTKOWNICY (5)
+----------------------------------------------------
+INSERT INTO dbo.Uzytkownik (Login, Email, Rola, KtoDodal)
+VALUES
+(N'admin',       N'admin@firma.pl',       N'Administrator', 1),
+(N'operator1',   N'operator1@firma.pl',   N'Operator',      1),
+(N'serwisant1',  N'serwisant1@firma.pl',  N'Serwisant',     1),
+(N'kierownik1',  N'kierownik1@firma.pl',  N'Kierownik',     1),
+(N'ksiegowosc1', N'ksiegowosc1@firma.pl', N'Ksiegowosc',    1);
+
+-- Założenie: ID tych użytkowników to 1..5 (kolejność według wstawiania)
+
+----------------------------------------------------
+-- SŁOWNIKI (po 5 rekordów)
+----------------------------------------------------
+
+-- Typ klienta
+INSERT INTO dbo.SlownikKlientTyp (TypId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'OSOBA',  N'Osoba prywatna', 1),
+(1, N'FIRMA',  N'Firma',          2),
+(2, N'SZKOLA', N'Szkoła',         3),
+(3, N'URZAD',  N'Urzad',          4),
+(4, N'INNE',   N'Inny typ',       5);
+
+-- Stan roweru
+INSERT INTO dbo.SlownikRowerStan (StanId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'DOSTEPNY',  N'Dostępny',           1),
+(1, N'WYPOZ',     N'Wypożyczony',        2),
+(2, N'SERWIS',    N'W serwisie',         3),
+(3, N'ZGUBIONY',  N'Zgubiony/ukradziony',4),
+(4, N'WYCOFANY',  N'Wycofany z floty',   5);
+
+-- Typ stawki planu cenowego
+INSERT INTO dbo.SlownikPlanCenowyStawkaTyp (TypId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'CZAS',    N'Stawka czasowa',   1),
+(1, N'STREFA',  N'Stawka strefowa',  2),
+(2, N'STALA',   N'Opłata stała',     3),
+(3, N'KARA',    N'Kara',             4),
+(4, N'PROMO',   N'Promocyjna',       5);
+
+-- Status abonamentu
+INSERT INTO dbo.SlownikAbonamentStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'AKTYWNY',    N'Aktywny',     1),
+(1, N'NIEAKTYWNY', N'Nieaktywny',  2),
+(2, N'ZAWIESZONY', N'Zawieszony',  3),
+(3, N'WYGASLY',    N'Wygasły',     4),
+(4, N'NOWY',       N'Nowy',        5);
+
+-- Status wypożyczenia
+INSERT INTO dbo.SlownikWypozyczenieStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'OPEN',      N'Otwarte',     1),
+(1, N'CLOSED',    N'Zamknięte',   2),
+(2, N'CANCELLED', N'Anulowane',   3),
+(3, N'ERROR',     N'Błąd systemu',4),
+(4, N'DEMO',      N'Testowe',     5);
+
+-- Typ opłaty za wypożyczenie
+INSERT INTO dbo.SlownikWypozyczenieOplataTyp (TypId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'START',   N'Opłata startowa', 1),
+(1, N'CZAS',    N'Opłata czasowa',  2),
+(2, N'DOPLATA', N'Dopłata',         3),
+(3, N'STREFa',  N'Opłata strefowa', 4),
+(4, N'KARA',    N'Kara',            5);
+
+-- Metoda płatności
+INSERT INTO dbo.SlownikPlatnoscMetoda (MetodaId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'KARTA',   N'Karta płatnicza', 1),
+(1, N'BLIK',    N'BLIK',            2),
+(2, N'GOTOWKA', N'Gotówka',         3),
+(3, N'PRZELEW', N'Przelew',         4),
+(4, N'INNA',    N'Inna metoda',     5);
+
+-- Status płatności
+INSERT INTO dbo.SlownikPlatnoscStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'AUTH',   N'Autoryzacja',  1),
+(1, N'BOOKED', N'Zaksięgowana', 2),
+(2, N'REFUND', N'Zwrot',        3),
+(3, N'REJECT', N'Odrzucona',    4),
+(4, N'PENDING',N'Oczekująca',   5);
+
+-- Status rezerwacji
+INSERT INTO dbo.SlownikRezerwacjaStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'ACTIVE',    N'Aktywna',    1),
+(1, N'INPROGRESS',N'Realizowana',2),
+(2, N'CANCELLED', N'Anulowana',  3),
+(3, N'EXPIRED',   N'Wygasła',    4),
+(4, N'NO_SHOW',   N'Nieodebrana',5);
+
+-- Priorytet zgłoszenia
+INSERT INTO dbo.SlownikZgloszeniePriorytet (PriorytetId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'NISKI',  N'Niski',   1),
+(1, N'SREDNI', N'Średni',  2),
+(2, N'WYSOKI', N'Wysoki',  3),
+(3, N'KRYTYCZNY', N'Krytyczny', 4),
+(4, N'INFO',   N'Informacyjny', 5);
+
+-- Status zgłoszenia
+INSERT INTO dbo.SlownikZgloszenieStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'NOWE',     N'Nowe',        1),
+(1, N'WTRAKCIE', N'W trakcie',   2),
+(2, N'ZAMKNIETE',N'Zamknięte',   3),
+(3, N'ODRZUCONE',N'Odrzucone',   4),
+(4, N'PONOWNE',  N'Ponowne',     5);
+
+-- Status transferu
+INSERT INTO dbo.SlownikTransferStatus (StatusId, Kod, Nazwa, Kolejnosc)
+VALUES
+(0, N'PLAN',   N'Planowany',   1),
+(1, N'INT',    N'W toku',      2),
+(2, N'DONE',   N'Zakończony',  3),
+(3, N'CANCEL', N'Anulowany',   4),
+(4, N'ERROR',  N'Błąd',        5);
+
+----------------------------------------------------
+-- STACJE (5)
+----------------------------------------------------
+INSERT INTO dbo.Stacja (Kod, Nazwa, SzerGeo, DlugGeo, GodzinyOtwarcia, KtoDodal)
+VALUES
+(N'KRK-CEN', N'Kraków Centrum',      50.0614, 19.9373, N'06:00-22:00', 1),
+(N'KRK-KAZ', N'Kraków Kazimierz',    50.0512, 19.9450, N'06:00-22:00', 1),
+(N'KRK-DW',  N'Kraków Dworzec Gł.',  50.0675, 19.9463, N'00:00-23:59', 1),
+(N'KRK-BR',  N'Kraków Bronowice',    50.0790, 19.8950, N'06:00-20:00', 1),
+(N'KRK-NH',  N'Kraków Nowa Huta',    50.0720, 20.0379, N'06:00-20:00', 1);
+
+----------------------------------------------------
+-- STOJAKI (5)
+-- Zakładam, że ID stacji to 1..5 w kolejności wstawiania
+----------------------------------------------------
+INSERT INTO dbo.Stojak (StacjaId, NumerMiejsca, Sprawny, KtoDodal)
+VALUES
+(1, 1, 1, 1),
+(1, 2, 1, 1),
+(2, 1, 1, 1),
+(3, 1, 0, 1), -- niesprawny
+(4, 1, 1, 1);
+
+----------------------------------------------------
+-- ROWER MODELE (5)
+----------------------------------------------------
+INSERT INTO dbo.RowerModel (Producent, Nazwa, Typ, E_Bike, MasaKg, KtoDodal)
+VALUES
+(N'Kross',   N'City 1.0',   N'Miejski', 0, 14.5, 1),
+(N'Kross',   N'MTB 3.0',    N'Górski',  0, 13.2, 1),
+(N'Trek',    N'Domane',     N'Szosa',   0,  9.8, 1),
+(N'Cube',    N'E-Trek',     N'Trekking',1, 22.0, 1),
+(N'Giant',   N'Explore E+', N'Trekking',1, 23.5, 1);
+
+----------------------------------------------------
+-- ROWERY (5)
+-- Stan: korzysta ze słownika SlownikRowerStan (0..4)
+----------------------------------------------------
+INSERT INTO dbo.Rower (RowerModelId, NumerSeryjny, KodFloty, Stan, OstatniaStacjaId, OstatniStojakId,
+                       OstatniaSzerGeo, OstatniaDlugGeo, PrzebiegKm, PoziomBateriiProc, DataPrzegladu, KtoDodal)
+VALUES
+(1, N'SN-0001', N'FL-001', 0, 1, 1, 50.0614, 19.9373, 120.5, NULL,      '2025-01-01', 1),
+(2, N'SN-0002', N'FL-002', 1, 2, 3, 50.0512, 19.9450, 340.0, NULL,      '2024-12-15', 1),
+(3, N'SN-0003', N'FL-003', 2, 3, 4, 50.0675, 19.9463, 560.7, NULL,      '2024-11-10', 1),
+(4, N'SN-0004', N'FL-004', 0, 4, 5, 50.0790, 19.8950,  80.0, 78,        '2025-02-01', 1),
+(5, N'SN-0005', N'FL-005', 3, 5, NULL,50.0720, 20.0379,  12.3,  0,      '2024-10-10', 1);
+
+----------------------------------------------------
+-- KLIENCI (5)
+-- Typ: korzysta ze SlownikKlientTyp (0..4)
+----------------------------------------------------
+INSERT INTO dbo.Klient (Typ, Imie, Nazwisko, NIP, Email, Telefon, DataUrodzenia, KtoDodal)
+VALUES
+(0, N'Jan',   N'Kowalski',    NULL,         N'jan.kowalski@example.com',   N'+48111111111', '1990-05-10', 1),
+(0, N'Anna',  N'Nowak',       NULL,         N'anna.nowak@example.com',     N'+48222222222', '1995-03-20', 1),
+(1, NULL,     N'ABC Sp. z o.o.',N'9451231234',N'biuro@abc.pl',             N'+48333333333', NULL,          1),
+(1, NULL,     N'TransportX SA', N'6762342345',N'kontakt@transportx.pl',    N'+48444444444', NULL,          1),
+(2, N'Liceum',N'Nr 1',        N'9991112223', N'sekretariat@liceum1.pl',    N'+48555555555', NULL,          1);
+
+----------------------------------------------------
+-- PLANY CENOWE (5)
+----------------------------------------------------
+INSERT INTO dbo.PlanCenowy (Nazwa, Waluta, Opis, AktywnaOd, AktywnaDo, KtoDodal)
+VALUES
+(N'Standard', N'PLN', N'Podstawowy plan dla klientów indywidualnych', '2024-01-01', NULL,          1),
+(N'Firma',    N'PLN', N'Plan dla klientów firmowych',                 '2024-01-01', NULL,          1),
+(N'Student',  N'PLN', N'Zniżka dla studentów',                        '2024-09-01', NULL,          1),
+(N'Weekend',  N'PLN', N'Promocyjny na weekendy',                      '2024-06-01', NULL,          1),
+(N'Premium',  N'PLN', N'Wyższa opłata, więcej minut gratis',          '2024-01-01', '2026-01-01',  1);
+
+----------------------------------------------------
+-- STAWKI PLANÓW CENOWYCH (5)
+-- Typ: SlownikPlanCenowyStawkaTyp (0..4)
+-- Zakładam ID planów 1..5
+----------------------------------------------------
+INSERT INTO dbo.PlanCenowyStawka (PlanCenowyId, Typ, OdMinuty, DoMinuty, CenaZaMin,
+                                  OplataStartowa, LimitDarmowychMin, DoplataPoLimicie, KtoDodal)
+VALUES
+(1, 0,  0, 10, 0.0000,  0.00, 10, NULL,    1),    -- Standard: pierwsze 10 min gratis
+(1, 0, 11, 60, 0.2500, NULL, NULL, NULL,   1),    -- Standard: 0.25 zł/min 11-60
+(1, 0, 61, NULL,0.1500,NULL, NULL, NULL,   1),    -- Standard: taniej po 60 min
+(2, 2, NULL, NULL,NULL, 20.00,30, 0.1500,  1),    -- Firma: opłata stała + 30 min gratis potem 0.15 zł
+(3, 3, NULL, NULL,NULL,  0.00,NULL, NULL,  1);    -- Student: kara (definiowana w logice)
+
+----------------------------------------------------
+-- ABONAMENTY (5)
+-- Status: SlownikAbonamentStatus (0..4)
+-- KlientId ~ 1..5, PlanCenowyId ~ 1..5
+----------------------------------------------------
+INSERT INTO dbo.Abonament (KlientId, PlanCenowyId, DataStart, DataKoniec, [Status], KtoDodal)
+VALUES
+(1, 1, '2024-10-01', '2025-10-01', 0, 1),  -- Jan, Standard, aktywny
+(2, 3, '2024-09-01', '2025-09-01', 0, 1),  -- Anna, Student
+(3, 2, '2024-01-01', '2024-12-31', 1, 1),  -- ABC, Firma, zakończony
+(4, 2, '2024-06-01', '2025-06-01', 2, 1),  -- TransportX, zawieszony
+(5, 5, '2025-01-01', '2026-01-01', 4, 1);  -- Liceum, Premium, nowy
+
+----------------------------------------------------
+-- WYPOŻYCZENIA (5)
+-- Status: SlownikWypozyczenieStatus (0..4)
+-- Uwaga: PlanCenowyIdSnapshot powiązany logicznie z PlanCenowyId
+----------------------------------------------------
+INSERT INTO dbo.Wypozyczenie (KlientId, RowerId, StartUtc, KoniecUtc,
+                              StartStacjaId, KoniecStacjaId,
+                              StartSzerGeo, StartDlugGeo, KoniecSzerGeo, KoniecDlugGeo,
+                              OdlegloscKm, PlanCenowyIdSnapshot, [Status], KtoDodal)
+VALUES
+(1, 1, '2025-03-01 08:00', '2025-03-01 08:25', 1, 2,
+ 50.0614,19.9373,50.0512,19.9450, 5.2, 1, 1, 1), -- Jan, Standard, zamknięte
+(2, 4, '2025-03-01 09:10', '2025-03-01 09:40', 2, 2,
+ 50.0512,19.9450,50.0512,19.9450, 2.1, 3, 1, 1), -- Anna, Student
+(3, 2, '2025-03-01 10:00', '2025-03-01 11:30', 3, 4,
+ 50.0675,19.9463,50.0790,19.8950, 8.7, 2, 1, 1), -- ABC
+(4, 5, '2025-03-02 12:00', '2025-03-02 12:05', 4, 4,
+ 50.0790,19.8950,50.0790,19.8950, 0.5, 2, 2, 1), -- TransportX, anulowane
+(2, 1, '2025-03-03 14:00', '2025-03-03 14:45', 1, 3,
+ 50.0614,19.9373,50.0675,19.9463, 6.0, 1, 0, 1); -- Anna, jeszcze otwarte
+
+----------------------------------------------------
+-- OPŁATY ZA WYPOŻYCZENIE (5)
+-- Typ: SlownikWypozyczenieOplataTyp (0..4)
+----------------------------------------------------
+INSERT INTO dbo.WypozyczenieOplata (WypozyczenieId, Typ, IloscMin, Stawka, Kwota, KtoDodal)
+VALUES
+(1, 0, 10, 0.0000, 0.00, 1),  -- startowe/free minuty
+(1, 1, 15, 0.2500, 3.75, 1),  -- czasowa dopłata
+(2, 1, 30, 0.2000, 6.00, 1),
+(3, 1, 90, 0.1800,16.20, 1),
+(5, 1, 45, 0.2200, 9.90, 1);
+
+----------------------------------------------------
+-- PŁATNOŚCI (5)
+-- Metoda: SlownikPlatnoscMetoda (0..4)
+-- Status: SlownikPlatnoscStatus (0..4)
+----------------------------------------------------
+INSERT INTO dbo.Platnosc (KlientId, WypozyczenieId, DataPlatnosci, Kwota, Waluta,
+                          Metoda, Referencja, [Status], KtoDodal)
+VALUES
+(1, 1, '2025-03-01 08:30',  3.75, N'PLN', 0, N'TRN-0001', 1, 1), -- karta, zaksięgowana
+(2, 2, '2025-03-01 09:45',  6.00, N'PLN', 1, N'TRN-0002', 1, 1), -- BLIK
+(3, 3, '2025-03-01 11:35', 16.20, N'PLN', 2, N'PAR-0003', 1, 1), -- gotówka
+(4, 4, '2025-03-02 12:10',  0.00, N'PLN', 0, N'TRN-0004', 2, 1), -- zwrot
+(2, 5, '2025-03-03 14:50',  9.90, N'PLN', 0, N'TRN-0005', 0, 1); -- autoryzacja
+
+----------------------------------------------------
+-- REZERWACJE (5)
+-- Status: SlownikRezerwacjaStatus (0..4)
+----------------------------------------------------
+INSERT INTO dbo.Rezerwacja (KlientId, RowerId, DataOdUtc, DataDoUtc, [Status], KtoDodal)
+VALUES
+(1, 1, '2025-03-04 08:00', '2025-03-04 08:15', 0, 1), -- aktywna
+(2, 4, '2025-03-04 09:00', '2025-03-04 09:30', 1, 1), -- realizowana
+(3, 2, '2025-02-28 10:00', '2025-02-28 10:30', 3, 1), -- wygasła
+(4, 5, '2025-03-01 11:00', '2025-03-01 11:15', 2, 1), -- anulowana
+(5, 3, '2025-03-05 12:00', '2025-03-05 12:20', 0, 1); -- aktywna
+
+----------------------------------------------------
+-- ZGŁOSZENIA SERWISOWE (5)
+-- Priorytet: SlownikZgloszeniePriorytet (0..4)
+-- Status: SlownikZgloszenieStatus (0..4)
+----------------------------------------------------
+INSERT INTO dbo.ZgloszenieSerwisowe (RowerId, ZglaszajacyKlientId, DataZgloszeniaUtc,
+                                     Priorytet, Opis, [Status], StacjaDocelowaId, KtoDodal)
+VALUES
+(3, 1, '2025-03-01 12:00', 2, N'Uszkodzona przerzutka',     0, 3, 1),
+(5, 2, '2025-03-02 09:30', 3, N'Podejrzenie kradzieży',     1, 5, 1),
+(2, NULL,'2025-03-02 10:00',1, N'Luźne hamulce',            1, 2, 1),
+(4, 3, '2025-03-03 15:00', 0, N'Drobne rysy na ramie',      2, 4, 1),
+(1, 4, '2025-03-03 16:00', 4, N'Zgłoszenie testowe systemu',2, 1, 1);
+
+----------------------------------------------------
+-- TRANSFERY ROWERÓW (5)
+-- Status: SlownikTransferStatus (0..4)
+----------------------------------------------------
+INSERT INTO dbo.TransferRoweru (RowerId, StacjaZrodlowaId, StacjaDocelowaId,
+                                DataStartUtc, DataKoniecUtc, [Status], Uwagi, KtoDodal)
+VALUES
+(1, 1, 3, '2025-03-01 05:00', '2025-03-01 05:30', 2, N'Przeniesienie na dworzec',      1),
+(2, 3, 2, '2025-03-01 06:00', NULL,                1, N'W trakcie relokacji',          1),
+(3, 4, 1, '2025-03-02 07:00', '2025-03-02 07:45',  2, N'Powrót do centrum',            1),
+(4, 5, 4, '2025-03-02 08:00', '2025-03-02 08:30',  3, N'Anulowano z powodu awarii',    1),
+(5, 2, 5, '2025-03-03 09:00', NULL,                0, N'Planowany transfer na Nową Hutę',1);
