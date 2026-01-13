@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White" Width="600" HorizontalAlignment="Left">
+        <!-- Ważne: BindingGroup pozwala wymusić UpdateSources (gdybyś chciał w code-behind),
+             i ogólnie stabilizuje formularz przy zapisie/eksportach -->
+        <Grid.BindingGroup>
+            <BindingGroup/>
+        </Grid.BindingGroup>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="33"/>
             <RowDefinition Height="33"/>
@@ -15,6 +21,8 @@
             <RowDefinition Height="33"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="33"/>
+            <!-- opcjonalnie: ścieżka PDF -->
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Podsumowanie wypożyczeń w wybranym okresie" HorizontalContentAlignment="Center"/>
@@ -26,10 +34,14 @@
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
             <Label Grid.Column="0" Content="Od" Margin="3" HorizontalContentAlignment="Center"/>
-            <DatePicker Grid.Column="1" Margin="3" SelectedDate="{Binding DataOd}"/>
+            <DatePicker Grid.Column="1" Margin="3"
+                        SelectedDate="{Binding DataOd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
             <Label Grid.Column="2" Content="Do" Margin="3" HorizontalContentAlignment="Center"/>
-            <DatePicker Grid.Column="3" Margin="3" SelectedDate="{Binding DataDo}"/>
+            <DatePicker Grid.Column="3" Margin="3"
+                        SelectedDate="{Binding DataDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -112,8 +124,30 @@
         </UniformGrid>
 
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Generuj raport" Command="{Binding GenerujRaport}" Margin="3" Padding="10,3" Width="150"/>
-            <Button Content="Wyczyść" Command="{Binding Wyczysc}" Margin="3" Padding="10,3" Width="100"/>
+            <Button Content="Generuj raport"
+                    Command="{Binding GenerujRaport}"
+                    Margin="3" Padding="10,3" Width="150"/>
+
+            <Button Content="Eksportuj do PDF"
+                    Command="{Binding EksportujPdf}"
+                    Margin="3" Padding="10,3" Width="150"/>
+
+            <Button Content="Wyczyść"
+                    Command="{Binding Wyczysc}"
+                    Margin="3" Padding="10,3" Width="100"/>
         </StackPanel>
+
+        <!-- Opcjonalnie: pokazanie gdzie zapisano PDF -->
+        <Grid Grid.Row="7" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Ostatni PDF:" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1"
+                     IsReadOnly="True"
+                     Text="{Binding OstatniaSciezkaPdf}"
+                     VerticalContentAlignment="Center"/>
+        </Grid>
     </Grid>
 </UserControl>
