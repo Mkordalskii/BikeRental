@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White" Width="600" HorizontalAlignment="Left">
-        <!-- Ważne: BindingGroup pozwala wymusić UpdateSources (gdybyś chciał w code-behind),
-             i ogólnie stabilizuje formularz przy zapisie/eksportach -->
+        <!-- Ważne: BindingGroup pozwala wymusić UpdateSources
+             i ogólnie stabilizuje formularz przy zapisie/eksportach. Waliduje i wysyła wszystko na raz -->
         <Grid.BindingGroup>
             <BindingGroup/>
         </Grid.BindingGroup>
@@ -22,7 +22,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="33"/>
-            <!-- opcjonalnie: ścieżka PDF -->
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Podsumowanie wypożyczeń w wybranym okresie" HorizontalContentAlignment="Center"/>
@@ -137,7 +136,7 @@
                     Margin="3" Padding="10,3" Width="100"/>
         </StackPanel>
 
-        <!-- Opcjonalnie: pokazanie gdzie zapisano PDF -->
+        <!-- okienko ze sciezka pdf -->
         <Grid Grid.Row="7" Margin="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>

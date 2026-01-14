@@ -180,7 +180,11 @@ namespace BikeRental.ViewModels
         private string _OstatniaSciezkaPdf;
         public string OstatniaSciezkaPdf
         {
-            get => _OstatniaSciezkaPdf;
+            get
+            {
+                return _OstatniaSciezkaPdf;
+            }
+
             set
             {
                 _OstatniaSciezkaPdf = value;
@@ -215,7 +219,7 @@ namespace BikeRental.ViewModels
             get
             {
                 if (_GenerujRaport == null)
-                    _GenerujRaport = new BaseCommand(generujRaportClick);
+                    _GenerujRaport = new BaseCommand(PrzeliczRaport);
                 return _GenerujRaport;
             }
         }
@@ -240,19 +244,13 @@ namespace BikeRental.ViewModels
         }
         #endregion
         #region Logika komend
-
-        private void generujRaportClick()
-        {
-            PrzeliczRaport();
-        }
-
         private void eksportujPdfClick()
         {
             //jeśli user nie kliknął "Generuj raport", a chce PDF -> przelicz
             if (!CzyWynikJestPoliczony())
                 PrzeliczRaport();
 
-            //dalej: wybór pliku
+            //wybór pliku
             var dlg = new SaveFileDialog
             {
                 Filter = "PDF (*.pdf)|*.pdf",
@@ -276,14 +274,12 @@ namespace BikeRental.ViewModels
                 LacznyDystansKm = LacznyDystansKm ?? 0m,
                 Przychod = Przychod ?? 0m
             };
-
             //generujemy PDF
             RaportPdfGenerator.Generate(dto, dlg.FileName);
 
             //zapamiętaj ścieżkę (do wyświetlenia w View)
             OstatniaSciezkaPdf = dlg.FileName;
         }
-
         private void wyczyscClick()
         {
             IdKlienta = null;
@@ -293,13 +289,12 @@ namespace BikeRental.ViewModels
             WyczyscWynik();
             OstatniaSciezkaPdf = string.Empty;
         }
-
         private void PrzeliczRaport()
         {
-            // walidacja dat (minimum)
+            //walidacja dat (minimum)
             if (DataDo.Date < DataOd.Date)
             {
-                // najprościej: zamiana / korekta
+                //zamiana
                 var tmp = DataOd;
                 DataOd = DataDo;
                 DataDo = tmp;
@@ -312,7 +307,6 @@ namespace BikeRental.ViewModels
             LacznyDystansKm = b.LacznyDystansKmOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
             Przychod = b.PrzychodOkres(DataOd, DataDo, IdKlienta, IdRoweru, IdStacjaStart, IdStacjaKoniec);
         }
-
         private bool CzyWynikJestPoliczony()
         {
             return LiczbaWypozyczen.HasValue
@@ -320,7 +314,6 @@ namespace BikeRental.ViewModels
                 || LacznyDystansKm.HasValue
                 || Przychod.HasValue;
         }
-
         private void WyczyscWynik()
         {
             LiczbaWypozyczen = null;
