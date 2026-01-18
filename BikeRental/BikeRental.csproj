@@ -30,7 +30,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -260,6 +260,10 @@
     <Compile Include="Models\Uzytkownik.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validators\BiznesValidator.cs" />
+    <Compile Include="Models\Validators\EmailValidator.cs" />
+    <Compile Include="Models\Validators\StringValidator.cs" />
+    <Compile Include="Models\Validators\Validator.cs" />
     <Compile Include="Models\Wypozyczenie.cs">
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>

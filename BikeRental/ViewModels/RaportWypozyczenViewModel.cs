@@ -25,8 +25,6 @@ namespace BikeRental.ViewModels
             DataDo = DateTime.Today;
             WyczyscWynik();
             OstatniaSciezkaPdf = string.Empty;
-
-            WyczyscWynik();
         }
         #endregion
 

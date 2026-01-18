@@ -33,14 +33,26 @@ namespace BikeRental.ViewModels.Abstract
         public abstract void Save();
         private void saveAndClose()
         {
-            Save();
-            //zamykamy zakladke przez metode z WorkSpaceViewModel
-            OnRequestClose();//najpierw zmien w WorkspaceViewModel z private na protected
+            if (IsValid())
+            {
+                Save();
+                //zamykamy zakladke przez metode z WorkSpaceViewModel
+                ShowMessageBox("Dodano dokument");
+                OnRequestClose();//najpierw zmien w WorkspaceViewModel z private na protected
+            }
+            else
+                ShowMessageBox("Popraw bledy");
         }
         protected static void Fill(ObservableCollection<ForeignKeyIdAndNameRecord> target, IEnumerable<ForeignKeyIdAndNameRecord> items)
         {
             target.Clear();
             foreach (var x in items) target.Add(x);
+        }
+        #endregion
+        #region Validation
+        public virtual bool IsValid()
+        {
+            return true;
         }
         #endregion
     }

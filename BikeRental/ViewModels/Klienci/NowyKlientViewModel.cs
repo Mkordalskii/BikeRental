@@ -1,11 +1,13 @@
 ﻿using BikeRental.Models;
+using BikeRental.Models.Validators;
 using BikeRental.ViewModels.Abstract;
 using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace BikeRental.ViewModels
 {
-    public class NowyKlientViewModel : JedenViewModel<Klient>
+    public class NowyKlientViewModel : JedenViewModel<Klient>, IDataErrorInfo
     {
         #region Constructor 
         public NowyKlientViewModel() : base()
@@ -144,6 +146,37 @@ namespace BikeRental.ViewModels
                         select typ
                     ).ToList().AsQueryable();
             }
+        }
+        #endregion
+        #region Validation
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Nazwisko")
+                {
+                    komunikat = StringValidator.SprawdzCzyZaczynaSieOdDuzej(this.Nazwisko);
+                }
+                if (name == "Email")
+                {
+                    komunikat = EmailValidator.SprawdzEmail(this.Email);
+                }
+                return komunikat;
+            }
+        }
+        public override bool IsValid()
+        {
+            if (this["Nazwisko"] == null && this["Email"] == null)
+                return true;
+            return false;
         }
         #endregion
     }
