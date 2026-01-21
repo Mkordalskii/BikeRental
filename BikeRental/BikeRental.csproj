@@ -154,6 +154,7 @@
       <DependentUpon>ModelBikeRental.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\HomePageB.cs" />
     <Compile Include="Models\BusinessLogic\KlientB.cs" />
     <Compile Include="Models\BusinessLogic\PlanCenowyB.cs" />
     <Compile Include="Models\BusinessLogic\RaportPdfGenerator.cs" />

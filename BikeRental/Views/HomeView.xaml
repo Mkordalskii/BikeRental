@@ -56,7 +56,7 @@
                         BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="Aktywne wypożyczenia" Foreground="{StaticResource MutedTextBrush}"/>
-                        <TextBlock Text="12" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="{Binding AktywneWypozyczenia}" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
                     </StackPanel>
                 </Border>
 
@@ -68,7 +68,7 @@
                         BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="Dostępne rowery" Foreground="{StaticResource MutedTextBrush}"/>
-                        <TextBlock Text="34" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="{Binding DostepneRowery}" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
                     </StackPanel>
                 </Border>
 
@@ -79,8 +79,8 @@
                         BorderBrush="{StaticResource BorderBrushSoft}"
                         BorderThickness="1">
                     <StackPanel>
-                        <TextBlock Text="Rezerwacje dziś" Foreground="{StaticResource MutedTextBrush}"/>
-                        <TextBlock Text="5" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="Rezerwacje" Foreground="{StaticResource MutedTextBrush}"/>
+                        <TextBlock Text="{Binding ZarezerwowaneRowery}" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
                     </StackPanel>
                 </Border>
 
@@ -90,8 +90,8 @@
                         BorderBrush="{StaticResource BorderBrushSoft}"
                         BorderThickness="1">
                     <StackPanel>
-                        <TextBlock Text="Przychód dziś" Foreground="{StaticResource MutedTextBrush}"/>
-                        <TextBlock Text="480 zł" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="Przychód" Foreground="{StaticResource MutedTextBrush}"/>
+                        <TextBlock Text="{Binding LacznePrzychody}" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
