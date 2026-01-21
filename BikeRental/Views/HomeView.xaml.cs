@@ -1,6 +1,4 @@
-﻿using BikeRental.ViewModels;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace BikeRental.Views
 {
@@ -13,26 +11,26 @@ namespace BikeRental.Views
         {
             InitializeComponent();
         }
-        private void NoweWypozyczenie_Click(object sender, RoutedEventArgs e)
-        {
-            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
-            if (mainVm == null) return;
+        //private void NoweWypozyczenie_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+        //    if (mainVm == null) return;
 
-            mainVm.CreateView(new NoweWypozyczenieViewModel());
-        }
-        private void NowaRezerwacja_Click(object sender, RoutedEventArgs e)
-        {
-            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
-            if (mainVm == null) return;
+        //    mainVm.CreateView(new NoweWypozyczenieViewModel());
+        //}
+        //private void NowaRezerwacja_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+        //    if (mainVm == null) return;
 
-            mainVm.CreateView(new NowaRezerwacjaViewModel());
-        }
-        private void NowyKlient_Click(object sender, RoutedEventArgs e)
-        {
-            var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
-            if (mainVm == null) return;
+        //    mainVm.CreateView(new NowaRezerwacjaViewModel());
+        //}
+        //private void NowyKlient_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var mainVm = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+        //    if (mainVm == null) return;
 
-            mainVm.CreateView(new NowyKlientViewModel());
-        }
+        //    mainVm.CreateView(new NowyKlientViewModel());
+        //}
     }
 }

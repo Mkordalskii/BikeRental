@@ -1,5 +1,8 @@
-﻿using BikeRental.Models;
+﻿using BikeRental.Helper;
+using BikeRental.Models;
 using BikeRental.Models.BusinessLogic;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Input;
 
 namespace BikeRental.ViewModels
 {
@@ -73,6 +76,50 @@ namespace BikeRental.ViewModels
                 _LacznePrzychody = value;
                 OnPropertyChanged(() => LacznePrzychody);
             }
+        }
+        #endregion
+        #region Commands
+        private BaseCommand _AddAktywneWypozyczeniaCommand;
+        private BaseCommand _AddRezerwacjaCommand;
+        private BaseCommand _AddKlientCommand;
+        public ICommand AddAktywneWypozyczeniaCommand
+        {
+            get
+            {
+                if (_AddAktywneWypozyczeniaCommand == null) _AddAktywneWypozyczeniaCommand = new BaseCommand(AddAktywneWypozyczenia); //ta komenda wywola metode Add ktora jest zdefiniowana nizej
+                return _AddAktywneWypozyczeniaCommand;
+            }
+        }
+        public ICommand AddRezerwacjaCommand
+        {
+            get
+            {
+                if (_AddRezerwacjaCommand == null) _AddRezerwacjaCommand = new BaseCommand(AddRezerwacja);
+                return _AddRezerwacjaCommand;
+            }
+        }
+        public ICommand AddKlientCommand
+        {
+            get
+            {
+                if (_AddKlientCommand == null) _AddKlientCommand = new BaseCommand(AddKlient);
+                return _AddKlientCommand;
+            }
+        }
+        #endregion
+        #region helpers
+        private void AddAktywneWypozyczenia()
+        {
+            //ten Messenger jest z CommunityToolkit, wysyla komunikat do MainWindowViewModel
+            Messenger.Default.Send("Wszystkie aktywne wypozyczeniaAdd");
+        }
+        private void AddRezerwacja()
+        {
+            Messenger.Default.Send("Wszystkie rezerwacjeAdd");
+        }
+        private void AddKlient()
+        {
+            Messenger.Default.Send("Wszyscy klienciAdd");
         }
         #endregion
 
